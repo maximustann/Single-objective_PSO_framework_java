@@ -7,10 +7,10 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 	private int noService;
 	private int noLocation;
 	
-	public BPSOHaiTimeFitness(Normalize normalize, ProblemParameterSettings proSet){
+	public BPSOHaiTimeFitness(Normalize normalize, double[] latencyMatrix, int noService){
 		super(normalize);
-		latencyMatrix = proSet.getLatencyMatrix();
-		noService = proSet.getNoService();
+		this.latencyMatrix = latencyMatrix;
+		this.noService = noService;
 	}
 
 	@Override

@@ -8,12 +8,10 @@ import algorithms.FitnessFunction;
 public class BPSOHaiEvaluate implements Evaluate{
 	private ArrayList<FitnessFunction> funcList;
 	private double[] weights;
-	public BPSOHaiEvaluate(double[] weights){
-		this.weights = weights;
-	}
 
-	public BPSOHaiEvaluate(ArrayList<FitnessFunction> funcList){
+	public BPSOHaiEvaluate(ArrayList<FitnessFunction> funcList, double[] weights){
 		this.funcList = funcList;
+		this.weights = weights;
 	}
 
 	public void setFuncList(ArrayList<FitnessFunction> funcList){

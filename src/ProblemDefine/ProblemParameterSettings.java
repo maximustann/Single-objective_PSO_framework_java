@@ -17,11 +17,12 @@ public class ProblemParameterSettings {
 
 
 	public ProblemParameterSettings(InitPop initPop, InitVelocity initVel,
-									UpdateGbest upGbest, UpdatePbest upPbest, UpPop upPop,
+									UpdateGbest upGbest, UpdatePbest upPbest, Evaluate evaluate, UpPop upPop,
 									double Tmax, double Tmin, double Cmax, double Cmin, int noService,
 									double[] costMatrix, double[] freqMatrix, double[] latencyMatrix){
 		this.initPop = initPop;
 		this.initVel = initVel;
+		this.evaluate = evaluate;
 		this.upGbest = upGbest;
 		this.upPbest = upPbest;
 		this.upPop = upPop;

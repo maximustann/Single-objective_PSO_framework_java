@@ -5,9 +5,9 @@ import ProblemDefine.*;
 public class BPSOHaiCostFitness extends FitnessFunc{
 	private double[] costMatrix;
 	
-	public BPSOHaiCostFitness(Normalize normalize, ProblemParameterSettings proSet){
+	public BPSOHaiCostFitness(Normalize normalize, double[] costMatrix){
 		super(normalize);
-		costMatrix = proSet.getCostMatrix();
+		this.costMatrix = costMatrix;
 	}
 
 	public double[] unNormalizedFit(double[][] popVar){
