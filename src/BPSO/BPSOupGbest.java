@@ -4,11 +4,10 @@ public class BPSOupGbest implements UpdateGbest{
 
 	@Override
 	public double update(double[][] pBestVar, double [] pBestFit, double[] gBestVar, double gBestFit, int optimization) {
-		// TODO Auto-generated method stub
 		int popSize = pBestVar.length;
 		int bestIndex = 0;
 
-		// Searching for the global best
+		// Searching for the global best from pBest
 		for(int i = 0; i < popSize; i++){
 			// If minimize, smaller the better
 			// If maximize, bigger the better

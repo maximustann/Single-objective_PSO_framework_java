@@ -4,10 +4,10 @@ import algorithms.UpdatePbest;
 public class BPSOupPbest implements UpdatePbest{
 
 	public void update(double[][] pBestVar, double[] pBestFit, double[][] popVar, double[] popFit, int optimization) {
-		// TODO Auto-generated method stub
 		int popSize = pBestVar.length;
 		int maxVar = pBestVar[0].length;
 
+		// Go through whole population
 		for(int i = 0; i < popSize; i++){
 
 			// Check if the current fitness is better than previous pBest

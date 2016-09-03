@@ -8,15 +8,64 @@ public class ProblemParameterSettings {
 	private UpdateGbest upGbest;
 	private UpdatePbest upPbest;
 	private UpPop upPop;
+	private double Tmax, Tmin;
+	private double Cmax, Cmin;
+	private int noService;
+	private double[] costMatrix;
+	private double[] freqMatrix;
+	private double[] latencyMatrix;
 
 
 	public ProblemParameterSettings(InitPop initPop, InitVelocity initVel,
-									UpdateGbest upGbest, UpdatePbest upPbest, UpPop upPop){
+									UpdateGbest upGbest, UpdatePbest upPbest, UpPop upPop,
+									double Tmax, double Tmin, double Cmax, double Cmin, int noService,
+									double[] costMatrix, double[] freqMatrix, double[] latencyMatrix){
 		this.initPop = initPop;
 		this.initVel = initVel;
 		this.upGbest = upGbest;
 		this.upPbest = upPbest;
 		this.upPop = upPop;
+		
+		this.Tmax = Tmax;
+		this.Tmin = Tmin;
+		this.Cmax = Cmax;
+		this.Cmin = Cmin;
+		this.noService = noService;
+		
+		this.costMatrix = costMatrix;
+		this.freqMatrix = freqMatrix;
+		this.latencyMatrix = latencyMatrix;
+	}
+
+	public int getNoService() {
+		return noService;
+	}
+	public double getTmax() {
+		return Tmax;
+	}
+
+	public double getTmin() {
+		return Tmin;
+	}
+
+	public double getCmax() {
+		return Cmax;
+	}
+
+	public double getCmin() {
+		return Cmin;
+	}
+
+	public double[] getCostMatrix() {
+		return costMatrix;
+	}
+
+	public double[] getFreqMatrix() {
+		return freqMatrix;
+	}
+
+	public double[] getLatencyMatrix() {
+		return latencyMatrix;
 	}
 
 	public Evaluate getEvaluate() {

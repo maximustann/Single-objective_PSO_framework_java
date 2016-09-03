@@ -1,11 +1,8 @@
 package ProblemDefine;
 
-public class ParameterSettings<T> {
+public class ParameterSettings {
 	private double w, c1, c2, lbound, ubound;
 	private int optimization, popSize, maxGen, maxVar;
-	private T[][] popVar;
-	private T[][] pBestVar;
-	private T[] gBestVar;
 
 	public ParameterSettings(double w, double c1, double c2, double lbound, double ubound,
 								int optimization, int popSize, int maxGen, int maxVar){
@@ -17,28 +14,6 @@ public class ParameterSettings<T> {
 		this.popSize = popSize;
 		this.maxGen = maxGen;
 		this.maxVar = maxVar;
-	}
-
-	public void setPopVar(T[][] popVar){
-		this.popVar = popVar;
-	}
-	public void setGbestVar(T[] gBestVar){
-		this.gBestVar = gBestVar;
-	}
-	public void setPbestVar(T[][] pBestVar){
-		this.pBestVar = pBestVar;
-	}
-
-	public T[] getGbestVar(){
-		return gBestVar;
-	}
-
-	public T[][] getPopVar() {
-		return popVar;
-	}
-
-	public T[][] getpBestVar() {
-		return pBestVar;
 	}
 
 	public int getMaxVar(){

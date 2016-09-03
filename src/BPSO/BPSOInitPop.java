@@ -10,8 +10,7 @@ public class BPSOInitPop implements InitPop{
 		int popSize = popVar.length;
 		int maxVar = popSize * popVar[0].length;
 
-
-		// TODO Auto-generated method stub
+		// initialize population
 		for(int i = 0; i < popSize; i++){
 			for(int j = 0; j < maxVar; j++){
 				popVar[i][j] = (double) StdRandom.uniform(0, 1);
