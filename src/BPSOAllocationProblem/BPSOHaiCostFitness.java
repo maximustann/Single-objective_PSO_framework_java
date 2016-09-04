@@ -4,7 +4,7 @@ import algorithms.*;
 import ProblemDefine.*;
 public class BPSOHaiCostFitness extends FitnessFunc{
 	private double[] costMatrix;
-	
+
 	public BPSOHaiCostFitness(Normalize normalize, double[] costMatrix){
 		super(normalize);
 		this.costMatrix = costMatrix;

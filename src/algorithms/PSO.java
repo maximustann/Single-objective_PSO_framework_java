@@ -48,11 +48,11 @@ public class PSO {
 		popVar = new double[popSize][maxVar];
 		pBestVar = new double[popSize][maxVar];
 		gBestVar = new double[maxVar];
-		
-		
+
+
 		initPop = proSet.getInitPop();
 		initVel = proSet.getInitVel();
-		
+
 
 	}
 
@@ -67,6 +67,13 @@ public class PSO {
 		initializeRand(seed);
 		initPop.init(pBestVar);
 		initVel.init(velocity);
+
+		for(int i = 0; i < popSize; i++){
+			for(int j = 0; j < maxVar; j++){
+				System.out.print(popVar[i][j] + ", ");
+			}
+			System.out.println();
+		}
 
 		for(int i = 0; i < maxGen; i++){
 			evaluate.evaluate(popVar, popFit);

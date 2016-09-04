@@ -18,7 +18,30 @@ public class Experiment {
 		int popSize = 50;
 		int maxGen = 100;
 		weights[0] = weights[1] = 0.5;
-		
+
+		double[] costMatrix;
+		double[] freqMatrix;
+		double[] latencyMatrix;
+
+		int testCase = 1;
+		int noService;
+		int noLocation;
+		double Cmax, Cmin;
+		String base = "/home/tanboxi/HaiProjData/testCase" + testCase;
+		String configAddr = base + "/config.csv";
+		String costAddr = base + "/cost.csv";
+		String latencyAddr = base + "/latency.csv";
+		String freqAddr = base + "/freq.csv";
+		String costRangeAddr = base + "/costRange.csv";
+
+		ReadFileHai readFiles = new ReadFileHai(configAddr, costAddr, latencyAddr, freqAddr, costRangeAddr);
+		costMatrix = readFiles.getCostMatrix();
+		latencyMatrix = readFiles.getLatencyMatrix();
+		freqMatrix = readFiles.getFreqMatrix();
+		noService = readFiles.getNoService();
+		noLocation = readFiles.getNoLocation();
+		Cmax = readFiles.getCmax();
+		Cmin = readFiles.getCmin();
 
 		// Initialization !!!!
 		InitPop initPop = new BPSOInitPop();
@@ -27,16 +50,17 @@ public class Experiment {
 		UpdateGbest upGbest = new BPSOupGbest();
 		UpPop upPop = new BPSOupPop();
 		Normalize costLinear = new LinearScaling(Cmax, Cmin);
-		Normalize timeLinear = new LinearScaling(Tmax, Tmin);
+		Normalize timeLinear = new LinearScaling(0, 10);
 		FitnessFunction cost = new BPSOHaiCostFitness(costLinear, costMatrix);
 		FitnessFunction time = new BPSOHaiTimeFitness(timeLinear, latencyMatrix, noService);
 		funcList.add(cost);
 		funcList.add(time);
 		Evaluate evaluate = new BPSOHaiEvaluate(funcList, weights);
 
-		ProblemParameterSettings proSet = new ProblemParameterSettings(initPop, initVel, upGbest, 
-											upPbest, evaluate, upPop, 0, 0, 0, 0, 0, weights, weights, weights);
-		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize, maxGen, 0);
+		ProblemParameterSettings proSet = new ProblemParameterSettings(initPop, initVel, upGbest,
+											upPbest, evaluate, upPop, costMatrix, freqMatrix, latencyMatrix);
+		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
+														maxGen, noService * noLocation);
 		PSO myAlg = new PSO(pars, proSet);
 		myAlg.run(1);
 	}
