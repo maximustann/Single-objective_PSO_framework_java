@@ -8,9 +8,9 @@ public class LinearScaling implements Normalize{
 		this.max = max;
 		this.min = min;
 	}
-	
+
 	public double[] doNorm(double[] fitness){
-		
+
 		for(int i = 0; i < fitness.length; i++){
 			fitness[i] = (max - fitness[i]) / (max - min);
 		}

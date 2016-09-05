@@ -1,5 +1,4 @@
 package BPSOAllocationProblem;
-import java.util.ArrayList;
 
 import FileHandlers.ReadByCol;
 import FileHandlers.ReadByRow;
@@ -15,8 +14,6 @@ public class ReadFileHai{
 	private int noService;
 	private int noLocation;
 	private int noUser;
-	private double Cmax;
-	private double Cmin;
 
 	public ReadFileHai(String config, String cost, String latency, String freq, String costRange){
 

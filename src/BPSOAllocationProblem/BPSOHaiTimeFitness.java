@@ -1,12 +1,11 @@
 package BPSOAllocationProblem;
 import algorithms.*;
-import ProblemDefine.*;
 
 public class BPSOHaiTimeFitness extends FitnessFunc {
 	private double[] latencyMatrix;
 	private int noService;
 	private int noLocation;
-	
+
 	public BPSOHaiTimeFitness(Normalize normalize, double[] latencyMatrix, int noService){
 		super(normalize);
 		this.latencyMatrix = latencyMatrix;
@@ -23,25 +22,25 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		}
 		return fitness;
 	}
-	
+
 	private double fitnessIndividual(double[] particle, int noService, int noLocation){
 		double fitness = 0.0;
 		double[][] temp = new double[noService][noLocation];
 		double[] response = new double[noService];
 		double[] sumLatency = new double[noLocation];
-		
+
 		for(int i = 0; i < noLocation; i++){
 			for(int j = 0; j < noService; j++){
 				sumLatency[i] += latencyMatrix[j * noService + i];
 			}
 		}
-		
+
 		for(int i = 0; i < noService; i++){
 			for(int j = 0; j < noLocation; j++){
 				temp[i][j] = particle[i * noService + j] * sumLatency[j];
 			}
 		}
-		
+
 		for(int i = 0; i < noService; i++){
 			response[i] = min(temp[i]);
 		}
@@ -51,7 +50,7 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		fitness = fitness * serviceEstablishCon(response);
 		return fitness;
 	}
-	
+
 	// Looking for the minimum latency that not equals to  0
 	private double min(double[] tempMatrix){
 		double minimum = tempMatrix[0];
@@ -61,7 +60,7 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		}
 		return minimum;
 	}
-	
+
 	// Penalty function for response matrix
 	// If there is a service without being deployed, return a big value
 	private double serviceEstablishCon(double[] responseMatrix){

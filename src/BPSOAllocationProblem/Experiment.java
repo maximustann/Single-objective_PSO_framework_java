@@ -63,5 +63,6 @@ public class Experiment {
 														maxGen, noService * noLocation);
 		PSO myAlg = new PSO(pars, proSet);
 		myAlg.run(1);
+		System.out.println("Done!");
 	}
 }

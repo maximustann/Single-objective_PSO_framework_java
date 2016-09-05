@@ -1,7 +1,6 @@
 package BPSOAllocationProblem;
 
 import algorithms.*;
-import ProblemDefine.*;
 public class BPSOHaiCostFitness extends FitnessFunc{
 	private double[] costMatrix;
 
@@ -16,7 +15,7 @@ public class BPSOHaiCostFitness extends FitnessFunc{
 		double [] fitness = new double[popSize];
 		for(int i= 0; i < popSize; i++){
 			for(int j = 0; j < maxVar; j++){
-				fitness[i] = costMatrix[j] * popVar[i][j];
+				fitness[i] += costMatrix[j] * popVar[i][j];
 			}
 		}
 		return fitness;

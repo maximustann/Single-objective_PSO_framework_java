@@ -13,7 +13,7 @@ public class BPSOInitPop implements InitPop{
 		// initialize population
 		for(int i = 0; i < popSize; i++){
 			for(int j = 0; j < maxVar; j++){
-				popVar[i][j] = (double) StdRandom.uniform(0, 1);
+				popVar[i][j] = (double) StdRandom.uniform(0, 2);
 			}
 		}
 	}

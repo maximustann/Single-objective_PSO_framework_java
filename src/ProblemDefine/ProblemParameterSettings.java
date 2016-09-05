@@ -8,7 +8,6 @@ public class ProblemParameterSettings {
 	private UpdateGbest upGbest;
 	private UpdatePbest upPbest;
 	private UpPop upPop;
-	private int noService;
 	private double[] costMatrix;
 	private double[] freqMatrix;
 	private double[] latencyMatrix;

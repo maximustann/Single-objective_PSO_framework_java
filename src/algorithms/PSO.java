@@ -1,5 +1,4 @@
 package algorithms;
-import java.util.List;
 
 import algorithms.StdRandom;
 import ProblemDefine.*;
@@ -29,11 +28,12 @@ public class PSO {
 	private int popSize;
 	private int maxGen;
 	private int maxVar;
-	private double lbound, ubound;
+
+//	private double lbound, ubound;
 	private double w;
 	private double c1, c2;
 
-	// constructor
+	// constructor, initialize whole the components
 	public PSO(ParameterSettings pars, ProblemParameterSettings proSet){
 		maxGen = pars.getMaxGen();
 		maxVar = pars.getMaxVar();
@@ -41,18 +41,23 @@ public class PSO {
 		w = pars.getW();
 		c1 = pars.getC1();
 		c2 = pars.getC2();
-		lbound = pars.getLbound();
-		ubound = pars.getUbound();
+//		lbound = pars.getLbound();
+//		ubound = pars.getUbound();
 		optimization = pars.getOptimization();
 		velocity = new double[popSize][maxVar];
 		popVar = new double[popSize][maxVar];
+		popFit = new double[popSize];
 		pBestVar = new double[popSize][maxVar];
+		pBestFit = new double[popSize];
 		gBestVar = new double[maxVar];
 
 
 		initPop = proSet.getInitPop();
 		initVel = proSet.getInitVel();
-
+		evaluate = proSet.getEvaluate();
+		upGbest = proSet.getUpGbest();
+		upPbest = proSet.getUpPbest();
+		upPop = proSet.getUpPop();
 
 	}
 
@@ -67,13 +72,6 @@ public class PSO {
 		initializeRand(seed);
 		initPop.init(pBestVar);
 		initVel.init(velocity);
-
-		for(int i = 0; i < popSize; i++){
-			for(int j = 0; j < maxVar; j++){
-				System.out.print(popVar[i][j] + ", ");
-			}
-			System.out.println();
-		}
 
 		for(int i = 0; i < maxGen; i++){
 			evaluate.evaluate(popVar, popFit);

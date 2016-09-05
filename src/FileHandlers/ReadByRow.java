@@ -32,14 +32,12 @@ public class ReadByRow implements ReadCsvFile{
 
 		try {
 			br = new BufferedReader(new FileReader(fileName));
-			int rowNum = 0;
 			while((line = br.readLine()) != null){
 				String[] con = line.split(csvSplitBy);
 				double[] temp = new double[con.length];
 				for(int i = 0; i < con.length; i++){
 					temp[i] = Double.parseDouble(con[i]);
 				}
-				rowNum++;
 				content.add(temp);
 			}
 		} catch(FileNotFoundException e){
