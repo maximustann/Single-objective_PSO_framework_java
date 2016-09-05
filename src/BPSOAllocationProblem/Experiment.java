@@ -16,7 +16,7 @@ public class Experiment {
 		double ubound = 1;
 		int optimization = 0; //minimize
 		int popSize = 50;
-		int maxGen = 1000;
+		int maxGen = 100;
 		weights[0] = weights[1] = 0.5;
 
 		double[] costMatrix;
@@ -54,7 +54,7 @@ public class Experiment {
 		Normalize costLinear = new LinearScaling(Cmax, Cmin);
 		Normalize timeLinear = new LinearScaling(0, 10);
 		FitnessFunction cost = new BPSOHaiCostFitness(costLinear, costCon, costMatrix);
-		FitnessFunction time = new BPSOHaiTimeFitness(timeLinear, timeCon, latencyMatrix, noService);
+		FitnessFunction time = new BPSOHaiTimeFitness(timeLinear, timeCon, latencyMatrix, freqMatrix, noService, noLocation);
 		funcList.add(cost);
 		funcList.add(time);
 		Evaluate evaluate = new BPSOHaiEvaluate(funcList, weights);

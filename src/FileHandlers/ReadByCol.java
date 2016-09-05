@@ -18,35 +18,37 @@ public class ReadByCol implements ReadCsvFile{
 
 	@Override
 	public void read(String fileName, double[][] data) {
-		// TODO Auto-generated method stub
 		File fd = new File(fileName);
-		ArrayList<double[]> dataBuffer = readCsv(fd, data[0].length);
-
-		for(int i = 0; i < data[0].length; i++){
-			data[i] = dataBuffer.get(i);
+		double[][] myData = readCsv(fd, data.length);
+		for(int i = 0; i < data.length; i++){
+			for(int j = 0; j < data[0].length; j++) data[i][j] = myData[i][j];
 		}
 	}
 
-	private ArrayList<double []> readCsv(File fileName, int colNum){
+	private double[][] readCsv(File fileName, int colNum){
 		BufferedReader br = null;
-		ArrayList<double []> content = new ArrayList<double []>();
-
+		double[][] content = null;
 		try {
 			br = new BufferedReader(new FileReader(fileName));
-
-			for(int i = 0; i < colNum; i++){
-				double[] col = new double[colNum];
-				while((line = br.readLine()) != null){
-					String[] con = line.split(csvSplitBy);
-					col[i] = Double.parseDouble(con[i]);
-				}
-				content.add(col);
+			ArrayList<Double> col = new ArrayList<Double>();
+			while((line = br.readLine()) != null){
+				String[] con = line.split(csvSplitBy);
+				for(int j = 0; j < con.length; j++) col.add(Double.parseDouble(con[j]));
 			}
+			int rowNum = col.size() / colNum;
+			content = new double[colNum][rowNum];
+			for(int i = 0; i < rowNum; i++) {
+				for(int j = 0; j < colNum; j++) {
+					content[j][i] = col.get(j * colNum + i);
+				}
+			}
+
 		} catch(FileNotFoundException e){
 				e.printStackTrace();
 		} catch(IOException e){
 				e.printStackTrace();
 		}
+
 		return content;
 	}
 

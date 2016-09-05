@@ -1,6 +1,9 @@
 package algorithms;
 
 import algorithms.StdRandom;
+
+import java.util.Arrays;
+
 import ProblemDefine.*;
 
 public class PSO {
@@ -58,9 +61,7 @@ public class PSO {
 		upPop = proSet.getUpPop();
 
 		gBestFit = 1;
-		for(int i = 0; i < popSize; i++){
-			pBestFit[i] = 1;
-		}
+		Arrays.fill(pBestFit, 1.0);
 
 	}
 
@@ -79,7 +80,6 @@ public class PSO {
 
 		for(int i = 0; i < maxGen; i++){
 			evaluate.evaluate(popVar, popFit);
-
 			System.out.println(gBestFit);
 			upPbest.update(pBestVar, pBestFit, popVar, popFit, optimization);
 			gBestFit = upGbest.update(pBestVar, pBestFit, gBestVar, gBestFit, optimization);

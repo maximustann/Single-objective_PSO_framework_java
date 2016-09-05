@@ -2,16 +2,21 @@ package BPSOAllocationProblem;
 import algorithms.*;
 
 public class BPSOHaiTimeFitness extends FitnessFunc {
-	private double[] latencyMatrix;
+	private double[] latency;
+	private double[] frequency;
 	private int noService;
 	private int noLocation;
+	private int noUser;
 	private Constraint con;
 
-	public BPSOHaiTimeFitness(Normalize normalize, Constraint con, double[] latencyMatrix, int noService){
+	public BPSOHaiTimeFitness(Normalize normalize, Constraint con, double[] latency, double[] frequency,
+								int noService, int noLocation){
 		super(normalize);
 		this.con = con;
-		this.latencyMatrix = latencyMatrix;
+		this.latency = latency;
+		this.frequency = frequency;
 		this.noService = noService;
+		this.noUser = latency.length / noLocation;
 	}
 
 	@Override
@@ -29,54 +34,52 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 	public double[] normalizedFit(double[][] popVar){
 		double[] fitness = unNormalizedFit(popVar);
 		normalize.doNorm(fitness);
-
-//		for(int count = 0; count < popVar.length; count++){
-//			for(int i = 0; i < popVar[0].length; i++) System.out.print(popVar[count][i] + " ");
-//			System.out.println();
-//		}
-
 		fitness = con.punish(popVar, fitness);
 		return fitness;
 	}
 
 	private double fitnessIndividual(double[] particle, int noService, int noLocation){
 		double fitness = 0.0;
-		double[][] temp = new double[noService][noLocation];
-		double[] response = new double[noService];
-		double[] sumLatency = new double[noLocation];
-
-
-
-		for(int i = 0; i < noLocation; i++){
-			for(int j = 0; j < noService; j++){
-				sumLatency[i] += latencyMatrix[j * noService + i];
-			}
-		}
+		double[][] particleMatrix = new double[noService][noLocation];
+		double[][] latencyMatrix = new double[noUser][noLocation];
+		double[][] temp = new double[noUser][noLocation];
+		double[][] responseMatrix = new double[noUser][noService];
+		double[] responseComp = new double[noService];
 
 		for(int i = 0; i < noService; i++){
 			for(int j = 0; j < noLocation; j++){
-				temp[i][j] = particle[i * noService + j] * sumLatency[j];
-//				System.out.print(temp[i][j] + " ");
+				particleMatrix[i][j] = particle[i * noService + j];
 			}
-//			System.out.println();
+		}
+
+		for(int i = 0; i < noUser; i++){
+			for(int j = 0; j < noLocation; j++){
+				latencyMatrix[i][j] = latency[i * noUser + j];
+			}
+		}
+
+		for(int count = 0; count < noService; count++){
+			for(int i = 0; i < noUser; i++){
+				for(int j = 0; j < noLocation; j++) temp[i][j] = particleMatrix[count][j] * latencyMatrix[i][j];
+				responseMatrix[i][count] = min(temp[i]);
+			}
 		}
 
 		for(int i = 0; i < noService; i++){
-			response[i] = min(temp[i]);
-//			System.out.println(response[i]);
+			for(int j = 0; j < noUser; j++) responseComp[i] += responseMatrix[j][i];
 		}
+
+
 		for(int i = 0; i < noService; i++){
-			fitness += response[i];
+			fitness += responseComp[i] * frequency[i];
 		}
 		return fitness;
 	}
 
-	// Looking for the minimum latency that not equals to  0
-	private double min(double[] tempMatrix){
-		double minimum = tempMatrix[0];
-		for(int i = 1; i < tempMatrix.length; i++){
-			if((minimum > tempMatrix[i] && tempMatrix[i] != 0) || (minimum == 0 && tempMatrix[i] != 0))
-				minimum = tempMatrix[i];
+	private double min(double[] temp){
+		double minimum = temp[0];
+		for(int i = 0; i < temp.length; i++){
+			if(minimum > temp[i]) minimum = temp[i];
 		}
 		return minimum;
 	}
