@@ -44,8 +44,6 @@ public class PSO {
 //		lbound = pars.getLbound();
 //		ubound = pars.getUbound();
 		optimization = pars.getOptimization();
-		velocity = new double[popSize][maxVar];
-		popVar = new double[popSize][maxVar];
 		popFit = new double[popSize];
 		pBestVar = new double[popSize][maxVar];
 		pBestFit = new double[popSize];
@@ -59,6 +57,11 @@ public class PSO {
 		upPbest = proSet.getUpPbest();
 		upPop = proSet.getUpPop();
 
+		gBestFit = 1;
+		for(int i = 0; i < popSize; i++){
+			pBestFit[i] = 1;
+		}
+
 	}
 
 
@@ -70,11 +73,14 @@ public class PSO {
 	// Run the algorithm
 	public void run(int seed){
 		initializeRand(seed);
-		initPop.init(pBestVar);
-		initVel.init(velocity);
+		popVar = initPop.init(popSize, maxVar);
+		velocity = initVel.init(popSize, maxVar);
+
 
 		for(int i = 0; i < maxGen; i++){
 			evaluate.evaluate(popVar, popFit);
+
+			System.out.println(gBestFit);
 			upPbest.update(pBestVar, pBestFit, popVar, popFit, optimization);
 			gBestFit = upGbest.update(pBestVar, pBestFit, gBestVar, gBestFit, optimization);
 			upPop.update(popVar, pBestFit, velocity, pBestVar, gBestVar, w, c1, c2);

@@ -25,6 +25,7 @@ public class BPSOHaiEvaluate implements Evaluate{
 		}
 
 		for(int i = 0; i < fitness.length; i++){
+			fitness[i] = 0.0;
 			for(int j = 0; j < funcList.size(); j++){
 				fitness[i] += weights[j] * fitList.get(j)[i];
 			}

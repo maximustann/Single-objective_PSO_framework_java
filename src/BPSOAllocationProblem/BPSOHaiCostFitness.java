@@ -3,9 +3,11 @@ package BPSOAllocationProblem;
 import algorithms.*;
 public class BPSOHaiCostFitness extends FitnessFunc{
 	private double[] costMatrix;
+	Constraint con;
 
-	public BPSOHaiCostFitness(Normalize normalize, double[] costMatrix){
+	public BPSOHaiCostFitness(Normalize normalize, Constraint con, double[] costMatrix){
 		super(normalize);
+		this.con = con;
 		this.costMatrix = costMatrix;
 	}
 
@@ -19,5 +21,13 @@ public class BPSOHaiCostFitness extends FitnessFunc{
 			}
 		}
 		return fitness;
+	}
+
+	public double[] normalizedFit(double[][] popVar){
+		double[] fitness = unNormalizedFit(popVar);
+		normalize.doNorm(fitness);
+		fitness = con.punish(popVar, fitness);
+		return fitness;
+
 	}
 }

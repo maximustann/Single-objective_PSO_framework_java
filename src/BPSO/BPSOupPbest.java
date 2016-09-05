@@ -12,8 +12,7 @@ public class BPSOupPbest implements UpdatePbest{
 
 			// Check if the current fitness is better than previous pBest
 			if((pBestFit[i] > popFit[i] && optimization == 0) || ( pBestFit[i] < popFit[i] && optimization == 1)){
-				pBestFit[i] = pBestFit[i];
-
+				pBestFit[i] = popFit[i];
 				// update each personal Best
 				for(int j = 0; j < maxVar; j++){
 					pBestVar[i][j] = popVar[i][j];

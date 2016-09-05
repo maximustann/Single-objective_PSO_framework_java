@@ -6,15 +6,15 @@ import algorithms.StdRandom;
 public class BPSOInitPop implements InitPop{
 
 	@Override
-	public void init(double[][] popVar) {
-		int popSize = popVar.length;
-		int maxVar = popVar[0].length;
+	public double[][] init(int popSize, int maxVar) {
+		double[][] realVar = new double[popSize][maxVar];
 
 		// initialize population
 		for(int i = 0; i < popSize; i++){
 			for(int j = 0; j < maxVar; j++){
-				popVar[i][j] = (double) StdRandom.uniform(0, 2);
+				realVar[i][j] = (double) StdRandom.uniform(0, 2);
 			}
 		}
+		return realVar;
 	}
 }

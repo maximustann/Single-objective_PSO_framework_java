@@ -1,5 +1,5 @@
 package algorithms;
 
 public interface InitPop {
-	public void init(double [][] popVar);
+	public double[][] init(int popSize, int maxvar);
 }

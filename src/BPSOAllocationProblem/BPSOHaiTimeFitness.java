@@ -5,9 +5,11 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 	private double[] latencyMatrix;
 	private int noService;
 	private int noLocation;
+	private Constraint con;
 
-	public BPSOHaiTimeFitness(Normalize normalize, double[] latencyMatrix, int noService){
+	public BPSOHaiTimeFitness(Normalize normalize, Constraint con, double[] latencyMatrix, int noService){
 		super(normalize);
+		this.con = con;
 		this.latencyMatrix = latencyMatrix;
 		this.noService = noService;
 	}
@@ -15,11 +17,25 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 	@Override
 	public double[] unNormalizedFit(double[][] popVar) {
 		int popSize = popVar.length;
-		noLocation = popSize / noService;
+		noLocation = popVar[0].length / noService;
 		double[] fitness = new double[popSize];
+
 		for(int i = 0; i < popSize; i++){
 			fitness[i] = fitnessIndividual(popVar[i], noService, noLocation);
 		}
+		return fitness;
+	}
+
+	public double[] normalizedFit(double[][] popVar){
+		double[] fitness = unNormalizedFit(popVar);
+		normalize.doNorm(fitness);
+
+//		for(int count = 0; count < popVar.length; count++){
+//			for(int i = 0; i < popVar[0].length; i++) System.out.print(popVar[count][i] + " ");
+//			System.out.println();
+//		}
+
+		fitness = con.punish(popVar, fitness);
 		return fitness;
 	}
 
@@ -28,6 +44,8 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		double[][] temp = new double[noService][noLocation];
 		double[] response = new double[noService];
 		double[] sumLatency = new double[noLocation];
+
+
 
 		for(int i = 0; i < noLocation; i++){
 			for(int j = 0; j < noService; j++){
@@ -38,16 +56,18 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		for(int i = 0; i < noService; i++){
 			for(int j = 0; j < noLocation; j++){
 				temp[i][j] = particle[i * noService + j] * sumLatency[j];
+//				System.out.print(temp[i][j] + " ");
 			}
+//			System.out.println();
 		}
 
 		for(int i = 0; i < noService; i++){
 			response[i] = min(temp[i]);
+//			System.out.println(response[i]);
 		}
 		for(int i = 0; i < noService; i++){
 			fitness += response[i];
 		}
-		fitness = fitness * serviceEstablishCon(response);
 		return fitness;
 	}
 
@@ -61,13 +81,6 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		return minimum;
 	}
 
-	// Penalty function for response matrix
-	// If there is a service without being deployed, return a big value
-	private double serviceEstablishCon(double[] responseMatrix){
-		for(int i = 0; i < responseMatrix.length; i++){
-			if(responseMatrix[i] < 0.0001) return 10000.0;
-		}
-		return 1.0;
-	}
+
 
 }

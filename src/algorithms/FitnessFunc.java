@@ -1,6 +1,6 @@
 package algorithms;
 
-public class FitnessFunc implements FitnessFunction{
+public abstract class FitnessFunc implements FitnessFunction{
 	public Normalize normalize;
 
 	public FitnessFunc(Normalize normalize){
@@ -14,10 +14,6 @@ public class FitnessFunc implements FitnessFunction{
 		return fitness;
 	}
 
-	@Override
-	public double[] unNormalizedFit(double[][] popVar) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract double[] unNormalizedFit(double[][] popVar);
 
 }
