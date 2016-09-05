@@ -16,7 +16,7 @@ public class Experiment {
 		double ubound = 1;
 		int optimization = 0; //minimize
 		int popSize = 50;
-		int maxGen = 100;
+		int maxGen = 5000;
 		weights[0] = weights[1] = 0.5;
 
 		double[] costMatrix;
@@ -26,15 +26,16 @@ public class Experiment {
 		int testCase = 1;
 		int noService;
 		int noLocation;
-		double Cmax, Cmin;
+		double Cmax, Cmin, Tmax, Tmin;
 		String base = "/home/tanboxi/HaiProjData/testCase" + testCase;
 		String configAddr = base + "/config.csv";
 		String costAddr = base + "/cost.csv";
 		String latencyAddr = base + "/latency.csv";
 		String freqAddr = base + "/freq.csv";
 		String costRangeAddr = base + "/costRange.csv";
+		String timeRangeAddr = base + "/timeRange.csv";
 
-		ReadFileHai readFiles = new ReadFileHai(configAddr, costAddr, latencyAddr, freqAddr, costRangeAddr);
+		ReadFileHai readFiles = new ReadFileHai(configAddr, costAddr, latencyAddr, freqAddr, costRangeAddr, timeRangeAddr);
 		costMatrix = readFiles.getCostMatrix();
 		latencyMatrix = readFiles.getLatencyMatrix();
 		freqMatrix = readFiles.getFreqMatrix();
@@ -42,6 +43,8 @@ public class Experiment {
 		noLocation = readFiles.getNoLocation();
 		Cmax = readFiles.getCmax();
 		Cmin = readFiles.getCmin();
+		Tmax = readFiles.getTmax();
+		Tmin = readFiles.getTmin();
 
 		// Initialization !!!!
 		InitPop initPop = new BPSOInitPop();
@@ -52,14 +55,14 @@ public class Experiment {
 		Constraint costCon = new Constraint(noService);
 		Constraint timeCon = new Constraint(noService);
 		Normalize costLinear = new LinearScaling(Cmax, Cmin);
-		Normalize timeLinear = new LinearScaling(0, 10);
+		Normalize timeLinear = new LinearScaling(Tmax, Tmin);
 		FitnessFunction cost = new BPSOHaiCostFitness(costLinear, costCon, costMatrix);
 		FitnessFunction time = new BPSOHaiTimeFitness(timeLinear, timeCon, latencyMatrix, freqMatrix, noService, noLocation);
 		funcList.add(cost);
 		funcList.add(time);
 		Evaluate evaluate = new BPSOHaiEvaluate(funcList, weights);
 
-		ProblemParameterSettings proSet = new ProblemParameterSettings(initPop, initVel, upGbest,
+		ProblemParameterSettings proSet = new AllocationParameterSettings(initPop, initVel, upGbest,
 											upPbest, evaluate, upPop, costMatrix, freqMatrix, latencyMatrix);
 		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
 														maxGen, noService * noLocation);

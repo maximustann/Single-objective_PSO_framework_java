@@ -11,16 +11,18 @@ public class ReadFileHai{
 	private double[] latencyMatrix;
 	private double[] freqMatrix;
 	private double[][] costRangeData;
+	private double[][] timeRangeData;
 	private int noService;
 	private int noLocation;
 	private int noUser;
 
-	public ReadFileHai(String config, String cost, String latency, String freq, String costRange){
+	public ReadFileHai(String config, String cost, String latency, String freq, String costRange, String timeRange){
 
 		readByRow = new ReadByRow();
 		readByCol = new ReadByCol();
 
 		costRangeData = new double[1][2];
+		timeRangeData = new double[1][2];
 		double[][] configData = new double[1][3];
 		readByRow.read(config, configData);
 		noService = (int) configData[0][2];
@@ -36,6 +38,7 @@ public class ReadFileHai{
 		freqMatrix = new double[noService];
 
 		readByCol.read(costRange, costRangeData);
+		readByCol.read(timeRange, timeRangeData);
 		readByRow.read(cost, tempCost);
 		readByRow.read(latency, tempLatency);
 		readByCol.read(freq, tempFreq);
@@ -56,7 +59,12 @@ public class ReadFileHai{
 		freqMatrix = tempFreq[0];
 
 	}
-
+	public double getTmin() {
+		return timeRangeData[0][0];
+	}
+	public double getTmax() {
+		return timeRangeData[0][1];
+	}
 
 	public double getCmin() {
 		return costRangeData[0][0];

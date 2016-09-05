@@ -27,6 +27,8 @@ public class BPSOHaiCostFitness extends FitnessFunc{
 		double[] fitness = unNormalizedFit(popVar);
 		normalize.doNorm(fitness);
 		fitness = con.punish(popVar, fitness);
+//		for(int i = 0; i < fitness.length; i++) System.out.print(fitness[i] + " ");
+//		System.out.println();
 		return fitness;
 
 	}
