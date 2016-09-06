@@ -83,6 +83,7 @@ public class PSO {
 			upPbest.update(pBestVar, pBestFit, popVar, popFit, optimization);
 			gBestFit = upGbest.update(pBestVar, pBestFit, gBestVar, gBestFit, optimization);
 			upPop.update(popVar, pBestFit, velocity, pBestVar, gBestVar, w, c1, c2);
+			System.out.println(gBestFit);
 		}
 	}
 

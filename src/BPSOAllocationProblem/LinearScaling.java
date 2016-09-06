@@ -12,7 +12,7 @@ public class LinearScaling implements Normalize{
 	public double[] doNorm(double[] fitness){
 
 		for(int i = 0; i < fitness.length; i++){
-			fitness[i] = (max - fitness[i]) / (max - min);
+			fitness[i] = (fitness[i] - min) / (max - min);
 		}
 		return fitness;
 	}

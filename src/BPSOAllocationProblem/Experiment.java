@@ -16,14 +16,14 @@ public class Experiment {
 		double ubound = 1;
 		int optimization = 0; //minimize
 		int popSize = 50;
-		int maxGen = 5000;
+		int maxGen = 50;
 		weights[0] = weights[1] = 0.5;
 
 		double[] costMatrix;
 		double[] freqMatrix;
 		double[] latencyMatrix;
 
-		int testCase = 1;
+		int testCase = 2;
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
@@ -38,6 +38,8 @@ public class Experiment {
 		ReadFileHai readFiles = new ReadFileHai(configAddr, costAddr, latencyAddr, freqAddr, costRangeAddr, timeRangeAddr);
 		costMatrix = readFiles.getCostMatrix();
 		latencyMatrix = readFiles.getLatencyMatrix();
+
+
 		freqMatrix = readFiles.getFreqMatrix();
 		noService = readFiles.getNoService();
 		noLocation = readFiles.getNoLocation();

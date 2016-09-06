@@ -33,10 +33,10 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 
 	public double[] normalizedFit(double[][] popVar){
 		double[] fitness = unNormalizedFit(popVar);
-		for(int i = 0; i < fitness.length; i++) System.out.print(fitness[i] + " ");
 		normalize.doNorm(fitness);
 		fitness = con.punish(popVar, fitness);
-		System.out.println();
+//		for(int i = 0; i < fitness.length; i++) System.out.print(fitness[i] + " ");
+//		System.out.println();
 		return fitness;
 	}
 
@@ -47,6 +47,7 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		double[][] temp = new double[noUser][noLocation];
 		double[][] responseMatrix = new double[noUser][noService];
 		double[] responseComp = new double[noService];
+
 
 		// turn a particle vector into a particle matrix
 		for(int i = 0; i < noService; i++){
@@ -62,11 +63,16 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 			}
 		}
 
-		// calculate the response matrix
+
+
+
+		// calculate the response matrix (Bugs detected!!!)
 		for(int count = 0; count < noService; count++){
 			for(int i = 0; i < noUser; i++){
-				for(int j = 0; j < noLocation; j++) temp[i][j] = particleMatrix[count][j] * latencyMatrix[i][j];
-				responseMatrix[i][count] = min(temp[i]);
+				for(int j = 0; j < noLocation; j++) {
+					temp[i][j] = particleMatrix[count][j] * latencyMatrix[i][j];
+					responseMatrix[i][count] = min(temp[i]);
+				}
 			}
 		}
 
@@ -79,7 +85,9 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		 *      2.5
 		 */
 		for(int i = 0; i < noService; i++){
-			for(int j = 0; j < noUser; j++) responseComp[i] += responseMatrix[j][i];
+			for(int j = 0; j < noUser; j++) {
+				responseComp[i] += responseMatrix[j][i];
+			}
 		}
 
 
@@ -89,10 +97,11 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		return fitness;
 	}
 
+	// select the smallest one but not zero
 	private double min(double[] temp){
 		double minimum = temp[0];
 		for(int i = 0; i < temp.length; i++){
-			if(minimum > temp[i]) minimum = temp[i];
+			if((minimum > temp[i] && temp[i] != 0) || (minimum == 0 && temp[i] != 0)) minimum = temp[i];
 		}
 		return minimum;
 	}

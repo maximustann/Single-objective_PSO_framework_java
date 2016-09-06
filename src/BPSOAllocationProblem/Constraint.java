@@ -18,6 +18,7 @@ public class Constraint {
 					particle[i][j] = popVar[count][i * noService + j];
 				}
 			}
+
 			if(!checkService(particle)){
 				fitness[count] = 1.0;
 			}

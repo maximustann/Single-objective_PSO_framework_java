@@ -44,15 +44,19 @@ public class ReadFileHai{
 		readByCol.read(freq, tempFreq);
 
 
+		int counter = 0;
 		for(int i = 0; i < noService; i++){
 			for(int j = 0; j < noLocation; j++){
-				costMatrix[i * noService + j] = tempCost[i][j];
+				costMatrix[counter] = tempCost[i][j];
+				counter++;
 			}
 		}
 
+		counter = 0;
 		for(int i = 0; i < noUser; i++){
 			for(int j = 0; j < noLocation; j++){
-				latencyMatrix[i * noUser + j] = tempLatency[i][j];
+				latencyMatrix[counter] = tempLatency[i][j];
+				counter++;
 			}
 		}
 

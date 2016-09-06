@@ -19,26 +19,27 @@ public class ReadByRow implements ReadCsvFile{
 	@Override
 	public void read(String fileName, double[][] data) {
 		File fd = new File(fileName);
-		ArrayList<double[]> dataBuffer = readCsv(fd);
+		double[][] temp = readCsv(fd, data.length, data[0].length);
 
 		for(int i = 0; i < data.length; i++){
-			data[i] = dataBuffer.get(i);
+			for(int j = 0; j < data[0].length; j++)
+			data[i][j] = temp[i][j];
 		}
 	}
 
-	private ArrayList<double []> readCsv(File fileName){
+	private double [][] readCsv(File fileName, int rowNum, int colNum){
 		BufferedReader br = null;
-		ArrayList<double []> content = new ArrayList<double []>();
 
+		double[][] content = new double[rowNum][colNum];
 		try {
 			br = new BufferedReader(new FileReader(fileName));
+			int rowCount = 0;
 			while((line = br.readLine()) != null){
 				String[] con = line.split(csvSplitBy);
-				double[] temp = new double[con.length];
 				for(int i = 0; i < con.length; i++){
-					temp[i] = Double.parseDouble(con[i]);
+					content[rowCount][i] = Double.parseDouble(con[i]);
 				}
-				content.add(temp);
+				rowCount++;
 			}
 		} catch(FileNotFoundException e){
 				e.printStackTrace();
