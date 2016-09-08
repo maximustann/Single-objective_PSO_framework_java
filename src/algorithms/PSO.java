@@ -6,65 +6,66 @@ import java.util.Arrays;
 
 import ProblemDefine.*;
 
-public class PSO {
-	private InitPop initPop;
-	private InitVelocity initVel;
-	private Evaluate evaluate;
-	private UpdateGbest upGbest;
-	private UpdatePbest upPbest;
-	private UpPop upPop;
+public abstract class PSO {
+	protected InitPop initPop;
+	protected InitVelocity initVel;
+	protected Evaluate evaluate;
+	protected UpdateGbest upGbest;
+	protected UpdatePbest upPbest;
+	protected UpPop upPop;
 
 	// algorithm related parameter settings
-	private double[] popFit;
-	private double[] pBestFit;
-	private double[][] velocity;
+	protected double[] popFit;
+	protected double[] pBestFit;
+	protected double[][] velocity;
 
-	private double[][] popVar;
-	private double[][] pBestVar;
-	private double[] gBestVar;
+	protected double[][] popVar;
+	protected double[][] pBestVar;
+	protected double[] gBestVar;
 
-	private double gBestFit;
+	protected double gBestFit;
 
 
 	// Problem related parameter settings
-	private int optimization;
-	private int popSize;
-	private int maxGen;
-	private int maxVar;
+	protected int optimization;
+	protected int popSize;
+	protected int maxGen;
+	protected int maxVar;
 
 //	private double lbound, ubound;
-	private double w;
-	private double c1, c2;
+	protected double w;
+	protected double c1, c2;
 
 	// constructor, initialize whole the components
-	public PSO(ParameterSettings pars, ProblemParameterSettings proSet){
-		maxGen = pars.getMaxGen();
-		maxVar = pars.getMaxVar();
-		popSize = pars.getPopSize();
-		w = pars.getW();
-		c1 = pars.getC1();
-		c2 = pars.getC2();
-//		lbound = pars.getLbound();
-//		ubound = pars.getUbound();
-		optimization = pars.getOptimization();
-		popFit = new double[popSize];
-		pBestVar = new double[popSize][maxVar];
-		pBestFit = new double[popSize];
-		gBestVar = new double[maxVar];
+//	public PSO(ParameterSettings pars, ProblemParameterSettings proSet){
+//		maxGen = pars.getMaxGen();
+//		maxVar = pars.getMaxVar();
+//		popSize = pars.getPopSize();
+//		w = pars.getW();
+//		c1 = pars.getC1();
+//		c2 = pars.getC2();
+////		lbound = pars.getLbound();
+////		ubound = pars.getUbound();
+//		optimization = pars.getOptimization();
+//		popFit = new double[popSize];
+//		pBestVar = new double[popSize][maxVar];
+//		pBestFit = new double[popSize];
+//		gBestVar = new double[maxVar];
 
+//		prepare();
 
-		initPop = proSet.getInitPop();
-		initVel = proSet.getInitVel();
-		evaluate = proSet.getEvaluate();
-		upGbest = proSet.getUpGbest();
-		upPbest = proSet.getUpPbest();
-		upPop = proSet.getUpPop();
+//		initPop = proSet.getInitPop();
+//		initVel = proSet.getInitVel();
+//		evaluate = proSet.getEvaluate();
+//		upGbest = proSet.getUpGbest();
+//		upPbest = proSet.getUpPbest();
+//		upPop = proSet.getUpPop();
 
-		gBestFit = 1;
-		Arrays.fill(pBestFit, 1.0);
+//		gBestFit = 1;
+//		Arrays.fill(pBestFit, 1.0);
+//	}
 
-	}
-
+	protected abstract void prepare();
 
 	// Initialize random
 	private void initializeRand(int seed){

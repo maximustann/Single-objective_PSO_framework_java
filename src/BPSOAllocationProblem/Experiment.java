@@ -1,17 +1,17 @@
 package BPSOAllocationProblem;
 import java.util.ArrayList;
 
-import BPSO.*;
 import ProblemDefine.*;
 import algorithms.*;
+import psoFactory.OriginalBPSO;
 
 public class Experiment {
 	public static void main(String[] arg) {
 		ArrayList<FitnessFunction> funcList = new ArrayList<FitnessFunction>();
 		double[] weights = new double[2];
-		double w = 0.4;
-		double c1 = 2;
-		double c2 = 2;
+		double w = 0.689;
+		double c1 = 1.427;
+		double c2 = 1.427;
 		double lbound = 0;
 		double ubound = 1;
 		int optimization = 0; //minimize
@@ -23,7 +23,7 @@ public class Experiment {
 		double[] freqMatrix;
 		double[] latencyMatrix;
 
-		int testCase = 2;
+		int testCase = 1;
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
@@ -49,11 +49,6 @@ public class Experiment {
 		Tmin = readFiles.getTmin();
 
 		// Initialization !!!!
-		InitPop initPop = new BPSOInitPop();
-		InitVelocity initVel = new BPSOInitVel();
-		UpdatePbest upPbest = new BPSOupPbest();
-		UpdateGbest upGbest = new BPSOupGbest();
-		UpPop upPop = new BPSOupPop();
 		Constraint costCon = new Constraint(noService);
 		Constraint timeCon = new Constraint(noService);
 		Normalize costLinear = new LinearScaling(Cmax, Cmin);
@@ -64,11 +59,10 @@ public class Experiment {
 		funcList.add(time);
 		Evaluate evaluate = new BPSOHaiEvaluate(funcList, weights);
 
-		ProblemParameterSettings proSet = new AllocationParameterSettings(initPop, initVel, upGbest,
-											upPbest, evaluate, upPop, costMatrix, freqMatrix, latencyMatrix);
+		ProblemParameterSettings proSet = new AllocationParameterSettings(evaluate, costMatrix, freqMatrix, latencyMatrix);
 		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
 														maxGen, noService * noLocation);
-		PSO myAlg = new PSO(pars, proSet);
+		PSO myAlg = new OriginalBPSO(pars, proSet);
 		myAlg.run(1);
 		System.out.println("Done!");
 	}
