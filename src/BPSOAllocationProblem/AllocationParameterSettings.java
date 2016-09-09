@@ -10,7 +10,7 @@ public class AllocationParameterSettings extends ProblemParameterSettings{
 
 	public AllocationParameterSettings(	Evaluate evaluate, double[] costMatrix,
 								double[] freqMatrix, double[] latencyMatrix) {
-		super(evaluate, costMatrix, freqMatrix, latencyMatrix);
+		super(evaluate);
 		this.costMatrix = costMatrix;
 		this.freqMatrix = freqMatrix;
 		this.latencyMatrix = latencyMatrix;
