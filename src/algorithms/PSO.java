@@ -2,9 +2,6 @@ package algorithms;
 
 import algorithms.StdRandom;
 
-import java.util.Arrays;
-
-import ProblemDefine.*;
 
 public abstract class PSO {
 	protected InitPop initPop;
@@ -35,35 +32,6 @@ public abstract class PSO {
 //	private double lbound, ubound;
 	protected double w;
 	protected double c1, c2;
-
-	// constructor, initialize whole the components
-//	public PSO(ParameterSettings pars, ProblemParameterSettings proSet){
-//		maxGen = pars.getMaxGen();
-//		maxVar = pars.getMaxVar();
-//		popSize = pars.getPopSize();
-//		w = pars.getW();
-//		c1 = pars.getC1();
-//		c2 = pars.getC2();
-////		lbound = pars.getLbound();
-////		ubound = pars.getUbound();
-//		optimization = pars.getOptimization();
-//		popFit = new double[popSize];
-//		pBestVar = new double[popSize][maxVar];
-//		pBestFit = new double[popSize];
-//		gBestVar = new double[maxVar];
-
-//		prepare();
-
-//		initPop = proSet.getInitPop();
-//		initVel = proSet.getInitVel();
-//		evaluate = proSet.getEvaluate();
-//		upGbest = proSet.getUpGbest();
-//		upPbest = proSet.getUpPbest();
-//		upPop = proSet.getUpPop();
-
-//		gBestFit = 1;
-//		Arrays.fill(pBestFit, 1.0);
-//	}
 
 	protected abstract void prepare();
 

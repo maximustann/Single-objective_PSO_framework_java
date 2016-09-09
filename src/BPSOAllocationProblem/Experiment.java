@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import ProblemDefine.*;
 import algorithms.*;
-import psoFactory.OriginalBPSO;
+import psoFactory.*;
 
 public class Experiment {
 	public static void main(String[] arg) {
@@ -62,7 +62,7 @@ public class Experiment {
 		ProblemParameterSettings proSet = new AllocationParameterSettings(evaluate, costMatrix, freqMatrix, latencyMatrix);
 		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
 														maxGen, noService * noLocation);
-		PSO myAlg = new OriginalBPSO(pars, proSet);
+		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory());
 		myAlg.run(1);
 		System.out.println("Done!");
 	}

@@ -1,15 +1,17 @@
 package psoFactory;
+import java.util.Arrays;
+
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
 import algorithms.*;
 
-public class OriginalBPSO extends PSO{
+public class BPSO extends PSO{
 	PSOFactory BPSOFactory;
 	ParameterSettings pars;
 	ProblemParameterSettings proSet;
 
-	public OriginalBPSO(ParameterSettings pars, ProblemParameterSettings proSet){
-		BPSOFactory = new OriginalBPSOFactory();
+	public BPSO(ParameterSettings pars, ProblemParameterSettings proSet, PSOFactory factory){
+		BPSOFactory = factory;
 		this.pars = pars;
 		this.proSet = proSet;
 		prepare();
@@ -36,6 +38,7 @@ public class OriginalBPSO extends PSO{
 		pBestVar = new double[popSize][maxVar];
 		pBestFit = new double[popSize];
 		gBestVar = new double[maxVar];
-
+		gBestFit = 1;
+		Arrays.fill(pBestFit, 1.0);
 	}
 }
