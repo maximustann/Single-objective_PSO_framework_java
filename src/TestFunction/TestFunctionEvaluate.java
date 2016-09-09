@@ -17,17 +17,6 @@ public class TestFunctionEvaluate implements Evaluate{
 	}
 
 	public void evaluate(double[][] popVar, double[] fitness){
-//		ArrayList<double []> fitList = new ArrayList<double []>();
-//		for(int i = 0; i < funcList.size(); i++){
-//			fitList.add(funcList.get(i).normalizedFit(popVar));
-//		}
-//
-//		for(int i = 0; i < fitness.length; i++){
-//			fitness[i] = 0.0;
-//			for(int j = 0; j < funcList.size(); j++){
-//				fitness[i] += weights[j] * fitList.get(j)[i];
-//			}
-//		}
 		for(int i = 0; i < fitness.length; i++) {
 			fitness[i] = funcList.get(0).normalizedFit(popVar)[i];
 		}
