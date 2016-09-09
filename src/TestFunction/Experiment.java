@@ -8,14 +8,14 @@ import psoFactory.*;
 public class Experiment {
 	public static void main(String[] arg) {
 		ArrayList<FitnessFunction> funcList = new ArrayList<FitnessFunction>();
-		double w = 0.689;
-		double c1 = 1.427;
-		double c2 = 1.427;
-		double lbound = 1;
-		double ubound = 100;
+		double w = 2;
+		double c1 = 2;
+		double c2 = 2;
+		double lbound = -30;
+		double ubound = 30;
 		int optimization = 0; //minimize
 		int popSize = 50;
-		int maxGen = 50;
+		int maxGen = 10000;
 		int d = 20;
 
 		// Initialization !!!!

@@ -28,6 +28,8 @@ public class TestFunctionEvaluate implements Evaluate{
 //				fitness[i] += weights[j] * fitList.get(j)[i];
 //			}
 //		}
-		fitness = funcList.get(0).normalizedFit(popVar);
+		for(int i = 0; i < fitness.length; i++) {
+			fitness[i] = funcList.get(0).normalizedFit(popVar)[i];
+		}
 	}
 }

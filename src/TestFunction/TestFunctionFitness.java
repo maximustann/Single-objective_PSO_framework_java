@@ -15,8 +15,6 @@ public class TestFunctionFitness implements FitnessFunction{
 	}
 
 	public double[] normalizedFit(double[][] popVar){
-		double[] fitness = unNormalizedFit(popVar);
-		return fitness;
-
+		return unNormalizedFit(popVar);
 	}
 }
