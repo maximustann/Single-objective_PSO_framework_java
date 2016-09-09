@@ -1,21 +1,21 @@
 package psoFactory;
 
-import BPSO.BPSOInitPop;
-import BPSO.BPSOupPop;
 import algorithms.InitPop;
 import algorithms.InitVelocity;
 import algorithms.UpPop;
 import algorithms.UpdateGbest;
+import commonOperators.CommonInitPop;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
+import commonOperators.CommonUpPop;
 import algorithms.*;
 
-public class OriginalBPSOFactory implements PSOFactory{
+public class OriginalCPSOFactory implements PSOFactory{
 
 	@Override
 	public InitPop getInitPopMethod() {
-		return new BPSOInitPop();
+		return new CommonInitPop();
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class OriginalBPSOFactory implements PSOFactory{
 
 	@Override
 	public UpPop getUpPopMethod() {
-		return new BPSOupPop();
+		return new CommonUpPop();
 	}
 
 }

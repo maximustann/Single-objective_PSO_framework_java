@@ -13,7 +13,7 @@ public class Experiment {
 		double c1 = 1.427;
 		double c2 = 1.427;
 		double lbound = 0;
-		double ubound = 1;
+		double ubound = 2;
 		int optimization = 0; //minimize
 		int popSize = 50;
 		int maxGen = 50;
@@ -63,7 +63,7 @@ public class Experiment {
 		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
 														maxGen, noService * noLocation);
 		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory());
-		myAlg.run(1);
+		myAlg.run(11111);
 		System.out.println("Done!");
 	}
 }

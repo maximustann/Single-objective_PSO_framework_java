@@ -29,7 +29,8 @@ public abstract class PSO {
 	protected int maxGen;
 	protected int maxVar;
 
-//	private double lbound, ubound;
+	protected double lbound;
+	protected double ubound;
 	protected double w;
 	protected double c1, c2;
 
@@ -43,7 +44,7 @@ public abstract class PSO {
 	// Run the algorithm
 	public void run(int seed){
 		initializeRand(seed);
-		popVar = initPop.init(popSize, maxVar);
+		popVar = initPop.init(popSize, maxVar, lbound, ubound);
 		velocity = initVel.init(popSize, maxVar);
 
 

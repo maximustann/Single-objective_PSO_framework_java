@@ -1,28 +1,29 @@
 package psoFactory;
+
 import java.util.Arrays;
 
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
-import algorithms.*;
+import algorithms.PSO;
 
-public class BPSO extends PSO{
-	PSOFactory BPSOFactory;
+public class CPSO extends PSO{
+	PSOFactory CPSOFactory;
 	ParameterSettings pars;
 	ProblemParameterSettings proSet;
 
-	public BPSO(ParameterSettings pars, ProblemParameterSettings proSet, PSOFactory factory){
-		BPSOFactory = factory;
+	public CPSO(ParameterSettings pars, ProblemParameterSettings proSet, PSOFactory factory){
+		CPSOFactory = factory;
 		this.pars = pars;
 		this.proSet = proSet;
 		prepare();
 	}
 
 	protected void prepare(){
-		initPop = BPSOFactory.getInitPopMethod();
-		initVel = BPSOFactory.getInitVelMethod();
-		upGbest = BPSOFactory.getUpGbestMethod();
-		upPbest = BPSOFactory.getUpPbestMethod();
-		upPop = BPSOFactory.getUpPopMethod();
+		initPop = CPSOFactory.getInitPopMethod();
+		initVel = CPSOFactory.getInitVelMethod();
+		upGbest = CPSOFactory.getUpGbestMethod();
+		upPbest = CPSOFactory.getUpPbestMethod();
+		upPop = CPSOFactory.getUpPopMethod();
 		evaluate = proSet.getEvaluate();
 
 		maxGen = pars.getMaxGen();

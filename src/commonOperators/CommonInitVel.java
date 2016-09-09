@@ -1,8 +1,8 @@
-package BPSO;
+package commonOperators;
 
 import algorithms.InitVelocity;
 
-public class BPSOInitVel implements InitVelocity{
+public class CommonInitVel implements InitVelocity{
 
 	@Override
 	public double[][] init(int popSize, int maxVar) {

@@ -1,7 +1,7 @@
-package BPSO;
+package commonOperators;
 import algorithms.UpdatePbest;
 
-public class BPSOupPbest implements UpdatePbest{
+public class CommonUpPbest implements UpdatePbest{
 
 	public void update(double[][] pBestVar, double[] pBestFit, double[][] popVar, double[] popFit, int optimization) {
 		int popSize = pBestVar.length;

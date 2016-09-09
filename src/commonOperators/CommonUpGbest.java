@@ -1,6 +1,6 @@
-package BPSO;
+package commonOperators;
 import algorithms.UpdateGbest;
-public class BPSOupGbest implements UpdateGbest{
+public class CommonUpGbest implements UpdateGbest{
 
 	@Override
 	public double update(double[][] pBestVar, double [] pBestFit, double[] gBestVar, double gBestFit, int optimization) {
