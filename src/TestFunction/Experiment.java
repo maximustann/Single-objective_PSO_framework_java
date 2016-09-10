@@ -11,7 +11,7 @@ public class Experiment {
 		double w = 2;
 		double c1 = 2;
 		double c2 = 2;
-		double lbound = -30;
+		double lbound = -30; // ranging in [-30, 30]
 		double ubound = 30;
 		int optimization = 0; //minimize
 		int popSize = 50;
@@ -19,16 +19,17 @@ public class Experiment {
 		int d = 20;
 
 		// Initialization !!!!
-
 		FitnessFunction fitnessFunction = new TestFunctionFitness();
 		funcList.add(fitnessFunction);
 		Evaluate evaluate = new TestFunctionEvaluate(funcList);
 
+
 		ProblemParameterSettings proSet = new TestFunctionParameterSettings(evaluate);
 		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
 														maxGen, d);
+		// initialize a continuous version of PSO
 		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory());
-		myAlg.run(11111);
+		myAlg.run(11111); // parameter is a random seed
 		System.out.println("Done!");
 	}
 }

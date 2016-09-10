@@ -11,6 +11,7 @@ import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
 import algorithms.*;
 
+// In this case, only the initialization of population and update population are different from common version of PSO.
 public class OriginalBPSOFactory implements PSOFactory{
 
 	@Override

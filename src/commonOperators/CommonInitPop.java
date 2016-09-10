@@ -2,7 +2,7 @@ package commonOperators;
 
 import algorithms.InitPop;
 import algorithms.StdRandom;
-
+// Common operators are the operators of continuous PSO
 public class CommonInitPop implements InitPop{
 
 	@Override

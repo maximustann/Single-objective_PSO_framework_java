@@ -1,5 +1,6 @@
 package ProblemDefine;
 
+// Provide some basic PSO parameter settings
 public class ParameterSettings {
 	private double w, c1, c2, lbound, ubound;
 	private int optimization, popSize, maxGen, maxVar;

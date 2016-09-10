@@ -12,6 +12,7 @@ public class BPSOInitPop implements InitPop{
 		// initialize population
 		for(int i = 0; i < popSize; i++){
 			for(int j = 0; j < maxVar; j++){
+				// The uniform() will return an integer value
 				realVar[i][j] = (double) StdRandom.uniform(lbound, ubound);
 			}
 		}
