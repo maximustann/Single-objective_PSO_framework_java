@@ -3,12 +3,14 @@ package psoFactory;
 import commonOperators.CommonInitPop;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
+import commonOperators.CommonUpLocalPop;
 import commonOperators.CommonUpPbest;
-import commonOperators.CommonUpPop;
 import distanceMeasure.DistanceMeasure;
+import topology.Ring;
 import algorithms.*;
 
-public class OriginalCPSOFactory implements PSOFactory{
+public class RingCPSOFactory implements PSOFactory{
+
 
 	@Override
 	public InitPop getInitPopMethod() {
@@ -32,13 +34,13 @@ public class OriginalCPSOFactory implements PSOFactory{
 
 	@Override
 	public UpPop getUpPopMethod() {
-		return new CommonUpPop();
+		return new CommonUpLocalPop();
 	}
 
 	@Override
 	public UpdateIbest getUpIbestMethod(DistanceMeasure measure) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Ring(measure);
 	}
 
 }

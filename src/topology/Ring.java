@@ -46,9 +46,9 @@ public class Ring implements UpdateIbest{
 				}
 			}
 			if(goOn) continue;
-			double[] distance = new double[popSize - i - 1];
-			for(int j = i + 1; j < popSize; j++){
-				distance[j] = distMeasure.calcDist(popVar[i], popVar[j]);
+			double[] distance = new double[popSize - i];
+			for(int j = i + 1, k = 0; j < popSize; j++, k++){
+				distance[k] = distMeasure.calcDist(popVar[i], popVar[j]);
 			}
 			bestIndex[i] = head2Bests(distance, i);
 		}

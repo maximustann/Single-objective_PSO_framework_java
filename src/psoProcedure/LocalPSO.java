@@ -1,5 +1,6 @@
 package psoProcedure;
 import algorithms.PSO;
+import algorithms.UpPopLocal;
 public abstract class LocalPSO extends PSO{
 	public void run(int seed){
 		initializeRand(seed);
@@ -11,9 +12,9 @@ public abstract class LocalPSO extends PSO{
 			evaluate.evaluate(popVar, popFit);
 			upPbest.update(pBestVar, pBestFit, popVar, popFit, optimization, i);
 			upIbest.update(pBestVar, pBestFit, iBestVar, iBestFit, optimization, i);
-			upPop.update(popVar, pBestFit, velocity, pBestVar, gBestVar, w, c1, c2);
+			((UpPopLocal) upPop).update(popVar, pBestFit, velocity, pBestVar, iBestVar, w, c1, c2);
 			System.out.println(gBestFit);
-		}	
+		}
 	}
 
 	@Override

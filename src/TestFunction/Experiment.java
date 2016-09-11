@@ -28,7 +28,8 @@ public class Experiment {
 		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
 														maxGen, d);
 		// initialize a continuous version of PSO
-		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory());
+//		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory());
+		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory());
 		myAlg.run(11111); // parameter is a random seed
 		System.out.println("Done!");
 	}
