@@ -9,5 +9,9 @@ public class Ring implements UpdateIbest{
 			int generation) {
 		
 	}
+	
+	private int[] searchForNeighbours(){
+		return null;
+	}
 
 }
