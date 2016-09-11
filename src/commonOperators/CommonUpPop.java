@@ -1,7 +1,7 @@
 package commonOperators;
 import algorithms.StdRandom;
-import algorithms.UpPop;
-public class CommonUpPop implements UpPop{
+import algorithms.UpPopGlobal;
+public class CommonUpPop implements UpPopGlobal{
 
 	@Override
 	public void update(double[][] popVar, double[] pBestFit, double[][] velocity,

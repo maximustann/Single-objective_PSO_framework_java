@@ -4,7 +4,7 @@ import BPSO.BPSOInitPop;
 import BPSO.BPSOupPop;
 import algorithms.InitPop;
 import algorithms.InitVelocity;
-import algorithms.UpPop;
+import algorithms.UpPopGlobal;
 import algorithms.UpdateGbest;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
@@ -35,7 +35,7 @@ public class OriginalBPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpPop getUpPopMethod() {
+	public UpPopGlobal getUpPopMethod() {
 		return new BPSOupPop();
 	}
 

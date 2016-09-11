@@ -2,7 +2,7 @@ package psoFactory;
 
 import algorithms.InitPop;
 import algorithms.InitVelocity;
-import algorithms.UpPop;
+import algorithms.UpPopGlobal;
 import algorithms.UpdateGbest;
 import commonOperators.CommonInitPop;
 import commonOperators.CommonInitVel;
@@ -34,7 +34,7 @@ public class OriginalCPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpPop getUpPopMethod() {
+	public UpPopGlobal getUpPopMethod() {
 		return new CommonUpPop();
 	}
 

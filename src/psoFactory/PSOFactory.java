@@ -7,5 +7,5 @@ public interface PSOFactory {
 	public InitVelocity getInitVelMethod();
 	public UpdateGbest getUpGbestMethod();
 	public UpdatePbest getUpPbestMethod();
-	public UpPop getUpPopMethod();
+	public UpPopGlobal getUpPopMethod();
 }

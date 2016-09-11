@@ -10,7 +10,7 @@ public abstract class PSO{
 	protected UpdateGbest upGbest;
 	protected UpdateIbest upIbest;
 	protected UpdatePbest upPbest;
-	protected UpPop upPop;
+	protected UpPopGlobal upPop;
 
 	// algorithm related parameter settings
 	protected double[] popFit;
