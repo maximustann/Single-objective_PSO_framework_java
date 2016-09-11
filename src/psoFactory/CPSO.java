@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
-import algorithms.PSO;
+import psoProcedure.GlobalPSO;
 
-public class CPSO extends PSO{
+public class CPSO extends GlobalPSO{
 	PSOFactory CPSOFactory;
 	ParameterSettings pars;
 	ProblemParameterSettings proSet;
