@@ -11,7 +11,6 @@ public class CPSO extends GlobalPSO{
 	PSOFactory CPSOFactory;
 	ParameterSettings pars;
 	ProblemParameterSettings proSet;
-
 	public CPSO(ParameterSettings pars, ProblemParameterSettings proSet, PSOFactory factory){
 		CPSOFactory = factory;
 		this.pars = pars;
@@ -43,4 +42,5 @@ public class CPSO extends GlobalPSO{
 		gBestFit = 1;
 		Arrays.fill(pBestFit, 1.0);
 	}
+
 }

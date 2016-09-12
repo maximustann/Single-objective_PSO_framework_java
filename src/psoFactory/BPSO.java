@@ -10,11 +10,11 @@ public class BPSO extends GlobalPSO{
 	PSOFactory BPSOFactory;
 	ParameterSettings pars;
 	ProblemParameterSettings proSet;
-
 	public BPSO(ParameterSettings pars, ProblemParameterSettings proSet, PSOFactory factory){
 		BPSOFactory = factory;
 		this.pars = pars;
 		this.proSet = proSet;
+
 		prepare();
 	}
 
@@ -42,4 +42,5 @@ public class BPSO extends GlobalPSO{
 		gBestFit = 1;
 		Arrays.fill(pBestFit, 1.0);
 	}
+
 }

@@ -4,6 +4,7 @@ import algorithms.StdRandom;
 
 
 public abstract class PSO{
+
 	protected InitPop initPop;
 	protected InitVelocity initVel;
 	protected Evaluate evaluate;
@@ -46,5 +47,4 @@ public abstract class PSO{
 
 	// Run the algorithm
 	public abstract void run(int seed);
-
 }

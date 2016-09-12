@@ -11,7 +11,6 @@ public class CPSOLocal extends LocalPSO{
 	PSOFactory CPSOFactory;
 	ParameterSettings pars;
 	ProblemParameterSettings proSet;
-
 	public CPSOLocal(ParameterSettings pars, ProblemParameterSettings proSet, PSOFactory factory){
 		CPSOFactory = factory;
 		this.pars = pars;
@@ -44,4 +43,5 @@ public class CPSOLocal extends LocalPSO{
 		Arrays.fill(pBestFit, 1.0);
 		Arrays.fill(iBestFit, 1.0);
 	}
+
 }
