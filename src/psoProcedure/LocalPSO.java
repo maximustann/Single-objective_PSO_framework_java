@@ -13,7 +13,8 @@ public abstract class LocalPSO extends PSO{
 			upPbest.update(pBestVar, pBestFit, popVar, popFit, optimization, i);
 			upIbest.update(pBestVar, pBestFit, iBestVar, iBestFit, optimization, i);
 			((UpPopLocal) upPop).update(popVar, pBestFit, velocity, pBestVar, iBestVar, w, c1, c2);
-			System.out.println(gBestFit);
+			for(int j = 0; j < popSize; j++) System.out.println(iBestFit[j] + " ");
+			System.out.println();
 		}
 	}
 

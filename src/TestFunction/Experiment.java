@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import ProblemDefine.*;
 import algorithms.*;
+import distanceMeasure.EuclideanDistance;
 import psoFactory.*;
 
 public class Experiment {
@@ -29,7 +30,7 @@ public class Experiment {
 														maxGen, d);
 		// initialize a continuous version of PSO
 //		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory());
-		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory());
+		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(new EuclideanDistance()));
 		myAlg.run(11111); // parameter is a random seed
 		System.out.println("Done!");
 	}

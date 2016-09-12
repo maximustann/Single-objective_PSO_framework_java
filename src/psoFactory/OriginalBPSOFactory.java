@@ -5,7 +5,6 @@ import BPSO.BPSOupPop;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
-import distanceMeasure.DistanceMeasure;
 import algorithms.*;
 
 // In this case, only the initialization of population and update population are different from common version of PSO.
@@ -21,10 +20,7 @@ public class OriginalBPSOFactory implements PSOFactory{
 		return new CommonInitVel();
 	}
 
-	@Override
-	public UpdateGbest getUpGbestMethod() {
-		return new CommonUpGbest();
-	}
+
 
 	@Override
 	public UpdatePbest getUpPbestMethod() {
@@ -37,9 +33,9 @@ public class OriginalBPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpdateIbest getUpIbestMethod(DistanceMeasure measure) {
+	public UpdateGIbest getUpGIbestMethod() {
 		// TODO Auto-generated method stub
-		return null;
+		return new CommonUpGbest();
 	}
 
 }

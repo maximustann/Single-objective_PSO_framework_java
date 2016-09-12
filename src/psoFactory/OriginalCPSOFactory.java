@@ -5,7 +5,6 @@ import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
 import commonOperators.CommonUpPop;
-import distanceMeasure.DistanceMeasure;
 import algorithms.*;
 
 public class OriginalCPSOFactory implements PSOFactory{
@@ -21,11 +20,6 @@ public class OriginalCPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpdateGbest getUpGbestMethod() {
-		return new CommonUpGbest();
-	}
-
-	@Override
 	public UpdatePbest getUpPbestMethod() {
 		return new CommonUpPbest();
 	}
@@ -36,9 +30,8 @@ public class OriginalCPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpdateIbest getUpIbestMethod(DistanceMeasure measure) {
-		// TODO Auto-generated method stub
-		return null;
+	public UpdateGIbest getUpGIbestMethod() {
+		return new CommonUpGbest();
 	}
 
 }

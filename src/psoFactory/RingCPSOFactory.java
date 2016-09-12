@@ -2,7 +2,6 @@ package psoFactory;
 
 import commonOperators.CommonInitPop;
 import commonOperators.CommonInitVel;
-import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpLocalPop;
 import commonOperators.CommonUpPbest;
 import distanceMeasure.DistanceMeasure;
@@ -10,7 +9,10 @@ import topology.Ring;
 import algorithms.*;
 
 public class RingCPSOFactory implements PSOFactory{
-
+	private DistanceMeasure measure;
+	public RingCPSOFactory(DistanceMeasure measure){
+		this.measure = measure;
+	}
 
 	@Override
 	public InitPop getInitPopMethod() {
@@ -20,11 +22,6 @@ public class RingCPSOFactory implements PSOFactory{
 	@Override
 	public InitVelocity getInitVelMethod() {
 		return new CommonInitVel();
-	}
-
-	@Override
-	public UpdateGbest getUpGbestMethod() {
-		return new CommonUpGbest();
 	}
 
 	@Override
@@ -38,8 +35,7 @@ public class RingCPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpdateIbest getUpIbestMethod(DistanceMeasure measure) {
-		// TODO Auto-generated method stub
+	public UpdateGIbest getUpGIbestMethod() {
 		return new Ring(measure);
 	}
 

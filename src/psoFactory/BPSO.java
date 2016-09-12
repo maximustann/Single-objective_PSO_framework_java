@@ -3,6 +3,7 @@ import java.util.Arrays;
 
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
+import algorithms.UpdateGbest;
 import psoProcedure.GlobalPSO;
 
 public class BPSO extends GlobalPSO{
@@ -20,7 +21,7 @@ public class BPSO extends GlobalPSO{
 	protected void prepare(){
 		initPop = BPSOFactory.getInitPopMethod();
 		initVel = BPSOFactory.getInitVelMethod();
-		upGbest = BPSOFactory.getUpGbestMethod();
+		upGbest = (UpdateGbest) BPSOFactory.getUpGIbestMethod();
 		upPbest = BPSOFactory.getUpPbestMethod();
 		upPop = BPSOFactory.getUpPopMethod();
 		evaluate = proSet.getEvaluate();

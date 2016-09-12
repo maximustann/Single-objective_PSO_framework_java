@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
+import algorithms.UpdateGbest;
 import psoProcedure.GlobalPSO;
 
 public class CPSO extends GlobalPSO{
@@ -21,7 +22,7 @@ public class CPSO extends GlobalPSO{
 	protected void prepare(){
 		initPop = CPSOFactory.getInitPopMethod();
 		initVel = CPSOFactory.getInitVelMethod();
-		upGbest = CPSOFactory.getUpGbestMethod();
+		upGbest = (UpdateGbest) CPSOFactory.getUpGIbestMethod();
 		upPbest = CPSOFactory.getUpPbestMethod();
 		upPop = CPSOFactory.getUpPopMethod();
 		evaluate = proSet.getEvaluate();
