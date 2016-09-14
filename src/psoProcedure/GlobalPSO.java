@@ -1,9 +1,7 @@
 package psoProcedure;
 import algorithms.PSO;
 import algorithms.UpPopGlobal;
-import dataCollector.DataCollector;
 public abstract class GlobalPSO extends PSO{
-	DataCollector collector;
 
 	public void run(int seed){
 		initializeRand(seed);

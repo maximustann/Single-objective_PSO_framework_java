@@ -1,6 +1,7 @@
 package algorithms;
 
 import algorithms.StdRandom;
+import dataCollector.DataCollector;
 
 
 public abstract class PSO{
@@ -12,6 +13,7 @@ public abstract class PSO{
 	protected UpdateIbest upIbest;
 	protected UpdatePbest upPbest;
 	protected UpPop upPop;
+	protected DataCollector collector;
 
 	// algorithm related parameter settings
 	protected double[] popFit;

@@ -25,7 +25,8 @@ public class CPSO extends GlobalPSO{
 		upPbest = CPSOFactory.getUpPbestMethod();
 		upPop = CPSOFactory.getUpPopMethod();
 		evaluate = proSet.getEvaluate();
-
+		collector = CPSOFactory.getDataCollector();
+		
 		maxGen = pars.getMaxGen();
 		maxVar = pars.getMaxVar();
 		popSize = pars.getPopSize();

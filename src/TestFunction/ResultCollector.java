@@ -1,31 +1,30 @@
 package TestFunction;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import dataCollector.DataCollector;
 
 public class ResultCollector implements DataCollector {
-	private ArrayList<double[]> resultData;
+	private ArrayList<Double> resultData;
 
 	public ResultCollector(){
-		resultData = new ArrayList<double[]>();
+		resultData = new ArrayList<Double>();
 	}
 	@Override
 	public void collect(Object data) {
-		resultData.add((double[]) data);
+		resultData.add((Double) data);
 	}
 
-	public ArrayList<double[]> getResult(){
+	public ArrayList<Double> getResult(){
 		return resultData;
 	}
 
 	public void printResult(){
 		for(int i = 0; i < resultData.size(); i++){
-			for(int j = 0; j < ((double[]) resultData.get(0)).length; j++){
-				System.out.print(((double[]) resultData.get(i))[j] + " ");
-			}
-			System.out.println();
+			System.out.println(resultData.get(i));
 		}
+		System.out.println();
 	}
 
 }

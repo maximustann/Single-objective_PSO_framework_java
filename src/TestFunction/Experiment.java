@@ -18,7 +18,7 @@ public class Experiment {
 		double ubound = 30;
 		int optimization = 0; //minimize
 		int popSize = 50;
-		int maxGen = 10000;
+		int maxGen = 100;
 		int d = 20;
 
 		// Initialization !!!!
@@ -30,11 +30,12 @@ public class Experiment {
 		ProblemParameterSettings proSet = new TestFunctionParameterSettings(evaluate);
 		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
 														maxGen, d);
+		DataCollector collectorArray = new ArrayResultCollector();
 		DataCollector collector = new ResultCollector();
 		DistanceMeasure euclidean = new EuclideanDistance();
 		// initialize a continuous version of PSO
-//		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory());
-		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(euclidean, collector));
+		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
+//		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(euclidean, collectorArray));
 		myAlg.run(11111); // parameter is a random seed
 		((ResultCollector) collector).printResult();
 		System.out.println("Done!");
