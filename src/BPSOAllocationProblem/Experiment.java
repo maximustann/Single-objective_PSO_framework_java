@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import ProblemDefine.*;
 import algorithms.*;
+import dataCollector.DataCollector;
 import psoFactory.*;
 
 public class Experiment {
@@ -58,11 +59,13 @@ public class Experiment {
 		funcList.add(cost);
 		funcList.add(time);
 		Evaluate evaluate = new BPSOHaiEvaluate(funcList, weights);
+		DataCollector collector = new ResultCollector();
+
 
 		ProblemParameterSettings proSet = new AllocationParameterSettings(evaluate, costMatrix, freqMatrix, latencyMatrix);
 		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
 														maxGen, noService * noLocation);
-		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory());
+		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
 		myAlg.run(11111);
 		System.out.println("Done!");
 	}

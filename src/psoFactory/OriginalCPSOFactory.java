@@ -5,9 +5,16 @@ import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
 import commonOperators.CommonUpPop;
+import dataCollector.DataCollector;
 import algorithms.*;
 
 public class OriginalCPSOFactory implements PSOFactory{
+
+	private DataCollector collector;
+
+	public OriginalCPSOFactory(DataCollector collector){
+		this.collector = collector;
+	}
 
 	@Override
 	public InitPop getInitPopMethod() {
@@ -32,6 +39,11 @@ public class OriginalCPSOFactory implements PSOFactory{
 	@Override
 	public UpdateGIbest getUpGIbestMethod() {
 		return new CommonUpGbest();
+	}
+
+	@Override
+	public DataCollector getDataCollector() {
+		return collector;
 	}
 
 }

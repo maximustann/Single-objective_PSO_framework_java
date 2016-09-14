@@ -4,14 +4,17 @@ import commonOperators.CommonInitPop;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpLocalPop;
 import commonOperators.CommonUpPbest;
+import dataCollector.DataCollector;
 import distanceMeasure.DistanceMeasure;
 import topology.Ring;
 import algorithms.*;
 
 public class RingCPSOFactory implements PSOFactory{
 	private DistanceMeasure measure;
-	public RingCPSOFactory(DistanceMeasure measure){
+	private DataCollector collector;
+	public RingCPSOFactory(DistanceMeasure measure, DataCollector collector){
 		this.measure = measure;
+		this.collector = collector;
 	}
 
 	@Override
@@ -38,5 +41,12 @@ public class RingCPSOFactory implements PSOFactory{
 	public UpdateGIbest getUpGIbestMethod() {
 		return new Ring(measure);
 	}
+
+	@Override
+	public DataCollector getDataCollector() {
+		return collector;
+	}
+
+
 
 }

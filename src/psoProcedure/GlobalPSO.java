@@ -1,7 +1,10 @@
 package psoProcedure;
 import algorithms.PSO;
 import algorithms.UpPopGlobal;
+import dataCollector.DataCollector;
 public abstract class GlobalPSO extends PSO{
+	DataCollector collector;
+
 	public void run(int seed){
 		initializeRand(seed);
 		popVar = initPop.init(popSize, maxVar, lbound, ubound);
@@ -13,7 +16,7 @@ public abstract class GlobalPSO extends PSO{
 			upPbest.update(pBestVar, pBestFit, popVar, popFit, optimization, i);
 			gBestFit = upGbest.update(pBestVar, pBestFit, gBestVar, gBestFit, optimization, i);
 			((UpPopGlobal) upPop).update(popVar, pBestFit, velocity, pBestVar, gBestVar, w, c1, c2);
-			System.out.println(gBestFit);
+			collector.collect(gBestFit);
 		}
 	}
 
