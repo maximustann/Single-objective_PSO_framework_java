@@ -26,7 +26,7 @@ public class BPSO extends GlobalPSO{
 		upPop = BPSOFactory.getUpPopMethod();
 		evaluate = proSet.getEvaluate();
 		collector = BPSOFactory.getDataCollector();
-		
+
 		maxGen = pars.getMaxGen();
 		maxVar = pars.getMaxVar();
 		popSize = pars.getPopSize();
@@ -35,6 +35,8 @@ public class BPSO extends GlobalPSO{
 		c2 = pars.getC2();
 		lbound = pars.getLbound();
 		ubound = pars.getUbound();
+		clampFactor = pars.getClampFactor();
+		clamper = BPSOFactory.getVelocityClamper(clampFactor);
 		optimization = pars.getOptimization();
 		popFit = new double[popSize];
 		pBestVar = new double[popSize][maxVar];

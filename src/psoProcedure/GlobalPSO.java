@@ -14,6 +14,7 @@ public abstract class GlobalPSO extends PSO{
 			upPbest.update(pBestVar, pBestFit, popVar, popFit, optimization, i);
 			gBestFit = upGbest.update(pBestVar, pBestFit, gBestVar, gBestFit, optimization, i);
 			((UpPopGlobal) upPop).update(popVar, pBestFit, velocity, pBestVar, gBestVar, w, c1, c2);
+			clamper.clamping(velocity, lbound, ubound);
 			collector.collect(gBestFit);
 		}
 	}

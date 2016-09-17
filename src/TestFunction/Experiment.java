@@ -16,10 +16,11 @@ public class Experiment {
 		double c2 = 2;
 		double lbound = -30; // ranging in [-30, 30]
 		double ubound = 30;
+		double clampFactor = 0.8; // clamp the velocity from [-clampFactor * (ubound - lbound), clampFactor * (ubound - lbound)]
 		int optimization = 0; //minimize
 		int popSize = 50;
-		int maxGen = 100;
-		int d = 20;
+		int maxGen = 5000;
+		int d = 20; // number of dimensions
 
 		// Initialization !!!!
 		FitnessFunction fitnessFunction = new TestFunctionFitness();
@@ -28,16 +29,17 @@ public class Experiment {
 
 
 		ProblemParameterSettings proSet = new TestFunctionParameterSettings(evaluate);
-		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
-														maxGen, d);
+		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, clampFactor,
+														optimization, popSize, maxGen, d);
 		DataCollector collectorArray = new ArrayResultCollector();
-		DataCollector collector = new ResultCollector();
+//		DataCollector collector = new ResultCollector();
 		DistanceMeasure euclidean = new EuclideanDistance();
 		// initialize a continuous version of PSO
-		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
-//		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(euclidean, collectorArray));
+//		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
+		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(euclidean, collectorArray));
 		myAlg.run(11111); // parameter is a random seed
-		((ResultCollector) collector).printResult();
+//		((ResultCollector) collector).printResult();
+		((ArrayResultCollector) collectorArray).printResult();
 		System.out.println("Done!");
 	}
 }

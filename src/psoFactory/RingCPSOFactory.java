@@ -4,6 +4,7 @@ import commonOperators.CommonInitPop;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpLocalPop;
 import commonOperators.CommonUpPbest;
+import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
 import distanceMeasure.DistanceMeasure;
 import topology.Ring;
@@ -45,6 +46,11 @@ public class RingCPSOFactory implements PSOFactory{
 	@Override
 	public DataCollector getDataCollector() {
 		return collector;
+	}
+
+	@Override
+	public VelocityClamping getVelocityClamper(double clampFactor) {
+		return new CommonVelocityClamping(clampFactor);
 	}
 
 

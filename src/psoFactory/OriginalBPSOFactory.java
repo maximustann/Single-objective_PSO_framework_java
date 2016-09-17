@@ -5,6 +5,7 @@ import BPSO.BPSOupPop;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
+import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
 import algorithms.*;
 
@@ -27,8 +28,6 @@ public class OriginalBPSOFactory implements PSOFactory{
 		return new CommonInitVel();
 	}
 
-
-
 	@Override
 	public UpdatePbest getUpPbestMethod() {
 		return new CommonUpPbest();
@@ -48,6 +47,11 @@ public class OriginalBPSOFactory implements PSOFactory{
 	@Override
 	public DataCollector getDataCollector() {
 		return collector;
+	}
+
+	@Override
+	public VelocityClamping getVelocityClamper(double clampFactor) {
+		return new CommonVelocityClamping(clampFactor);
 	}
 
 }

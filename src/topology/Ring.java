@@ -30,6 +30,8 @@ public class Ring implements UpdateIbest{
 			}
 		}
 	}
+	// Find two neighbors. stores their indexes.
+	// int[eachPop][Two neighbors' indexes]
 	private int[][] searchForNeighbours(double[][] popVar, int popSize){
 		int[][] bestIndex = new int[popVar.length][2];
 
@@ -61,6 +63,7 @@ public class Ring implements UpdateIbest{
 		return bestIndex;
 	}
 
+	// Looking for the nearest two distances
 	private int[] head2Bests(double[] distance, int currentIndex){
 		double first, second, temp;
 		int[] head2 = new int[2];

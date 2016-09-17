@@ -15,6 +15,7 @@ public class Experiment {
 		double c2 = 1.427;
 		double lbound = 0;
 		double ubound = 2;
+		double clampFactor = 0.5;
 		int optimization = 0; //minimize
 		int popSize = 50;
 		int maxGen = 50;
@@ -63,10 +64,11 @@ public class Experiment {
 
 
 		ProblemParameterSettings proSet = new AllocationParameterSettings(evaluate, costMatrix, freqMatrix, latencyMatrix);
-		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, optimization, popSize,
+		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, clampFactor,optimization, popSize,
 														maxGen, noService * noLocation);
 		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
 		myAlg.run(11111);
+		((ResultCollector) collector).printResult();
 		System.out.println("Done!");
 	}
 }

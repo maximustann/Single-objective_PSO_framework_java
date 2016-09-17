@@ -14,6 +14,7 @@ public abstract class PSO{
 	protected UpdatePbest upPbest;
 	protected UpPop upPop;
 	protected DataCollector collector;
+	protected VelocityClamping clamper;
 
 	// algorithm related parameter settings
 	protected double[] popFit;
@@ -39,6 +40,7 @@ public abstract class PSO{
 	protected double ubound;
 	protected double w;
 	protected double c1, c2;
+	protected double clampFactor;
 
 	protected abstract void prepare();
 

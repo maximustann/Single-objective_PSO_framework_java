@@ -10,4 +10,5 @@ public interface PSOFactory {
 	public UpdatePbest getUpPbestMethod();
 	public UpPop getUpPopMethod();
 	public DataCollector getDataCollector();
+	public VelocityClamping getVelocityClamper(double clampFactor);
 }

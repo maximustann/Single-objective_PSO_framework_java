@@ -5,6 +5,7 @@ import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
 import commonOperators.CommonUpPop;
+import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
 import algorithms.*;
 
@@ -44,6 +45,11 @@ public class OriginalCPSOFactory implements PSOFactory{
 	@Override
 	public DataCollector getDataCollector() {
 		return collector;
+	}
+
+	@Override
+	public VelocityClamping getVelocityClamper(double clampFactor) {
+		return new CommonVelocityClamping(clampFactor);
 	}
 
 }

@@ -2,15 +2,16 @@ package ProblemDefine;
 
 // Provide some basic PSO parameter settings
 public class ParameterSettings {
-	private double w, c1, c2, lbound, ubound;
+	private double w, c1, c2, lbound, ubound, clampFactor;
 	private int optimization, popSize, maxGen, maxVar;
 
-	public ParameterSettings(double w, double c1, double c2, double lbound, double ubound,
+	public ParameterSettings(double w, double c1, double c2, double lbound, double ubound, double clampFactor,
 								int optimization, int popSize, int maxGen, int maxVar){
 		this.c1 = c1;
 		this.c2 = c2;
 		this.lbound = lbound;
 		this.ubound = ubound;
+		this.clampFactor = clampFactor;
 		this.optimization = optimization;
 		this.popSize = popSize;
 		this.maxGen = maxGen;
@@ -43,6 +44,9 @@ public class ParameterSettings {
 	}
 	public int getMaxGen() {
 		return maxGen;
+	}
+	public double getClampFactor(){
+		return clampFactor;
 	}
 
 }
