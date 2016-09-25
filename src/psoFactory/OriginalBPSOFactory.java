@@ -39,7 +39,7 @@ public class OriginalBPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpdateGIbest getUpGIbestMethod() {
+	public UpdateGLbest getUpGIbestMethod() {
 		// TODO Auto-generated method stub
 		return new CommonUpGbest();
 	}

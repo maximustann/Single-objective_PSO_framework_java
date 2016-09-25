@@ -6,7 +6,7 @@ import dataCollector.DataCollector;
 public interface PSOFactory {
 	public InitPop getInitPopMethod();
 	public InitVelocity getInitVelMethod();
-	public UpdateGIbest getUpGIbestMethod();
+	public UpdateGLbest getUpGIbestMethod();
 	public UpdatePbest getUpPbestMethod();
 	public UpPop getUpPopMethod();
 	public DataCollector getDataCollector();

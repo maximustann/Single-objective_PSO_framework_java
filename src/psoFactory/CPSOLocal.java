@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
-import algorithms.UpdateIbest;
+import algorithms.UpdateLbest;
 import psoProcedure.LocalPSO;
 
 public class CPSOLocal extends LocalPSO{
@@ -21,7 +21,7 @@ public class CPSOLocal extends LocalPSO{
 	protected void prepare(){
 		initPop = CPSOFactory.getInitPopMethod();
 		initVel = CPSOFactory.getInitVelMethod();
-		upIbest = (UpdateIbest) CPSOFactory.getUpGIbestMethod();
+		upLbest = (UpdateLbest) CPSOFactory.getUpGIbestMethod();
 		upPbest = CPSOFactory.getUpPbestMethod();
 		upPop = CPSOFactory.getUpPopMethod();
 		evaluate = proSet.getEvaluate();

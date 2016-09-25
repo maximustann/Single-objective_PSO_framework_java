@@ -39,7 +39,7 @@ public class RingCPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpdateGIbest getUpGIbestMethod() {
+	public UpdateGLbest getUpGIbestMethod() {
 		return new Ring(measure);
 	}
 

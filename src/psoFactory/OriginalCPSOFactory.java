@@ -38,7 +38,7 @@ public class OriginalCPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpdateGIbest getUpGIbestMethod() {
+	public UpdateGLbest getUpGIbestMethod() {
 		return new CommonUpGbest();
 	}
 

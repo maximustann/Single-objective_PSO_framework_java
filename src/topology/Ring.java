@@ -1,9 +1,9 @@
 package topology;
 
-import algorithms.UpdateIbest;
+import algorithms.UpdateLbest;
 import distanceMeasure.DistanceMeasure;
 
-public class Ring implements UpdateIbest{
+public class Ring implements UpdateLbest{
 	private DistanceMeasure distMeasure;
 	public Ring(DistanceMeasure distMeasure){
 		this.distMeasure = distMeasure;

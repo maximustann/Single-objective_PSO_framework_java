@@ -1,19 +1,52 @@
+/*
+ * Boxiong Tan (Maximus Tann)
+ * Title:        PSO algorithm framework
+ * Description:  PSO algorithm framework for general optimization purpose
+ * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Copyright (c) 2016-2019, The Victoria University of Wellington
+ * Normalize.java - An Interface of normalization function.
+ */
+
 package algorithms;
 
 import algorithms.StdRandom;
 import dataCollector.DataCollector;
 
+/**
+ * The abstraction of PSO
+ * 
+ * @author Boxiong Tan (Maximus Tann) 
+ * @since PSO framework 1.0
+ */
 
 public abstract class PSO{
 
+	/** An InitPop object for initialization of population */
 	protected InitPop initPop;
+	
+	/** An InitVelocity object for initialization of velocity */
 	protected InitVelocity initVel;
+
+	/** An Evaluation object for Evaluation of fitness */
 	protected Evaluate evaluate;
+	
+	/** An UpdateGbest object for Updating global best */
 	protected UpdateGbest upGbest;
-	protected UpdateIbest upIbest;
+
+	/** An UpdateLbest object for Updating local best */
+	protected UpdateLbest upLbest;
+
+	/** An UpdatePbest object for Updating Personal best */
 	protected UpdatePbest upPbest;
+	
+	/** An UpPop object for Updating population variables */
 	protected UpPop upPop;
+	
+	/** An DataCollector object for collect result */
 	protected DataCollector collector;
+
+	/** An VelocityClamping object for clamping velocity */
 	protected VelocityClamping clamper;
 
 	// algorithm related parameter settings
