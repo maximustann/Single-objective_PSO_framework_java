@@ -1,12 +1,5 @@
 /BPSO/
-/BPSOAllocationProblem/
-/ProblemDefine/
 /algorithms/
-/FileHandlers/
-/TestFunction/
 /commonOperators/
 /psoFactory/
 /psoProcedure/
-/topology/
-/dataCollector/
-/distanceMeasure/
