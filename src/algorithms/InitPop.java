@@ -25,9 +25,13 @@ public interface InitPop {
      * @param popSize population size
      * @param maxVar the number of variable of a particle
      * @param lbound the lower boundary of a variable of a particle
-     * @param ubound the upper boundary of a variable of a partilce
-     * @return 2D-array of population
+     * @param ubound the upper boundary of a variable of a particle
+     * @return 2D-array of population variables
      */	
-	public double[][] init(int popSize, int maxVar, 
-						double lbound, double ubound);
+	public double[][] init(
+							int popSize, 
+							int maxVar, 
+							double lbound, 
+							double ubound
+							);
 }

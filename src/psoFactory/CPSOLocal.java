@@ -41,10 +41,10 @@ public class CPSOLocal extends LocalPSO{
 		popFit = new double[popSize];
 		pBestVar = new double[popSize][maxVar];
 		pBestFit = new double[popSize];
-		iBestVar = new double[popSize][maxVar];
-		iBestFit = new double[popSize];
+		lBestVar = new double[popSize][maxVar];
+		lBestFit = new double[popSize];
 		Arrays.fill(pBestFit, 1.0);
-		Arrays.fill(iBestFit, 1.0);
+		Arrays.fill(lBestFit, 1.0);
 	}
 
 }
