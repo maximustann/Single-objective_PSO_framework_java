@@ -5,21 +5,27 @@
  * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Copyright (c) 2016-2019, The Victoria University of Wellington
- * CommonUpLocalPop.java - A common way of updating local-based population.
+ * CommonUpGlobalPop.java - A method to update population variables for a global-based PSO.
  */
-
 package commonOperators;
 import algorithms.StdRandom;
-import algorithms.UpPopLocal;
-public class CommonUpLocalPop implements UpPopLocal {
+import algorithms.UpPopGlobal;
+
+/**
+ * Update of population variables for a global-based PSO
+ * 
+ * @author Boxiong Tan (Maximus Tann) 
+ * @since PSO framework 1.0
+ */
+public class CommonUpGlobalPop implements UpPopGlobal{
     /**
-     * update the population based on personal best and local best
+     * update the population based on personal best and global best
      * 
      * @param popVar 2D-array of population variables.
      * @param pBestFit an array of personal best fitness values.
      * @param velocity 2D-array of velocity.
      * @param pBestVar 2D-array of personal best variables.
-     * @param lBestVar 2D-array of local best variables.
+     * @param gBestVar an array of global best variables.
      * @param w inertia.
      * @param c1 cognitive parameter
      * @param c2 social parameter
@@ -30,7 +36,7 @@ public class CommonUpLocalPop implements UpPopLocal {
 					double[] pBestFit, 
 					double[][] velocity,
 					double[][] pBestVar, 
-					double[][] iBestVar, 
+					double[] gBestVar, 
 					double w, 
 					double c1, 
 					double c2
@@ -44,7 +50,7 @@ public class CommonUpLocalPop implements UpPopLocal {
 			for(int j = 0; j < maxVar; j++){
 				velocity[i][j] = w * velocity[i][j] + c1 * StdRandom.uniform(0.0, 1.0) *
 						(pBestVar[i][j] - popVar[i][j]) + c2 * StdRandom.uniform(0.0, 1.0) *
-						(iBestVar[i][j] - popVar[i][j]);
+						(gBestVar[j] - popVar[i][j]);
 			}
 		}
 

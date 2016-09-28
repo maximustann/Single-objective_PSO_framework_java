@@ -1,7 +1,7 @@
 package psoFactory;
 
 import BPSO.BPSOInitPop;
-import BPSO.BPSOupPop;
+import BPSO.BPSOUpGlobalPop;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
@@ -35,7 +35,7 @@ public class OriginalBPSOFactory implements PSOFactory{
 
 	@Override
 	public UpPop getUpPopMethod() {
-		return new BPSOupPop();
+		return new BPSOUpGlobalPop();
 	}
 
 	@Override

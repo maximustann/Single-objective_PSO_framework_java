@@ -4,7 +4,7 @@ import commonOperators.CommonInitPop;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
-import commonOperators.CommonUpPop;
+import commonOperators.CommonUpGlobalPop;
 import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
 import algorithms.*;
@@ -34,7 +34,7 @@ public class OriginalCPSOFactory implements PSOFactory{
 
 	@Override
 	public UpPop getUpPopMethod() {
-		return new CommonUpPop();
+		return new CommonUpGlobalPop();
 	}
 
 	@Override
