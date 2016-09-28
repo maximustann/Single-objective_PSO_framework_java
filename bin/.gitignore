@@ -4,3 +4,7 @@
 /psoFactory/
 /psoProcedure/
 /topology/
+/dataCollector/
+/distanceMeasure/
+/FileHandlers/
+/BPSOAllocationProblem/

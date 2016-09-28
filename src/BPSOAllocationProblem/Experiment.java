@@ -37,7 +37,14 @@ public class Experiment {
 		String costRangeAddr = base + "/costRange.csv";
 		String timeRangeAddr = base + "/timeRange.csv";
 
-		ReadFileHai readFiles = new ReadFileHai(configAddr, costAddr, latencyAddr, freqAddr, costRangeAddr, timeRangeAddr);
+		ReadFileHai readFiles = new ReadFileHai(
+												configAddr, 
+												costAddr, 
+												latencyAddr, 
+												freqAddr, 
+												costRangeAddr, 
+												timeRangeAddr
+												);
 		costMatrix = readFiles.getCostMatrix();
 		latencyMatrix = readFiles.getLatencyMatrix();
 

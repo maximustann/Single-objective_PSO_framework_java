@@ -16,7 +16,14 @@ public class ReadFileHai{
 	private int noLocation;
 	private int noUser;
 
-	public ReadFileHai(String config, String cost, String latency, String freq, String costRange, String timeRange){
+	public ReadFileHai(
+					String config, 
+					String cost, 
+					String latency, 
+					String freq, 
+					String costRange, 
+					String timeRange
+					){
 
 		readByRow = new ReadByRow();
 		readByCol = new ReadByCol();
