@@ -16,8 +16,14 @@ package dataCollector;
  */
 public interface DataCollector {
     /**
-     * collect data
-     * @param object data can be a 2D array or 1D array
+     * collect result
+     * @param object result can be a 2D array or 1D array
      */	
-	public void collect(Object data);
+	public void collect(Object result);
+	
+    /**
+     * collect particle
+     * @param particle is a 2D array
+     */	
+	public void collectParticle(double[][] particle);
 }

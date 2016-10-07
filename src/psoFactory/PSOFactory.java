@@ -8,7 +8,7 @@ public interface PSOFactory {
 	public InitVelocity getInitVelMethod();
 	public UpdateGLbest getUpGIbestMethod();
 	public UpdatePbest getUpPbestMethod();
-	public UpPop getUpPopMethod();
+	public UpPop getUpPopMethod(double clampFactor);
 	public DataCollector getDataCollector();
 	public VelocityClamping getVelocityClamper(double clampFactor);
 }

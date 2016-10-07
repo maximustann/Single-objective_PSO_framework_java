@@ -46,9 +46,6 @@ public abstract class PSO{
 	/** An DataCollector object for collect result */
 	protected DataCollector collector;
 
-	/** An VelocityClamping object for clamping velocity */
-	protected VelocityClamping clamper;
-
 	// algorithm related parameter settings
 
 	/** an array of fitness value, size is the population size */

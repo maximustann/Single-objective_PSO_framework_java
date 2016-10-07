@@ -34,8 +34,8 @@ public class RingCPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpPop getUpPopMethod() {
-		return new CommonUpLocalPop();
+	public UpPop getUpPopMethod(double clampFactor) {
+		return new CommonUpLocalPop(getVelocityClamper(clampFactor));
 	}
 
 	@Override

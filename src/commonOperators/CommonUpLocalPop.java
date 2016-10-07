@@ -11,7 +11,17 @@
 package commonOperators;
 import algorithms.StdRandom;
 import algorithms.UpPopLocal;
+import algorithms.VelocityClamping;
 public class CommonUpLocalPop implements UpPopLocal {
+	/** An VelocityClamping object for clamping velocity */
+	private VelocityClamping clamper;
+
+	
+	public CommonUpLocalPop(VelocityClamping clamper){
+		this.clamper = clamper;
+	}
+
+	
     /**
      * update the population based on personal best and local best
      * 
@@ -30,10 +40,12 @@ public class CommonUpLocalPop implements UpPopLocal {
 					double[] pBestFit, 
 					double[][] velocity,
 					double[][] pBestVar, 
-					double[][] iBestVar, 
+					double[][] lBestVar, 
 					double w, 
 					double c1, 
-					double c2
+					double c2,
+					double lbound,
+					double ubound
 					) {
 		int popSize = popVar.length;
 		int maxVar = popVar[0].length;
@@ -44,9 +56,12 @@ public class CommonUpLocalPop implements UpPopLocal {
 			for(int j = 0; j < maxVar; j++){
 				velocity[i][j] = w * velocity[i][j] + c1 * StdRandom.uniform(0.0, 1.0) *
 						(pBestVar[i][j] - popVar[i][j]) + c2 * StdRandom.uniform(0.0, 1.0) *
-						(iBestVar[i][j] - popVar[i][j]);
+						(lBestVar[i][j] - popVar[i][j]);
 			}
 		}
+		
+		// do clamping
+		clamper.clamping(velocity, lbound, ubound);
 
 		// Calculate new positions of particles
 		for(int i = 0; i < popSize; i++){

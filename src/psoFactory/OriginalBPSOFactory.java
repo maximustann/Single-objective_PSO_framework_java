@@ -34,8 +34,8 @@ public class OriginalBPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpPop getUpPopMethod() {
-		return new BPSOUpGlobalPop();
+	public UpPop getUpPopMethod(double clampFactor) {
+		return new BPSOUpGlobalPop(getVelocityClamper(clampFactor));
 	}
 
 	@Override

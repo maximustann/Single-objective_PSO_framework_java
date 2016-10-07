@@ -33,8 +33,8 @@ public class CommonVelocityClamping implements VelocityClamping{
      */	
 	@Override
 	public void clamping(double[][] velocity, double lbound, double ubound) {
-		double vMax = clampFactor * (ubound - lbound);
-		double vMin = clampFactor * (lbound - ubound);
+		double vMax = clampFactor * (ubound - lbound) / 2;
+		double vMin = clampFactor * (lbound - ubound) / 2;
 		int popSize = velocity.length;
 		int maxVar = velocity[0].length;
 		for(int i = 0; i < popSize; i++){

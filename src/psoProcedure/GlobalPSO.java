@@ -12,10 +12,12 @@ public abstract class GlobalPSO extends PSO{
 		for(int i = 0; i < maxGen; i++){
 			evaluate.evaluate(popVar, popFit);
 			upPbest.update(pBestVar, pBestFit, popVar, popFit, optimization, i);
-			gBestFit = upGbest.update(pBestVar, pBestFit, gBestVar, gBestFit, optimization, i);
-			((UpPopGlobal) upPop).update(popVar, pBestFit, velocity, pBestVar, gBestVar, w, c1, c2);
-			clamper.clamping(velocity, lbound, ubound);
+			gBestFit = upGbest.update(pBestVar, pBestFit, gBestVar, gBestFit, 
+									optimization, i);
+			((UpPopGlobal) upPop).update(popVar, pBestFit, velocity, pBestVar, 
+										gBestVar, w, c1, c2, lbound, ubound);
 			collector.collect(gBestFit);
+			collector.collectParticle(popVar);
 		}
 	}
 

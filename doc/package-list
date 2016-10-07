@@ -1,0 +1,12 @@
+BPSO
+BPSOAllocationProblem
+FileHandlers
+ProblemDefine
+TestFunction
+algorithms
+commonOperators
+dataCollector
+distanceMeasure
+psoFactory
+psoProcedure
+topology

@@ -23,6 +23,8 @@ public interface UpPopLocal extends UpPop{
      * @param w inertia.
      * @param c1 cognitive parameter
      * @param c2 social parameter
+     * @param lbound the lower bound of a variable in a particle
+     * @param ubound the upper bound of a variable in a particle
      */
 	public void update(
 					double[][] popVar, 
@@ -32,6 +34,8 @@ public interface UpPopLocal extends UpPop{
 					double[][] lBestVar, 
 					double w, 
 					double c1, 
-					double c2
+					double c2,
+					double lbound,
+					double ubound
 					);
 }

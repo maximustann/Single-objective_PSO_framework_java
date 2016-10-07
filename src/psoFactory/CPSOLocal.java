@@ -19,13 +19,7 @@ public class CPSOLocal extends LocalPSO{
 	}
 
 	protected void prepare(){
-		initPop = CPSOFactory.getInitPopMethod();
-		initVel = CPSOFactory.getInitVelMethod();
-		upLbest = (UpdateLbest) CPSOFactory.getUpGIbestMethod();
-		upPbest = CPSOFactory.getUpPbestMethod();
-		upPop = CPSOFactory.getUpPopMethod();
-		evaluate = proSet.getEvaluate();
-		collector = CPSOFactory.getDataCollector();
+
 
 		maxGen = pars.getMaxGen();
 		maxVar = pars.getMaxVar();
@@ -36,13 +30,22 @@ public class CPSOLocal extends LocalPSO{
 		lbound = pars.getLbound();
 		ubound = pars.getUbound();
 		clampFactor = pars.getClampFactor();
-		clamper = CPSOFactory.getVelocityClamper(clampFactor);
 		optimization = pars.getOptimization();
 		popFit = new double[popSize];
 		pBestVar = new double[popSize][maxVar];
 		pBestFit = new double[popSize];
 		lBestVar = new double[popSize][maxVar];
 		lBestFit = new double[popSize];
+		
+		initPop = CPSOFactory.getInitPopMethod();
+		initVel = CPSOFactory.getInitVelMethod();
+		upLbest = (UpdateLbest) CPSOFactory.getUpGIbestMethod();
+		upPbest = CPSOFactory.getUpPbestMethod();
+		upPop = CPSOFactory.getUpPopMethod(clampFactor);
+		evaluate = proSet.getEvaluate();
+		collector = CPSOFactory.getDataCollector();
+		
+		
 		Arrays.fill(pBestFit, 1.0);
 		Arrays.fill(lBestFit, 1.0);
 	}

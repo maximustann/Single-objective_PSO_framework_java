@@ -10,6 +10,7 @@
 package commonOperators;
 import algorithms.StdRandom;
 import algorithms.UpPopGlobal;
+import algorithms.VelocityClamping;
 
 /**
  * Update of population variables for a global-based PSO
@@ -18,6 +19,14 @@ import algorithms.UpPopGlobal;
  * @since PSO framework 1.0
  */
 public class CommonUpGlobalPop implements UpPopGlobal{
+	/** An VelocityClamping object for clamping velocity */
+	private VelocityClamping clamper;
+
+	
+	public CommonUpGlobalPop(VelocityClamping clamper){
+		this.clamper = clamper;
+	}
+	
     /**
      * update the population based on personal best and global best
      * 
@@ -39,7 +48,9 @@ public class CommonUpGlobalPop implements UpPopGlobal{
 					double[] gBestVar, 
 					double w, 
 					double c1, 
-					double c2
+					double c2,
+					double lbound,
+					double ubound
 					) {
 		int popSize = popVar.length;
 		int maxVar = popVar[0].length;
@@ -51,8 +62,13 @@ public class CommonUpGlobalPop implements UpPopGlobal{
 				velocity[i][j] = w * velocity[i][j] + c1 * StdRandom.uniform(0.0, 1.0) *
 						(pBestVar[i][j] - popVar[i][j]) + c2 * StdRandom.uniform(0.0, 1.0) *
 						(gBestVar[j] - popVar[i][j]);
+//				System.out.print("veolocity[" + i + "][" + j + "]:"+ velocity[i][j] + " ");
 			}
+//			System.out.println();
 		}
+
+		// do clamping
+		clamper.clamping(velocity, lbound, ubound);
 
 		// Calculate new positions of particles
 		for(int i = 0; i < popSize; i++){

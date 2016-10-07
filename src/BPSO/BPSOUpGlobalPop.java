@@ -10,6 +10,7 @@
 package BPSO;
 import algorithms.StdRandom;
 import algorithms.UpPopGlobal;
+import algorithms.VelocityClamping;
 
 /**
  * Update of population variables for a global-based BPSO
@@ -18,6 +19,16 @@ import algorithms.UpPopGlobal;
  * @since PSO framework 1.0
  */
 public class BPSOUpGlobalPop implements UpPopGlobal{
+	/** An VelocityClamping object for clamping velocity */
+	private VelocityClamping clamper;
+
+	
+	public BPSOUpGlobalPop(VelocityClamping clamper){
+		this.clamper = clamper;
+	}
+
+	
+	
     /**
      * update the population based on personal best and global best
      * 
@@ -39,7 +50,9 @@ public class BPSOUpGlobalPop implements UpPopGlobal{
 					double[] gBestVar, 
 					double w, 
 					double c1, 
-					double c2
+					double c2,
+					double lbound,
+					double ubound
 					) {
 		int popSize = popVar.length;
 		int maxVar = popVar[0].length;
@@ -54,6 +67,8 @@ public class BPSOUpGlobalPop implements UpPopGlobal{
 			}
 		}
 
+		// do clamping
+		clamper.clamping(velocity, lbound, ubound);
 		// Calculate new positions of particles
 		for(int i = 0; i < popSize; i++){
 			for(int j = 0; j < maxVar; j++){

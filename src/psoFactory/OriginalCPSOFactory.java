@@ -33,8 +33,8 @@ public class OriginalCPSOFactory implements PSOFactory{
 	}
 
 	@Override
-	public UpPop getUpPopMethod() {
-		return new CommonUpGlobalPop();
+	public UpPop getUpPopMethod(double clampFactor) {
+		return new CommonUpGlobalPop(getVelocityClamper(clampFactor));
 	}
 
 	@Override
@@ -47,7 +47,6 @@ public class OriginalCPSOFactory implements PSOFactory{
 		return collector;
 	}
 
-	@Override
 	public VelocityClamping getVelocityClamper(double clampFactor) {
 		return new CommonVelocityClamping(clampFactor);
 	}
