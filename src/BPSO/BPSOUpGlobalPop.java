@@ -69,6 +69,7 @@ public class BPSOUpGlobalPop implements UpPopGlobal{
 
 		// do clamping
 		clamper.clamping(velocity, lbound, ubound);
+		
 		// Calculate new positions of particles
 		for(int i = 0; i < popSize; i++){
 			for(int j = 0; j < maxVar; j++){

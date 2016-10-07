@@ -25,5 +25,10 @@ public class ResultCollector implements DataCollector {
 		}
 		System.out.println();
 	}
+	@Override
+	public void collectParticle(double[][] particle) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

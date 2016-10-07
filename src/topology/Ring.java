@@ -9,8 +9,8 @@ public class Ring implements UpdateLbest{
 		this.distMeasure = distMeasure;
 	}
 	@Override
-	public void update(double[][] popVar, double[] popFit, double[][] iBestVar, double[] iBestFit, int optimization,
-			int generation) {
+	public void update(double[][] popVar, double[] popFit, double[][] iBestVar, 
+						double[] iBestFit, int optimization, int generation) {
 		int popSize = popVar.length;
 		int maxVar = popVar[0].length;
 		int[][] nearestIndex = searchForNeighbours(popVar, popSize);
@@ -31,30 +31,40 @@ public class Ring implements UpdateLbest{
 		}
 	}
 	// Find two neighbors. stores their indexes.
-	// int[eachPop][Two neighbors' indexes]
+	// int[particleIndex][Two neighbors' indexes]
 	private int[][] searchForNeighbours(double[][] popVar, int popSize){
 		int[][] bestIndex = new int[popVar.length][2];
 
 		for(int i = 0; i < popSize; i++){
 			boolean goOn = false;
+			// check If we have found the neighbors of current particle
 			for(int j = 0; j < i; j++){
+				// If the current particle has been recorded as a neighbor of a particle
+				// then we don't need to calculate
 				if(bestIndex[j][0] == i || bestIndex[j][1] == i) {
 					if(bestIndex[i][0] == 0) bestIndex[i][0] = j;
 					else bestIndex[i][1] = j;
 				}
+				// we have found two neighbors of the ith particle
 				if(bestIndex[i][1] != 0) {
 					goOn = true;
 					break;
 				}
 			}
+			// because we have found two neighbors, we jump to next one
 			if(goOn) continue;
-			if(popSize - i - 1 == 0){
-				bestIndex[i][1]= popSize - 1;
-				break;
-			}
-			double[] distance = new double[popSize - i - 1];
+			// the last particle
+//			if(popSize - i - 1 == 0){
+//				bestIndex[i][1]= popSize - 1;
+//				break;
+//			}
+			
+			// We have not found the neighbor of current particle, we just need to search
+			// for the rest of the population
+			double[] distance = new double[popSize - i];
 			distance[0] = 0;
-			for(int j = i + 1, k = 1; j < popSize - i - 1; j++, k++){
+			for(int j = i + 1, k = 1; j < popSize - i; j++, k++){
+				System.out.println("popVar["+i+"] : popVar["+j+"]:k="+k+ ",distance.length = " + distance.length);
 				distance[k] = distMeasure.calcDist(popVar[i], popVar[j]);
 			}
 			bestIndex[i] = head2Bests(distance, i);
@@ -69,9 +79,12 @@ public class Ring implements UpdateLbest{
 		int[] head2 = new int[2];
 		int firstIndex = 0;
 		int secondIndex = 1;
-		first = distance[0];
-		second = distance[1];
+		first = distance[1];
+		second = distance[2];
+		
 		for(int i = 2; i < distance.length; i++){
+			
+			// exchange two indexes
 			if(first > second){
 				temp = first;
 				first = second;
