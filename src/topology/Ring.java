@@ -1,5 +1,8 @@
 package topology;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import algorithms.UpdateLbest;
 import distanceMeasure.DistanceMeasure;
 
@@ -9,97 +12,93 @@ public class Ring implements UpdateLbest{
 		this.distMeasure = distMeasure;
 	}
 	@Override
-	public void update(double[][] popVar, double[] popFit, double[][] iBestVar, 
+	public void update(double[][] popVar, double[] popFit, double[][] iBestVar,
 						double[] iBestFit, int optimization, int generation) {
 		int popSize = popVar.length;
 		int maxVar = popVar[0].length;
-		int[][] nearestIndex = searchForNeighbours(popVar, popSize);
-		for(int i = 0; i < popSize; i++){
-			int bestIndex = 0;
-			if((popFit[nearestIndex[i][0]] < popFit[nearestIndex[i][1]] && optimization == 0) ||
-					(popFit[nearestIndex[i][0]] > popFit[nearestIndex[i][1]] && optimization == 1)) {
 
-				iBestFit[i] = popFit[nearestIndex[i][0]];
-				bestIndex = nearestIndex[i][0];
+		for(int i = 0; i < popSize; i++){
+			int index;
+			if(optimization == 0){
+				if(i == 0) {
+					iBestFit[0] = (double) lowestFit(popFit[popSize - 1], popFit[0], popFit[1]).get(1);
+					index = (int) lowestFit(popFit[popSize - 1], popFit[0], popFit[1]).get(0);
+					if(index == -1) index = popSize - 1;
+				} else if (i == popSize - 1){
+					iBestFit[popSize - 1] = (double) lowestFit(popFit[popSize - 2], popFit[popSize - 1], popFit[0]).get(1);
+					index = (int) lowestFit(popFit[popSize - 2], popFit[popSize - 1], popFit[0]).get(0);
+					if(index == 1) index = 0;
+					else index = i + index;
+				} else {
+					iBestFit[i] = (double) lowestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(1);
+					index = (int) lowestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(0) + i;
+				}
+
+				for(int j = 0; j < maxVar; j++){
+					iBestVar[i][j] = popVar[index][j];
+				}
+			} else {
+				if(i == 0) {
+					iBestFit[0] = (double) greatestFit(popFit[popSize - 1], popFit[0], popFit[1]).get(1);
+					index = (int) greatestFit(popFit[popSize - 1], popFit[0], popFit[1]).get(0);
+				} else if (i == popSize - 1){
+					iBestFit[popSize - 1] = (double) greatestFit(popFit[popSize - 2], popFit[popSize - 1], popFit[0]).get(1);
+					index = (int) greatestFit(popFit[popSize - 2], popFit[popSize - 1], popFit[0]).get(0);
+				} else {
+					iBestFit[i] = (double) greatestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(1);
+					index = (int) greatestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(0);
+				}
+
+				for(int j = 0; j < maxVar; j++){
+					iBestVar[i][j] = popVar[index][j];
+				}
+			}
+		}
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private ArrayList lowestFit(double left, double middle, double right){
+		ArrayList list = new ArrayList();
+		if(left < middle) {
+			if(left < right){
+				list.add(-1);
+				list.add(left);
 			} else{
-				iBestFit[i] = popFit[nearestIndex[i][1]];
-				bestIndex = nearestIndex[i][1];
+				list.add(1);
+				list.add(right);
 			}
-			for(int j = 0; j < maxVar; j++){
-				iBestVar[i][j] = popVar[bestIndex][j];
-			}
-		}
-	}
-	// Find two neighbors. stores their indexes.
-	// int[particleIndex][Two neighbors' indexes]
-	private int[][] searchForNeighbours(double[][] popVar, int popSize){
-		int[][] bestIndex = new int[popVar.length][2];
-
-		for(int i = 0; i < popSize; i++){
-			boolean goOn = false;
-			// check If we have found the neighbors of current particle
-			for(int j = 0; j < i; j++){
-				// If the current particle has been recorded as a neighbor of a particle
-				// then we don't need to calculate
-				if(bestIndex[j][0] == i || bestIndex[j][1] == i) {
-					if(bestIndex[i][0] == 0) bestIndex[i][0] = j;
-					else bestIndex[i][1] = j;
-				}
-				// we have found two neighbors of the ith particle
-				if(bestIndex[i][1] != 0) {
-					goOn = true;
-					break;
-				}
-			}
-			// because we have found two neighbors, we jump to next one
-			if(goOn) continue;
-			// the last particle
-//			if(popSize - i - 1 == 0){
-//				bestIndex[i][1]= popSize - 1;
-//				break;
-//			}
-			
-			// We have not found the neighbor of current particle, we just need to search
-			// for the rest of the population
-			double[] distance = new double[popSize - i];
-			distance[0] = 0;
-			for(int j = i + 1, k = 1; j < popSize - i; j++, k++){
-				System.out.println("popVar["+i+"] : popVar["+j+"]:k="+k+ ",distance.length = " + distance.length);
-				distance[k] = distMeasure.calcDist(popVar[i], popVar[j]);
-			}
-			bestIndex[i] = head2Bests(distance, i);
-		}
-
-		return bestIndex;
-	}
-
-	// Looking for the nearest two distances
-	private int[] head2Bests(double[] distance, int currentIndex){
-		double first, second, temp;
-		int[] head2 = new int[2];
-		int firstIndex = 0;
-		int secondIndex = 1;
-		first = distance[1];
-		second = distance[2];
-		
-		for(int i = 2; i < distance.length; i++){
-			
-			// exchange two indexes
-			if(first > second){
-				temp = first;
-				first = second;
-				second = temp;
-				secondIndex = firstIndex;
-				firstIndex = i - 1;
-			}
-			if(second > distance[i]){
-				second = distance[i];
+		} else {
+			if(middle < right){
+				list.add(0);
+				list.add(middle);
+			} else {
+				list.add(1);
+				list.add(middle);
 			}
 		}
-		head2[0] = firstIndex + currentIndex + 1;
-		head2[1] = secondIndex + currentIndex + 1;
-		return head2;
+		return list;
 	}
 
-
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private ArrayList greatestFit(double left, double middle, double right){
+		ArrayList list = new ArrayList();
+		if(left > middle) {
+			if(left > right){
+				list.add(-1);
+				list.add(left);
+			} else{
+				list.add(1);
+				list.add(right);
+			}
+		} else {
+			if(middle > right){
+				list.add(0);
+				list.add(middle);
+			} else {
+				list.add(1);
+				list.add(middle);
+			}
+		}
+		return list;
+	}
 }

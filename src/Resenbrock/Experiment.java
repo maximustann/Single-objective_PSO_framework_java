@@ -12,7 +12,7 @@ import spherical.ResultCollector;
 public class Experiment {
 	public static void main(String[] arg) {
 		ArrayList<FitnessFunction> funcList = new ArrayList<FitnessFunction>();
-		double w = 2;
+		double w = 0.6;
 		double c1 = 2;
 		double c2 = 2;
 		double lbound = -30; // ranging in [-30, 30]
@@ -20,14 +20,14 @@ public class Experiment {
 		double clampFactor = 0.2; // clamp the velocity from [-clampFactor * (ubound - lbound), clampFactor * (ubound - lbound)]
 		int optimization = 0; //minimize
 		int popSize = 30;
-		int maxGen = 100;
+		int maxGen = 5000;
 		int d = 20; // number of dimensions
-		double threshold = 0.5;
+		double threshold = 0.7;
 
 		// Initialization !!!!
 		FitnessFunction fitnessFunction = new TestFunctionFitness();
 		funcList.add(fitnessFunction);
-		
+
 		// CPSO evaluation
 		Evaluate evaluate = new TestFunctionEvaluate(funcList);
 
@@ -39,24 +39,24 @@ public class Experiment {
 														optimization, popSize, maxGen, d);
 //		DataCollector collectorArray = new ArrayResultCollector();
 		DataCollector collector = new ResultCollector();
-		DistanceMeasure euclidean = new EuclideanDistance();
+//		DistanceMeasure euclidean = new EuclideanDistance();
 		// initialize a continuous version of PSO
-		
+
 		// global version
 		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
-		
+
 		// local version
 //		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(euclidean, collectorArray));
-		
-		
+
+
 		// initialize a binary version of PSO
 		// global version
 //		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
-		
-		
+
+
 		myAlg.run(111); // parameter is a random seed
 		((ResultCollector) collector).printResult();
-		((ResultCollector) collector).printParticle();
+//		((ResultCollector) collector).printParticle();
 //		((ArrayResultCollector) collectorArray).printResult();
 		System.out.println("Done!");
 	}

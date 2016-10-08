@@ -19,19 +19,19 @@ public class Experiment {
 		double clampFactor = 0.8; // clamp the velocity from [-clampFactor * (ubound - lbound), clampFactor * (ubound - lbound)]
 		int optimization = 0; //minimize
 		int popSize = 30;
-		int maxGen = 10;
+		int maxGen = 1000;
 		int d = 20; // number of dimensions
 		double threshold = 0.5;
 
 		// Initialization !!!!
 		FitnessFunction fitnessFunction = new TestFunctionFitness();
 		funcList.add(fitnessFunction);
-		
+
 		// CPSO evaluation
-//		Evaluate evaluate = new TestFunctionEvaluate(funcList);
+		Evaluate evaluate = new TestFunctionEvaluate(funcList);
 
 		// Rounding BPSO evaluation
-		Evaluate evaluate = new RoundingEvaluate(funcList, threshold);
+//		Evaluate evaluate = new RoundingEvaluate(funcList, threshold);
 
 		ProblemParameterSettings proSet = new TestFunctionParameterSettings(evaluate);
 		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, clampFactor,
@@ -40,19 +40,19 @@ public class Experiment {
 		DataCollector collector = new ResultCollector();
 //		DistanceMeasure euclidean = new EuclideanDistance();
 		// initialize a continuous version of PSO
-		
+
 		// global version
-		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
-		
+//		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
+
 		// local version
 //		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(euclidean, collectorArray));
-		
-		
+
+
 		// initialize a binary version of PSO
 		// global version
-//		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
-		
-		
+		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
+
+
 		myAlg.run(111); // parameter is a random seed
 		((ResultCollector) collector).printResult();
 		((ResultCollector) collector).printParticle();
