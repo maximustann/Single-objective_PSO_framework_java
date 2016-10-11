@@ -1,4 +1,4 @@
-package Resenbrock;
+package Rosenbrock;
 
 import ProblemDefine.ProblemParameterSettings;
 import algorithms.Evaluate;

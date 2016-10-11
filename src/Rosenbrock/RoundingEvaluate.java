@@ -1,4 +1,4 @@
-package Resenbrock;
+package Rosenbrock;
 import java.util.ArrayList;
 
 import algorithms.Evaluate;

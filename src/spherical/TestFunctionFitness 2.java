@@ -6,7 +6,7 @@ public class TestFunctionFitness implements FitnessFunction{
 	public double[] unNormalizedFit(double[][] popVar){
 		double[] fitness = new double[popVar.length];
 		for(int i = 0; i < popVar.length; i++){
-			for(int j = 0; j < popVar[0].length; j++){
+			for(int j = 0; j < popVar[0].length - 1; j++){
 				fitness[i] += popVar[i][j] * popVar[i][j];
 			}
 		}
