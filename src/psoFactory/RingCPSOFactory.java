@@ -6,15 +6,12 @@ import commonOperators.CommonUpLocalPop;
 import commonOperators.CommonUpPbest;
 import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
-import distanceMeasure.DistanceMeasure;
 import topology.Ring;
 import algorithms.*;
 
 public class RingCPSOFactory implements PSOFactory{
-	private DistanceMeasure measure;
 	private DataCollector collector;
-	public RingCPSOFactory(DistanceMeasure measure, DataCollector collector){
-		this.measure = measure;
+	public RingCPSOFactory(DataCollector collector){
 		this.collector = collector;
 	}
 
@@ -40,7 +37,7 @@ public class RingCPSOFactory implements PSOFactory{
 
 	@Override
 	public UpdateGLbest getUpGIbestMethod() {
-		return new Ring(measure);
+		return new Ring();
 	}
 
 	@Override

@@ -19,6 +19,10 @@ public class CommonUpPbest implements UpdatePbest{
     /**
      * update the Local best according to local particles fitness
      * 
+     * 1. Store the fitness value if it is the first generation
+     * 2. If it is not the first generation, compare with previous fitness value, if better
+     * 	  update.
+     * 
      * @param pBestVar 2D-array of personal best variables.
      * @param pBestFit an array of personal best fitness values.
      * @param popVar 2D-array of population variables

@@ -22,6 +22,10 @@ public class CommonUpGbest implements UpdateGbest{
     /**
      * update the Global best according to all the personal bests
      * 
+     * Steps:
+     * 1. Compare all personal bests with current global best, update global best.
+     * 2. Save the global best particle
+     * 
      * @param pBestVar 2D-array of personal best variables.
      * @param pBestFit an array of personal best fitness values.
      * @param gBestVar an array of global best variables
@@ -31,7 +35,14 @@ public class CommonUpGbest implements UpdateGbest{
      * @return global best fitness
      */	
 	@Override
-	public double update(double[][] pBestVar, double [] pBestFit, double[] gBestVar, double gBestFit, int optimization, int generation) {
+	public double update(
+						double[][] pBestVar, 
+						double [] pBestFit, 
+						double[] gBestVar, 
+						double gBestFit, 
+						int optimization, 
+						int generation
+						) {
 		int popSize = pBestVar.length;
 		int bestIndex = 0;
 

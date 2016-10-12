@@ -11,7 +11,8 @@ package algorithms;
 
 /**
  * Defines the common method of fitness functions
- * 
+ * If you want to define your own fitness function, please implement this interface.
+ * Alternatively, you can extend the abstract class FitnessFunc.java
  * @author Boxiong Tan (Maximus Tann) 
  * @since PSO framework 1.0
  */

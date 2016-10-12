@@ -11,7 +11,11 @@ public class CPSOLocal extends LocalPSO{
 	PSOFactory CPSOFactory;
 	ParameterSettings pars;
 	ProblemParameterSettings proSet;
-	public CPSOLocal(ParameterSettings pars, ProblemParameterSettings proSet, PSOFactory factory){
+	public CPSOLocal(
+				ParameterSettings pars, 
+				ProblemParameterSettings proSet, 
+				PSOFactory factory
+				){
 		CPSOFactory = factory;
 		this.pars = pars;
 		this.proSet = proSet;
