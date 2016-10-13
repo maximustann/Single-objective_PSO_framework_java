@@ -16,7 +16,9 @@ public class CommonUpLocalPop implements UpPopLocal {
 	/** An VelocityClamping object for clamping velocity */
 	private VelocityClamping clamper;
 
-	
+	/** constructor, initialize the clamper
+	 * @param clamper a velocity clamper
+	 */		
 	public CommonUpLocalPop(VelocityClamping clamper){
 		this.clamper = clamper;
 	}
@@ -24,6 +26,11 @@ public class CommonUpLocalPop implements UpPopLocal {
 	
     /**
      * update the population based on personal best and local best
+     *
+     * 1. update velocity
+     * 2. Do velocity clamping
+     * 3. Update particle positions
+     *
      * 
      * @param popVar 2D-array of population variables.
      * @param pBestFit an array of personal best fitness values.
@@ -33,6 +40,8 @@ public class CommonUpLocalPop implements UpPopLocal {
      * @param w inertia.
      * @param c1 cognitive parameter
      * @param c2 social parameter
+     * @param lbound the lower bound of variable
+     * @param ubound the upper bound of variable
      */
 	@Override
 	public void update(

@@ -67,7 +67,6 @@ public abstract class LocalPSO extends PSO{
 							lbound, ubound
 						   );
 			collector.collect(lBestFit);
-			System.out.println();
 		}
 	}
 

@@ -1,13 +1,10 @@
-package Resenbrock;
+package Rosenbrock;
 import java.util.ArrayList;
 
 import ProblemDefine.*;
 import algorithms.*;
 import dataCollector.DataCollector;
-import distanceMeasure.DistanceMeasure;
-import distanceMeasure.EuclideanDistance;
 import psoFactory.*;
-import spherical.ResultCollector;
 
 public class Experiment {
 	public static void main(String[] arg) {
@@ -22,7 +19,7 @@ public class Experiment {
 		int popSize = 30;
 		int maxGen = 10000;
 		int d = 20; // number of dimensions
-		double threshold = 0.7;
+//		double threshold = 0.7;
 
 		// Initialization !!!!
 		FitnessFunction fitnessFunction = new TestFunctionFitness();
@@ -39,14 +36,13 @@ public class Experiment {
 														optimization, popSize, maxGen, d);
 		DataCollector collectorArray = new ArrayResultCollector();
 //		DataCollector collector = new ResultCollector();
-		DistanceMeasure euclidean = new EuclideanDistance();
 		// initialize a continuous version of PSO
 
 		// global version
 //		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
 
 		// local version
-		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(euclidean, collectorArray));
+		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(collectorArray));
 
 
 		// initialize a binary version of PSO

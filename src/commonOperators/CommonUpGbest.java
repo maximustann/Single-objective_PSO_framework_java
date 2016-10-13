@@ -24,6 +24,8 @@ public class CommonUpGbest implements UpdateGbest{
      * 1. If it is the first generation, update global best with the best personal best
      * 2. If it is not the first generation, compare the current global best with all personal bests
      *
+     *
+     *
      * @param pBestVar 2D-array of personal best variables.
      * @param pBestFit an array of personal best fitness values.
      * @param gBestVar an array of global best variables

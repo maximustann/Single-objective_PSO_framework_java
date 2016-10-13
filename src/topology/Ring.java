@@ -1,19 +1,34 @@
+/*
+ * Boxiong Tan (Maximus Tann)
+ * Title:        PSO algorithm framework
+ * Description:  PSO algorithm framework for general optimization purpose
+ * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Copyright (c) 2016-2019, The Victoria University of Wellington
+ * Ring.java - A ring topology for local best-based PSO
+ */
 package topology;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import algorithms.UpdateLbest;
-import distanceMeasure.DistanceMeasure;
-
+/**
+ * A fixed neighbor Ring topology
+ * Ring topology is essentially a local best updating rule
+ * 
+ * @author Boxiong Tan (Maximus Tann) 
+ * @since PSO framework 1.0
+ */
 public class Ring implements UpdateLbest{
-	private DistanceMeasure distMeasure;
-	public Ring(DistanceMeasure distMeasure){
-		this.distMeasure = distMeasure;
-	}
+
 	@Override
-	public void update(double[][] popVar, double[] popFit, double[][] iBestVar,
-						double[] iBestFit, int optimization, int generation) {
+	public void update(
+				double[][] popVar, 
+				double[] popFit, 
+				double[][] iBestVar,
+				double[] iBestFit, 
+				int optimization, 
+				int generation
+				) {
 		int popSize = popVar.length;
 		int maxVar = popVar[0].length;
 

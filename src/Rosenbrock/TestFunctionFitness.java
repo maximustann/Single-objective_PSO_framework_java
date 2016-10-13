@@ -1,4 +1,4 @@
-package Resenbrock;
+package Rosenbrock;
 
 import algorithms.*;
 public class TestFunctionFitness implements FitnessFunction{
