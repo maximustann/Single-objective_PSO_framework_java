@@ -14,19 +14,33 @@ import algorithms.UpdateLbest;
 /**
  * A fixed neighbor Ring topology
  * Ring topology is essentially a local best updating rule
- * 
- * @author Boxiong Tan (Maximus Tann) 
+ *
+ * @author Boxiong Tan (Maximus Tann)
  * @since PSO framework 1.0
  */
 public class Ring implements UpdateLbest{
 
+	/**
+	 * update local best
+	 * If it is the 0 particle, then find the maximum or minimum fitness value among the last particle, current particle and the second
+	 * particle
+	 *
+	 * If it is the last particle, then find the maximum or minimum among the first particle, current particle and the second last particle
+	 *
+	 * @param popVar population
+	 * @param popFit fitness
+	 * @param lBestVar local best variables
+	 * @param lBestFit local best fitness values
+	 * @param optimization maximize (1) or minimize (0)
+	 * @param generation current generation
+	 */
 	@Override
 	public void update(
-				double[][] popVar, 
-				double[] popFit, 
-				double[][] iBestVar,
-				double[] iBestFit, 
-				int optimization, 
+				double[][] popVar,
+				double[] popFit,
+				double[][] lBestVar,
+				double[] lBestFit,
+				int optimization,
 				int generation
 				) {
 		int popSize = popVar.length;
@@ -36,36 +50,36 @@ public class Ring implements UpdateLbest{
 			int index;
 			if(optimization == 0){
 				if(i == 0) {
-					iBestFit[0] = (double) lowestFit(popFit[popSize - 1], popFit[0], popFit[1]).get(1);
-					index = (int) lowestFit(popFit[popSize - 1], popFit[0], popFit[1]).get(0);
+					lBestFit[0] = (double) lowestFit(popFit[popSize - 1], popFit[i], popFit[1]).get(1);
+					index = (int) lowestFit(popFit[popSize - 1], popFit[i], popFit[1]).get(0);
 					if(index == -1) index = popSize - 1;
 				} else if (i == popSize - 1){
-					iBestFit[popSize - 1] = (double) lowestFit(popFit[popSize - 2], popFit[popSize - 1], popFit[0]).get(1);
-					index = (int) lowestFit(popFit[popSize - 2], popFit[popSize - 1], popFit[0]).get(0);
+					lBestFit[i] = (double) lowestFit(popFit[i - 1], popFit[i], popFit[0]).get(1);
+					index = (int) lowestFit(popFit[i - 1], popFit[i], popFit[0]).get(0);
 					if(index == 1) index = 0;
 					else index = i + index;
 				} else {
-					iBestFit[i] = (double) lowestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(1);
+					lBestFit[i] = (double) lowestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(1);
 					index = (int) lowestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(0) + i;
 				}
 
 				for(int j = 0; j < maxVar; j++){
-					iBestVar[i][j] = popVar[index][j];
+					lBestVar[i][j] = popVar[index][j];
 				}
 			} else {
 				if(i == 0) {
-					iBestFit[0] = (double) greatestFit(popFit[popSize - 1], popFit[0], popFit[1]).get(1);
-					index = (int) greatestFit(popFit[popSize - 1], popFit[0], popFit[1]).get(0);
+					lBestFit[0] = (double) greatestFit(popFit[popSize - 1], popFit[i], popFit[1]).get(1);
+					index = (int) greatestFit(popFit[popSize - 1], popFit[i], popFit[1]).get(0);
 				} else if (i == popSize - 1){
-					iBestFit[popSize - 1] = (double) greatestFit(popFit[popSize - 2], popFit[popSize - 1], popFit[0]).get(1);
-					index = (int) greatestFit(popFit[popSize - 2], popFit[popSize - 1], popFit[0]).get(0);
+					lBestFit[i] = (double) greatestFit(popFit[i - 1], popFit[i], popFit[0]).get(1);
+					index = (int) greatestFit(popFit[i - 1], popFit[i], popFit[0]).get(0);
 				} else {
-					iBestFit[i] = (double) greatestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(1);
+					lBestFit[i] = (double) greatestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(1);
 					index = (int) greatestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(0);
 				}
 
 				for(int j = 0; j < maxVar; j++){
-					iBestVar[i][j] = popVar[index][j];
+					lBestVar[i][j] = popVar[index][j];
 				}
 			}
 		}

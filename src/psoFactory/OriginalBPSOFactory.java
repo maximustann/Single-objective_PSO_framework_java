@@ -1,3 +1,12 @@
+/*
+ * Boxiong Tan (Maximus Tann)
+ * Title:        PSO algorithm framework
+ * Description:  PSO algorithm framework for general optimization purpose
+ * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Copyright (c) 2016-2019, The Victoria University of Wellington
+ * OriginalBPSOFactory.java - A factory to assemble different parts
+ */
 package psoFactory;
 
 import BPSO.BPSOInitPop;
@@ -8,12 +17,20 @@ import commonOperators.CommonUpPbest;
 import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
 import algorithms.*;
-
-// In this case, only the initialization of population and update population are different from common version of PSO.
+/**
+ * OriginalBPSOFactory
+ * In this case, only the initialization of population and update population are different from common version of PSO.
+ *
+ * @author Boxiong Tan (Maximus Tann)
+ * @since PSO framework 1.0
+ */
 public class OriginalBPSOFactory implements PSOFactory{
 	private DataCollector collector;
 
-
+	/**
+	 * Constructor
+	 * @param collector is the data collector
+	 */
 	public OriginalBPSOFactory(DataCollector collector){
 		this.collector = collector;
 	}
@@ -40,7 +57,6 @@ public class OriginalBPSOFactory implements PSOFactory{
 
 	@Override
 	public UpdateGLbest getUpGIbestMethod() {
-		// TODO Auto-generated method stub
 		return new CommonUpGbest();
 	}
 
