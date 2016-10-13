@@ -13,15 +13,17 @@ import algorithms.UpdateGbest;
 
 /**
  * Update Global best
- * 
- * @author Boxiong Tan (Maximus Tann) 
+ *
+ * @author Boxiong Tan (Maximus Tann)
  * @since PSO framework 1.0
  */
 
 public class CommonUpGbest implements UpdateGbest{
     /**
      * update the Global best according to all the personal bests
-     * 
+     * 1. If it is the first generation, update global best with the best personal best
+     * 2. If it is not the first generation, compare the current global best with all personal bests
+     *
      * @param pBestVar 2D-array of personal best variables.
      * @param pBestFit an array of personal best fitness values.
      * @param gBestVar an array of global best variables
@@ -29,19 +31,25 @@ public class CommonUpGbest implements UpdateGbest{
      * @param optimization 0 denotes minimization, 1 denotes maximization
      * @param generation which generation it is.
      * @return global best fitness
-     */	
+     */
 	@Override
-	public double update(double[][] pBestVar, double [] pBestFit, double[] gBestVar, double gBestFit, int optimization, int generation) {
+	public double update(
+					double[][] pBestVar,
+					double [] pBestFit,
+					double[] gBestVar,
+					double gBestFit,
+					int optimization,
+					int generation
+					) {
 		int popSize = pBestVar.length;
 		int bestIndex = 0;
 
 		if(generation == 0){
 			gBestFit = pBestFit[0];
-//			System.out.println(gBestFit);
 			for(int i = 0; i < popSize; i++){
 				// If minimize, smaller the better
 				// If maximize, bigger the better
-				if((gBestFit > pBestFit[i] && optimization == 0) || 
+				if((gBestFit > pBestFit[i] && optimization == 0) ||
 					(gBestFit < pBestFit[i] && optimization == 1)){
 					gBestFit = pBestFit[i];
 					bestIndex = i;
@@ -52,7 +60,7 @@ public class CommonUpGbest implements UpdateGbest{
 			for(int i = 0; i < popSize; i++){
 				// If minimize, smaller the better
 				// If maximize, bigger the better
-				if((gBestFit > pBestFit[i] && optimization == 0) || 
+				if((gBestFit > pBestFit[i] && optimization == 0) ||
 					(gBestFit < pBestFit[i] && optimization == 1)){
 					gBestFit = pBestFit[i];
 					bestIndex = i;

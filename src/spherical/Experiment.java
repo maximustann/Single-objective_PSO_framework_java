@@ -42,7 +42,7 @@ public class Experiment {
 		// initialize a continuous version of PSO
 
 		// global version
-//		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
+		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
 
 		// local version
 //		PSO myAlg = new CPSOLocal(pars, proSet, new RingCPSOFactory(euclidean, collectorArray));
@@ -50,7 +50,7 @@ public class Experiment {
 
 		// initialize a binary version of PSO
 		// global version
-		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
+//		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
 
 
 		myAlg.run(111); // parameter is a random seed

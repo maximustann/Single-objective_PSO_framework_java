@@ -14,22 +14,22 @@ import algorithms.VelocityClamping;
 
 /**
  * Update of population variables for a global-based PSO
- * 
- * @author Boxiong Tan (Maximus Tann) 
+ *
+ * @author Boxiong Tan (Maximus Tann)
  * @since PSO framework 1.0
  */
 public class CommonUpGlobalPop implements UpPopGlobal{
 	/** An VelocityClamping object for clamping velocity */
 	private VelocityClamping clamper;
 
-	
+
 	public CommonUpGlobalPop(VelocityClamping clamper){
 		this.clamper = clamper;
 	}
-	
+
     /**
      * update the population based on personal best and global best
-     * 
+     *
      * @param popVar 2D-array of population variables.
      * @param pBestFit an array of personal best fitness values.
      * @param velocity 2D-array of velocity.
@@ -41,13 +41,13 @@ public class CommonUpGlobalPop implements UpPopGlobal{
      */
 	@Override
 	public void update(
-					double[][] popVar, 
-					double[] pBestFit, 
+					double[][] popVar,
+					double[] pBestFit,
 					double[][] velocity,
-					double[][] pBestVar, 
-					double[] gBestVar, 
-					double w, 
-					double c1, 
+					double[][] pBestVar,
+					double[] gBestVar,
+					double w,
+					double c1,
 					double c2,
 					double lbound,
 					double ubound
@@ -62,9 +62,7 @@ public class CommonUpGlobalPop implements UpPopGlobal{
 				velocity[i][j] = w * velocity[i][j] + c1 * StdRandom.uniform(0.0, 1.0) *
 						(pBestVar[i][j] - popVar[i][j]) + c2 * StdRandom.uniform(0.0, 1.0) *
 						(gBestVar[j] - popVar[i][j]);
-//				System.out.print("veolocity[" + i + "][" + j + "]:"+ velocity[i][j] + " ");
 			}
-//			System.out.println();
 		}
 
 		// do clamping
