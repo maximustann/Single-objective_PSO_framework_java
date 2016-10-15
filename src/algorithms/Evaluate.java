@@ -17,5 +17,9 @@ package algorithms;
  */
 
 public interface Evaluate {
+	/**
+	 * @param popVar a population of variables
+	 * @param fitness the fitness values of whole population
+	 */
 	public void evaluate(double[][] popVar,double [] fitness);
 }
