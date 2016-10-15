@@ -2,11 +2,12 @@ BPSO
 BPSOAllocationProblem
 FileHandlers
 ProblemDefine
-TestFunction
+Rosenbrock
 algorithms
 commonOperators
 dataCollector
 distanceMeasure
 psoFactory
 psoProcedure
+spherical
 topology
