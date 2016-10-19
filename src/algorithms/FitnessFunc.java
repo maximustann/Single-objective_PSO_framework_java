@@ -31,9 +31,11 @@ public abstract class FitnessFunc implements FitnessFunction{
 	
     /**
      * Generate an array of normalized fitness values
-     * Two steps: 1. apply fitness function on popVar
-     * 			  2. apply normalization function on fitness values
-     *
+     * Steps:
+     * <ul>
+     * 		<li> 1. apply fitness function on popVar </li>
+     * 		<li> 2. apply normalization function on fitness values </li>
+     * </ul>
      * @param popVar population variables
      * @return array of normalized fitness values
      */

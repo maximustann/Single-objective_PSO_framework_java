@@ -20,8 +20,9 @@ public class TestFunctionEvaluate implements Evaluate{
 
 	@Override
 	public void evaluate(double[][] popVar, double[] fitness){
+		double[] temp = funcList.get(0).normalizedFit(popVar);
 		for(int i = 0; i < fitness.length; i++) {
-			fitness[i] = funcList.get(0).normalizedFit(popVar)[i];
+			fitness[i] = temp[i];
 		}
 	}
 }
