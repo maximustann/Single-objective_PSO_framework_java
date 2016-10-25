@@ -1,9 +1,24 @@
+/*
+ * Boxiong Tan (Maximus Tann)
+ * Title:        PSO algorithm framework
+ * Description:  PSO algorithm framework for general optimization purpose
+ * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Copyright (c) 2016-2019, The Victoria University of Wellington
+ * ReadFileHai.java - read configuration and data from files for Hai's paper
+ */
 package BPSOAllocationProblem;
 
 import FileHandlers.ReadByCol;
 import FileHandlers.ReadByRow;
 import FileHandlers.ReadCsvFile;
-
+/**
+ * ReadFileHai
+ * 
+ * 
+ * @author Boxiong Tan (Maximus Tann)
+ * @since PSO framework 1.0
+ */
 public class ReadFileHai{
 	private ReadCsvFile readByRow;
 	private ReadCsvFile readByCol;
@@ -16,6 +31,15 @@ public class ReadFileHai{
 	private int noLocation;
 	private int noUser;
 
+	/**
+	 * 
+	 * @param config 		configuration file
+	 * @param cost			cost matrix
+	 * @param latency		latency matrix
+	 * @param freq			frequency matrix
+	 * @param costRange		contains the maximum and minimum values of cost
+	 * @param timeRange		contains the maximum and minimum values of response time
+	 */
 	public ReadFileHai(
 					String config, 
 					String cost, 
@@ -28,8 +52,11 @@ public class ReadFileHai{
 		readByRow = new ReadByRow();
 		readByCol = new ReadByCol();
 
+		/** maximum and minimum */
 		costRangeData = new double[1][2];
 		timeRangeData = new double[1][2];
+		
+		/** number of services, number of locations, number of user centers */
 		double[][] configData = new double[1][3];
 		readByRow.read(config, configData);
 		noService = (int) configData[0][2];
@@ -51,6 +78,9 @@ public class ReadFileHai{
 		readByCol.read(freq, tempFreq);
 
 
+		/*
+		 * Transfer a matrix to a vector
+		 */
 		int counter = 0;
 		for(int i = 0; i < noService; i++){
 			for(int j = 0; j < noLocation; j++){
@@ -59,6 +89,9 @@ public class ReadFileHai{
 			}
 		}
 
+		/*
+		 * Transfer a matrix to a vector
+		 */
 		counter = 0;
 		for(int i = 0; i < noUser; i++){
 			for(int j = 0; j < noLocation; j++){
