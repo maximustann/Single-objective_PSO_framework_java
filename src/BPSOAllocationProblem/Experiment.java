@@ -10,14 +10,15 @@ public class Experiment {
 	public static void main(String[] arg) {
 		ArrayList<FitnessFunction> funcList = new ArrayList<FitnessFunction>();
 		double[] weights = new double[2];
-		double w = 0.689;
+		//double w = 0.689;
+		double w = 1;
 		double c1 = 1.427;
 		double c2 = 1.427;
 		double lbound = 0;
-		double ubound = 2;
-		double clampFactor = 0.5;
+		double ubound = 1;
+		double clampFactor = 8;
 		int optimization = 0; //minimize
-		int popSize = 50;
+		int popSize = 100;
 		int maxGen = 50;
 		weights[0] = weights[1] = 0.5;
 
@@ -29,7 +30,7 @@ public class Experiment {
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
-		String base = "/home/tanboxi/HaiProjData/testCase" + testCase;
+		String base = "/Users/maximustann/Documents/workspace/HaiProjData/testCase" + testCase;
 		String configAddr = base + "/config.csv";
 		String costAddr = base + "/cost.csv";
 		String latencyAddr = base + "/latency.csv";

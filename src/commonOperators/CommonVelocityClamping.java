@@ -20,7 +20,7 @@ public class CommonVelocityClamping implements VelocityClamping{
 	private double clampFactor;
     /**
      * @param clampFactor 
-     * @see <a href="http://www.swarmintelligence.org/tutorials.php">http://www.swarmintelligence.org/tutorials.php</a>
+     * @see <a href="http://www.swarmintelligence.org/tutorials.php">tutorial</a>
      */	
 	public CommonVelocityClamping(double clampFactor){
 		this.clampFactor = clampFactor;

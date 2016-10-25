@@ -70,9 +70,11 @@ public class BPSOUpGlobalPop implements UpPopGlobal{
 		for(int i = 0; i < popSize; i++){
 			// update each dimension
 			for(int j = 0; j < maxVar; j++){
-				velocity[i][j] = w * velocity[i][j] + c1 * StdRandom.uniform(0.0, 1.0) *
-						(pBestVar[i][j] - popVar[i][j]) + c2 * StdRandom.uniform(0.0, 1.0) *
-						(gBestVar[j] - popVar[i][j]);
+				velocity[i][j] = w * velocity[i][j] + 
+								c1 * StdRandom.uniform(0.0, 1.0) *
+								(pBestVar[i][j] - popVar[i][j]) + 
+								c2 * StdRandom.uniform(0.0, 1.0) *
+								(gBestVar[j] - popVar[i][j]);
 			}
 		}
 
