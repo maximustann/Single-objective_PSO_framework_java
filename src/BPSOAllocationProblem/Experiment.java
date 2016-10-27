@@ -26,7 +26,7 @@ public class Experiment {
 		double[] freqMatrix;
 		double[] latencyMatrix;
 
-		int testCase = 1;
+		int testCase = 2;
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
