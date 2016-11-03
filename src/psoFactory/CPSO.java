@@ -71,10 +71,13 @@ public class CPSO extends GlobalPSO{
 		maxVar = pars.getMaxVar();
 		popSize = pars.getPopSize();
 		w = pars.getW();
+		balance = pars.getBalance();
 		c1 = pars.getC1();
 		c2 = pars.getC2();
 		lbound = pars.getLbound();
 		ubound = pars.getUbound();
+		lboundW = pars.getLboundW();
+		uboundW = pars.getUboundW();
 		clampFactor = pars.getClampFactor();
 		optimization = pars.getOptimization();
 		popFit = new double[popSize];
@@ -87,6 +90,7 @@ public class CPSO extends GlobalPSO{
 		upGbest = (UpdateGbest) CPSOFactory.getUpGIbestMethod();
 		upPbest = CPSOFactory.getUpPbestMethod();
 		upPop = CPSOFactory.getUpPopMethod(clampFactor);
+		dynW = CPSOFactory.getDynamicW(balance, maxGen, lboundW, uboundW);
 		evaluate = proSet.getEvaluate();
 		collector = CPSOFactory.getDataCollector();
 	}

@@ -26,4 +26,5 @@ public interface PSOFactory {
 	public UpPop getUpPopMethod(double clampFactor);
 	public DataCollector getDataCollector();
 	public VelocityClamping getVelocityClamper(double clampFactor);
+	public DynamicW getDynamicW(double balance, int maxGen, double lboundW, double uboundW);
 }

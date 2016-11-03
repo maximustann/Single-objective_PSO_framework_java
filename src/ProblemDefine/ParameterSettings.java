@@ -15,7 +15,7 @@ package ProblemDefine;
  * @since PSO framework 1.0
  */
 public class ParameterSettings {
-	private double w, c1, c2, lbound, ubound, clampFactor;
+	private double w, balance, c1, c2, lbound, ubound, lboundW, uboundW, clampFactor;
 	private int optimization, popSize, maxGen, maxVar;
     /**
      * Prepare a package of parameter settings
@@ -30,26 +30,45 @@ public class ParameterSettings {
      * @return 2D-array of population variables
      */	
 	public ParameterSettings(
-						double w, 
+						double w,
+						double balance,
 						double c1, 
 						double c2, 
 						double lbound, 
 						double ubound, 
+						double lboundW,
+						double uboundW,
 						double clampFactor,
 						int optimization, 
 						int popSize, 
 						int maxGen, 
 						int maxVar
 						){
+		this.w = w;
+		this.balance = balance;
 		this.c1 = c1;
 		this.c2 = c2;
 		this.lbound = lbound;
 		this.ubound = ubound;
+		this.lboundW = lboundW;
+		this.uboundW = uboundW;
 		this.clampFactor = clampFactor;
 		this.optimization = optimization;
 		this.popSize = popSize;
 		this.maxGen = maxGen;
 		this.maxVar = maxVar;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public double getLboundW() {
+		return lboundW;
+	}
+
+	public double getUboundW() {
+		return uboundW;
 	}
 
 	public int getMaxVar(){

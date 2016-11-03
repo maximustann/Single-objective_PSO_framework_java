@@ -43,6 +43,9 @@ public abstract class PSO{
 	/** An UpPop object for Updating population variables */
 	protected UpPop upPop;
 	
+	/** dynamic inertia method */
+	protected DynamicW dynW;
+	
 	/** An DataCollector object for collect result */
 	protected DataCollector collector;
 
@@ -107,8 +110,17 @@ public abstract class PSO{
 	/** the upper boundary of a variable of a particle */
 	protected double ubound;
 	
+	/** the lower boundary of a variable of the inertia */
+	protected double lboundW;
+
+	/** the upper boundary of a variable of the inertia */
+	protected double uboundW;
+	
 	/** inertia weight */
 	protected double w;
+	
+	/** inertia balance */
+	protected double balance;
 	
 	/** c1 is cognitive parameter,
 	 *  c2 is social parameter */
@@ -139,4 +151,11 @@ public abstract class PSO{
      * to store the best results.
      */
 	public abstract void run(int seed);
+	/**
+	 * Repeat experiments for N times
+	 * 
+	 * @param seedStart the random seeds start from this point, increase 1 by each time
+	 * @param nTimes run experiments for nTimes
+	 */
+	public abstract void runNtimes(int seedStart, int nTimes);
 }

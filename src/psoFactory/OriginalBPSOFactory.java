@@ -9,6 +9,7 @@
  */
 package psoFactory;
 
+import BPSO.BPSODynamicW;
 import BPSO.BPSOInitPop;
 import BPSO.BPSOUpGlobalPop;
 import commonOperators.CommonInitVel;
@@ -68,6 +69,11 @@ public class OriginalBPSOFactory implements PSOFactory{
 	@Override
 	public VelocityClamping getVelocityClamper(double clampFactor) {
 		return new CommonVelocityClamping(clampFactor);
+	}
+
+	@Override
+	public DynamicW getDynamicW(double balance, int maxGen,double lboundW, double uboundW) {
+		return new BPSODynamicW(balance, maxGen, lboundW, uboundW);
 	}
 
 }

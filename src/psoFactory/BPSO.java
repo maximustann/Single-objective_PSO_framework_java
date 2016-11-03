@@ -72,6 +72,10 @@ public class BPSO extends GlobalPSO{
 		c2 = pars.getC2();
 		lbound = pars.getLbound();
 		ubound = pars.getUbound();
+		lboundW = pars.getLboundW();
+		uboundW = pars.getUboundW();
+		balance = pars.getBalance();
+		
 		clampFactor = pars.getClampFactor();
 		optimization = pars.getOptimization();
 		popFit = new double[popSize];
@@ -84,6 +88,7 @@ public class BPSO extends GlobalPSO{
 		upGbest = (UpdateGbest) BPSOFactory.getUpGIbestMethod();
 		upPbest = BPSOFactory.getUpPbestMethod();
 		upPop = BPSOFactory.getUpPopMethod(clampFactor);
+		dynW = BPSOFactory.getDynamicW(balance, maxGen, lboundW, uboundW);
 		evaluate = proSet.getEvaluate();
 		collector = BPSOFactory.getDataCollector();
 	}

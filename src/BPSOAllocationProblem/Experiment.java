@@ -10,23 +10,26 @@ public class Experiment {
 	public static void main(String[] arg) {
 		ArrayList<FitnessFunction> funcList = new ArrayList<FitnessFunction>();
 		double[] weights = new double[2];
-		//double w = 0.689;
-		double w = 1;
+		double w = 0.689;
+		double balance = 0.9;
+//		double w = 1;
 		double c1 = 1.427;
 		double c2 = 1.427;
 		double lbound = 0;
-		double ubound = 1;
+		double ubound = 2;
+		double lboundW = 0.2;
+		double uboundW = 0.8;
 		double clampFactor = 8;
 		int optimization = 0; //minimize
-		int popSize = 100;
-		int maxGen = 50;
+		int popSize = 50;
+		int maxGen = 150;
 		weights[0] = weights[1] = 0.5;
 
 		double[] costMatrix;
 		double[] freqMatrix;
 		double[] latencyMatrix;
 
-		int testCase = 2;
+		int testCase = 1;
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
@@ -64,7 +67,8 @@ public class Experiment {
 		Normalize costLinear = new LinearScaling(Cmax, Cmin);
 		Normalize timeLinear = new LinearScaling(Tmax, Tmin);
 		FitnessFunction cost = new BPSOHaiCostFitness(costLinear, costCon, costMatrix);
-		FitnessFunction time = new BPSOHaiTimeFitness(timeLinear, timeCon, latencyMatrix, freqMatrix, noService, noLocation);
+		FitnessFunction time = new BPSOHaiTimeFitness(timeLinear, timeCon, latencyMatrix, freqMatrix, 
+													noService, noLocation);
 		funcList.add(cost);
 		funcList.add(time);
 		Evaluate evaluate = new BPSOHaiEvaluate(funcList, weights);
@@ -72,11 +76,16 @@ public class Experiment {
 
 
 		ProblemParameterSettings proSet = new AllocationParameterSettings(evaluate, costMatrix, freqMatrix, latencyMatrix);
-		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, clampFactor,optimization, popSize,
-														maxGen, noService * noLocation);
+		ParameterSettings pars = new ParameterSettings(
+										w, balance, c1, c2, 
+										lbound, ubound, lboundW, uboundW,
+										clampFactor,optimization, popSize,
+										maxGen, noService * noLocation);
 		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
-		myAlg.run(11111);
+//		myAlg.run(11111)
+		myAlg.runNtimes(2333, 30);
 		((ResultCollector) collector).printResult();
+		((ResultCollector) collector).mean(30);
 		System.out.println("Done!");
 	}
 }

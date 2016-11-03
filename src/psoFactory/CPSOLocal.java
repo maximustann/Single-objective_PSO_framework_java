@@ -95,4 +95,5 @@ public class CPSOLocal extends LocalPSO{
 		collector = CPSOFactory.getDataCollector();
 	}
 
+
 }

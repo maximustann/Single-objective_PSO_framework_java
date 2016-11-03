@@ -14,6 +14,9 @@ public class Experiment {
 		double c2 = 2;
 		double lbound = -30; // ranging in [-30, 30]
 		double ubound = 30;
+		double lboundW = 0.2;
+		double uboundW = 0.8;
+		double balance = 0.9;
 		double clampFactor = 0.2; // clamp the velocity from [-clampFactor * (ubound - lbound), clampFactor * (ubound - lbound)]
 		int optimization = 0; //minimize
 		int popSize = 50;
@@ -32,8 +35,10 @@ public class Experiment {
 //		Evaluate evaluate = new RoundingEvaluate(funcList, threshold);
 
 		ProblemParameterSettings proSet = new TestFunctionParameterSettings(evaluate);
-		ParameterSettings pars = new ParameterSettings(w, c1, c2, lbound, ubound, clampFactor,
-														optimization, popSize, maxGen, d);
+		ParameterSettings pars = new ParameterSettings(
+										w, balance, c1, c2, 
+										lbound, ubound, lboundW, uboundW,
+										clampFactor, optimization, popSize, maxGen, d);
 //		DataCollector collectorArray = new ArrayResultCollector();
 		DataCollector collector = new ResultCollector();
 		// initialize a continuous version of PSO
@@ -51,7 +56,7 @@ public class Experiment {
 //		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
 
 
-		myAlg.run(233333); // parameter is a random seed
+		myAlg.run(233); // parameter is a random seed
 		((ResultCollector) collector).printResult();
 //		((ResultCollector) collector).printParticle();
 //		((ArrayResultCollector) collectorArray).printResult();

@@ -41,6 +41,7 @@ public abstract class LocalPSO extends PSO{
 
 		for(int i = 0; i < maxGen; i++){
 			evaluate.evaluate(popVar, popFit);
+			w = dynW.update(i);
 			upPbest.update(
 							pBestVar,
 							pBestFit,
@@ -72,4 +73,9 @@ public abstract class LocalPSO extends PSO{
 
 	@Override
 	protected abstract void prepare();
+	public void runNtimes(int seedStart, int nTimes){
+		for(int i = 0; i < nTimes; i++){
+			run(seedStart + i);
+		}
+	}
 }

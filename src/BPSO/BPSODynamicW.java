@@ -11,6 +11,8 @@
 
 package BPSO;
 
+import algorithms.DynamicW;
+
 /**
  * Dynamic adjustment of inertia coefficient w.
  * 
@@ -18,6 +20,21 @@ package BPSO;
  * @author Boxiong Tan (Maximus Tann) 
  * @since PSO framework 1.0
  */
-public class BPSODynamicW {
-	//to do
+public class BPSODynamicW implements DynamicW{
+	private double balance, lbound, ubound, maxGen;
+	public BPSODynamicW(double balance, int maxGen, double lbound, double ubound){
+		this.balance = balance;
+		this.maxGen = maxGen;
+		this.lbound = lbound;
+		this.ubound = ubound;
+	}
+	@Override
+	public double update(int currentGen) {
+		if(balance == 0) { return lbound; }
+		else if(currentGen <= balance * maxGen){
+			return (lbound + currentGen * (ubound - lbound)) / (balance * maxGen);
+		} else {
+			return ubound;
+		}
+	}
 }
