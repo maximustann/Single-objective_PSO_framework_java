@@ -35,6 +35,17 @@ public class ResultCollector extends DataCollector {
 	}
 	
 	/**
+	 * get the last fitness value of many runs
+	 */
+	public ArrayList<Double> getLastResult(int runs, int maxGen){
+		ArrayList<Double> lastResults = new ArrayList<Double>();
+		for(int i = 1; i <= runs; i++){
+			lastResults.add(resultData.get(maxGen * i - 1));
+		}
+		return lastResults;
+	}
+	
+	/**
 	 * start recording
 	 */
 	public void collectTime(int gen){

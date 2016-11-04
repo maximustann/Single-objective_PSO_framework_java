@@ -22,8 +22,8 @@ import java.util.ArrayList;
  * @since PSO framework 1.0
  */
 public class ReadByCol implements ReadCsvFile{
-	String csvSplitBy;
-	String line;
+	private String csvSplitBy;
+	private String line;
     /**
      * Constructor
      * set separation string and an empty line

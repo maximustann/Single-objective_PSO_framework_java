@@ -1,4 +1,5 @@
 package BPSOAllocationProblem;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import ProblemDefine.*;
@@ -7,7 +8,7 @@ import dataCollector.DataCollector;
 import psoFactory.*;
 
 public class Experiment {
-	public static void main(String[] arg) {
+	public static void main(String[] arg) throws IOException {
 		ArrayList<FitnessFunction> funcList = new ArrayList<FitnessFunction>();
 		double[] weights = new double[2];
 		double w = 0.689;
@@ -29,7 +30,7 @@ public class Experiment {
 		double[] freqMatrix;
 		double[] latencyMatrix;
 
-		int testCase = 2;
+		int testCase = 3;
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
@@ -40,7 +41,9 @@ public class Experiment {
 		String freqAddr = base + "/freq.csv";
 		String costRangeAddr = base + "/costRange.csv";
 		String timeRangeAddr = base + "/timeRange.csv";
-
+		String resultBase = "/Users/maximustann/Documents/workspace/HaiProjResult/PSO_modified/testCase" + testCase;
+		String fitnessAddr = resultBase + "/fitness.csv";
+		String timeResultAddr = resultBase + "/time.csv";
 		ReadFileHai readFiles = new ReadFileHai(
 												configAddr, 
 												costAddr, 
@@ -49,6 +52,10 @@ public class Experiment {
 												costRangeAddr, 
 												timeRangeAddr
 												);
+		WriteFileHai writeFiles = new WriteFileHai(
+												fitnessAddr,
+												timeResultAddr
+													);
 		costMatrix = readFiles.getCostMatrix();
 		latencyMatrix = readFiles.getLatencyMatrix();
 
@@ -83,10 +90,12 @@ public class Experiment {
 										maxGen, noService * noLocation);
 		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
 //		myAlg.run(11111)
-		myAlg.runNtimes(2333, 3);
+		myAlg.runNtimes(2333, 30);
 		((ResultCollector) collector).printResult();
-		((ResultCollector) collector).mean(3);
+		((ResultCollector) collector).mean(30);
 		((ResultCollector) collector).printMeanTime();
+		writeFiles.writeResults(((ResultCollector) collector).getLastResult(30, maxGen), 
+								((ResultCollector) collector).getTime());
 		System.out.println("Done!");
 	}
 }
