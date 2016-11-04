@@ -34,6 +34,7 @@ public abstract class LocalPSO extends PSO{
 	 *
 	 */
 	public void run(int seed){
+		collector.collectTime(0);
 		initializeRand(seed);
 		popVar = initPop.init(popSize, maxVar, lbound, ubound);
 		velocity = initVel.init(popSize, maxVar);
@@ -69,6 +70,7 @@ public abstract class LocalPSO extends PSO{
 						   );
 			collector.collect(lBestFit);
 		}
+		collector.collectTime(1);
 	}
 
 	@Override

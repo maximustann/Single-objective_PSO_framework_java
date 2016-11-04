@@ -17,19 +17,19 @@ public class Experiment {
 		double c2 = 1.427;
 		double lbound = 0;
 		double ubound = 2;
-		double lboundW = 0.2;
-		double uboundW = 0.8;
+		double lboundW = 0.4;
+		double uboundW = 1;
 		double clampFactor = 8;
 		int optimization = 0; //minimize
-		int popSize = 50;
-		int maxGen = 150;
+		int popSize = 100;
+		int maxGen = 250;
 		weights[0] = weights[1] = 0.5;
 
 		double[] costMatrix;
 		double[] freqMatrix;
 		double[] latencyMatrix;
 
-		int testCase = 1;
+		int testCase = 2;
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
@@ -83,9 +83,10 @@ public class Experiment {
 										maxGen, noService * noLocation);
 		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
 //		myAlg.run(11111)
-		myAlg.runNtimes(2333, 30);
+		myAlg.runNtimes(2333, 3);
 		((ResultCollector) collector).printResult();
-		((ResultCollector) collector).mean(30);
+		((ResultCollector) collector).mean(3);
+		((ResultCollector) collector).printMeanTime();
 		System.out.println("Done!");
 	}
 }

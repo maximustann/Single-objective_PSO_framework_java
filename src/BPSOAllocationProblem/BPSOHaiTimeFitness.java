@@ -108,14 +108,14 @@ public class BPSOHaiTimeFitness extends FitnessFunc {
 		// turn a particle vector into a particle matrix
 		for(int i = 0; i < noService; i++){
 			for(int j = 0; j < noLocation; j++){
-				particleMatrix[i][j] = particle[i * noService + j];
+				particleMatrix[i][j] = particle[i * noLocation + j];
 			}
 		}
 
 		// turn latency vector into a matrix
 		for(int i = 0; i < noUser; i++){
 			for(int j = 0; j < noLocation; j++){
-				latencyMatrix[i][j] = latency[i * noUser + j];
+				latencyMatrix[i][j] = latency[i * noLocation + j];
 			}
 		}
 

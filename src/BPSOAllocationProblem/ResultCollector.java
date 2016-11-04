@@ -17,13 +17,9 @@ import dataCollector.DataCollector;
  * @author Boxiong Tan (Maximus Tann)
  * @since PSO framework 1.0
  */
-public class ResultCollector implements DataCollector {
-	private ArrayList<Double> resultData;
+public class ResultCollector extends DataCollector {
+	private long start, end;
 
-	public ResultCollector(){
-		resultData = new ArrayList<Double>();
-	}
-	
 	/**
 	 * add Double fitness value
 	 */
@@ -31,9 +27,24 @@ public class ResultCollector implements DataCollector {
 		resultData.add((Double) data);
 	}
 
+	/**
+	 * @return resultData result data
+	 */
 	public ArrayList<Double> getResult(){
 		return resultData;
 	}
+	
+	/**
+	 * start recording
+	 */
+	public void collectTime(int gen){
+		if(gen == 0) start = System.nanoTime();
+		else { 
+			end = System.nanoTime();
+			timeData.add(new Double(Math.floor((end - start) / 10000000.0)) / 100.0);
+		}
+	}
+	
 
 	/**
 	 * print all fitness results
@@ -44,6 +55,8 @@ public class ResultCollector implements DataCollector {
 		}
 		System.out.println();
 	}
+	
+
 	
 	/**
 	 * collect populations, have not finished

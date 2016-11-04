@@ -36,7 +36,7 @@ public class Constraint {
 		for(int count = 0; count < popVar.length; count++){
 			for(int i = 0; i < noService; i++){
 				for(int j = 0; j < noLocation; j++){
-					particle[i][j] = popVar[count][i * noService + j];
+					particle[i][j] = popVar[count][i * noLocation + j];
 				}
 			}
 

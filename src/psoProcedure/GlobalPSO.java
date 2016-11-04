@@ -37,6 +37,7 @@ public abstract class GlobalPSO extends PSO{
 	 *
 	 */
 	public void run(int seed){
+		collector.collectTime(0);
 		initializeRand(seed);
 		popVar = initPop.init(popSize, maxVar, lbound, ubound);
 		velocity = initVel.init(popSize, maxVar);
@@ -71,6 +72,7 @@ public abstract class GlobalPSO extends PSO{
 			collector.collect(gBestFit);
 			collector.collectParticle(popVar);
 		}
+		collector.collectTime(1);
 	}
 
 	/**
