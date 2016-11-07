@@ -19,17 +19,22 @@ import algorithms.UpPopLocal;
 public abstract class LocalPSO extends PSO{
 	/**
 	 * The procedure of PSO
-	 * 1. initialize population
-	 * 2. initialize velocity
-	 * From generation = 1 to max generation {
-	 * 		Evaluate population
-	 * 		update Personal Best
-	 * 		Update Local best
-	 * 		Update Population
-	 * 		For Debug:  Collect local best
-	 * 					Collect Particle
-	 * 	}
-	 *
+	 * <ul>
+	 * <li>start timer</li>
+	 * <li>1. initialize population</li>
+	 * <li>2. initialize velocity</li>
+	 * <ul>
+	 * 	<li>From generation = 1 to max generation {</li>
+	 * 		<li>Evaluate population</li>
+	 * 		<li>update Personal Best</li>
+	 * 		<li>Update Local best</li>
+	 * 		<li>Update Population</li>
+	 * 		<li>For Debug:  Collect Global best
+	 * 					Collect Particle</li>
+	 * 	<li>}</li>
+	 * </ul>
+	 * <li>end timer</li>
+	 * </ul>
 	 * @param seed random seed
 	 *
 	 */

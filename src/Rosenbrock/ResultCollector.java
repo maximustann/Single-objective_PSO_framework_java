@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dataCollector.DataCollector;
 
-public class ResultCollector implements DataCollector {
+public class ResultCollector extends DataCollector {
 	private ArrayList<Double> resultData;
 	private ArrayList<double[][]> particleData;
 

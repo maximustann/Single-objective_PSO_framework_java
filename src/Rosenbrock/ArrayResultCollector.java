@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import dataCollector.DataCollector;
 
-public class ArrayResultCollector implements DataCollector {
+public class ArrayResultCollector extends DataCollector {
 	private ArrayList<double[]> resultData;
 
 	public ArrayResultCollector(){

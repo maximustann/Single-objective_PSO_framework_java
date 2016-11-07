@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import FileHandlers.WriteByRow;
-import FileHandlers.WriteCsvFile;
 
 public class WriteFileHai {
 	private WriteByRow fitnessWriter;

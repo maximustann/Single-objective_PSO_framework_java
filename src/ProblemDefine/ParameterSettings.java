@@ -21,11 +21,14 @@ public class ParameterSettings {
      * Prepare a package of parameter settings
      * 
      * @param w inertia
+     * @param balance balance factor between exploration and exploitation
      * @param c1 cognitive parameter
      * @param c2 social parameter
-     * @param clampFactor clamp factor
      * @param lbound the lower boundary of a variable of a particle
      * @param ubound the upper boundary of a variable of a particle
+     * @param lboundW the lower boundary of inertia
+     * @param uboundW the upper boundary of inertia
+     * @param clampFactor clamp factor
      * @param maxVar the number of variable of a particle
      * @return 2D-array of population variables
      */	
