@@ -30,26 +30,26 @@ public class Experiment {
 		double[] freqMatrix;
 		double[] latencyMatrix;
 
-		int testCase = 3;
+		int testCase = 5;
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
-		String base = "/Users/maximustann/Documents/workspace/HaiProjData/testCase" + testCase;
+		String base = "/home/tanboxi/HaiProjData/testCase" + testCase;
 		String configAddr = base + "/config.csv";
 		String costAddr = base + "/cost.csv";
 		String latencyAddr = base + "/latency.csv";
 		String freqAddr = base + "/freq.csv";
 		String costRangeAddr = base + "/costRange.csv";
 		String timeRangeAddr = base + "/timeRange.csv";
-		String resultBase = "/Users/maximustann/Documents/workspace/HaiProjResult/PSO_modified/testCase" + testCase;
+		String resultBase = "/home/tanboxi/HaiProjResult/PSO_modified/testCase" + testCase;
 		String fitnessAddr = resultBase + "/fitness.csv";
 		String timeResultAddr = resultBase + "/time.csv";
 		ReadFileHai readFiles = new ReadFileHai(
-												configAddr, 
-												costAddr, 
-												latencyAddr, 
-												freqAddr, 
-												costRangeAddr, 
+												configAddr,
+												costAddr,
+												latencyAddr,
+												freqAddr,
+												costRangeAddr,
 												timeRangeAddr
 												);
 		WriteFileHai writeFiles = new WriteFileHai(
@@ -74,7 +74,7 @@ public class Experiment {
 		Normalize costLinear = new LinearScaling(Cmax, Cmin);
 		Normalize timeLinear = new LinearScaling(Tmax, Tmin);
 		FitnessFunction cost = new BPSOHaiCostFitness(costLinear, costCon, costMatrix);
-		FitnessFunction time = new BPSOHaiTimeFitness(timeLinear, timeCon, latencyMatrix, freqMatrix, 
+		FitnessFunction time = new BPSOHaiTimeFitness(timeLinear, timeCon, latencyMatrix, freqMatrix,
 													noService, noLocation);
 		funcList.add(cost);
 		funcList.add(time);
@@ -84,7 +84,7 @@ public class Experiment {
 
 		ProblemParameterSettings proSet = new AllocationParameterSettings(evaluate, costMatrix, freqMatrix, latencyMatrix);
 		ParameterSettings pars = new ParameterSettings(
-										w, balance, c1, c2, 
+										w, balance, c1, c2,
 										lbound, ubound, lboundW, uboundW,
 										clampFactor,optimization, popSize,
 										maxGen, noService * noLocation);
@@ -94,7 +94,7 @@ public class Experiment {
 		((ResultCollector) collector).printResult();
 		((ResultCollector) collector).mean(30);
 		((ResultCollector) collector).printMeanTime();
-		writeFiles.writeResults(((ResultCollector) collector).getLastResult(30, maxGen), 
+		writeFiles.writeResults(((ResultCollector) collector).getLastResult(30, maxGen),
 								((ResultCollector) collector).getTime());
 		System.out.println("Done!");
 	}
