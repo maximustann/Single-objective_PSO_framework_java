@@ -40,31 +40,37 @@ public class CPSO extends GlobalPSO{
 	}
 
 	/**
-	 * All settings are prepared here
+	 * All settings are prepared here,
 	 * This is the list of all settings, please read carefully
-	 * maxGen: 		max number of generation
-	 * maxVar: 		max number of variables in a particle
-	 * popSize:		population Size
-	 * w			inertia
-	 * c1			cognitive factor
-	 * c2			collective factor
-	 * lbound		lower bound of a variable
-	 * ubound		upper bond of a variable
-	 * clampFactor	clamp factor
-	 * optimization maximize (1) or minimize (0)
-	 * popFit		population fitness
-	 * pBestVar		personal best variables
-	 * pBestFit		personal best fitness values
-	 * gBestVar		global best variables
-	 * initPop		a population initialization method
-	 * initVel		a velocity initialization method
-	 * upGbest		a global best update method, because the common interface of global best and local best,
-	 * 				we need to manually cast it.
-	 * upPbest		a personal best update method
-	 * upPop		a population update method, a clampFactor is needed here. Because we need to do velocity clamping
-	 * 				in particle position updating.
-	 * evaluate		evaluation method
-	 * collector	data collector
+	 * <ul>
+	 * <li>maxGen: 		max number of generation</li>
+	 * <li>maxVar: 		max number of variables in a particle</li>
+	 * <li>popSize:		population Size</li>
+	 * <li>w				inertia</li>
+	 * <li>balance		balance factor between exploration and exploitation</li>
+	 * <li>c1			cognitive factor</li>
+	 * <li>c2			collective factor</li>
+	 * <li>lbound		lower bound of a variable</li>
+	 * <li>ubound		upper bound of a variable</li>
+	 * <li>lboundW		lower bound of inertia</li>
+	 * <li>uboundW		upper bound of inertia</li>
+	 * <li>clampFactor	clamp factor</li>
+	 * <li>optimization maximize (1) or minimize (0)</li>
+	 * <li>popFit		population fitness</li>
+	 * <li>pBestVar		personal best variables</li>
+	 * <li>pBestFit		personal best fitness values</li>
+	 * <li>gBestVar		global best variables</li>
+	 * <li>initPop		a population initialization method</li>
+	 * <li>initVel		a velocity initialization method</li>
+	 * <li>upGbest		a global best update method, because the common interface of global best and local best,
+	 * 				we need to manually cast it.</li>
+	 * <li>upPbest		a personal best update method</li>
+	 * <li>upPop			a population update method, a clampFactor is needed here. Because we need to do velocity clamping
+	 * 				in particle position updating.</li>
+	 * <li>evaluate		evaluation method</li>
+	 * <li>dynW			a dynamic inertia method</li>
+	 * <li>collector	data collector</li>
+	 * </ul>
 	 */
 	protected void prepare(){
 		maxGen = pars.getMaxGen();

@@ -12,13 +12,13 @@ public class Experiment {
 		ArrayList<FitnessFunction> funcList = new ArrayList<FitnessFunction>();
 		double[] weights = new double[2];
 		double w = 0.689;
-		double balance = 0.9;
+		double balance = 0;
 //		double w = 1;
 		double c1 = 1.427;
 		double c2 = 1.427;
 		double lbound = 0;
 		double ubound = 2;
-		double lboundW = 0.4;
+		double lboundW = 0.689;
 		double uboundW = 1;
 		double clampFactor = 8;
 		int optimization = 0; //minimize
@@ -30,7 +30,7 @@ public class Experiment {
 		double[] freqMatrix;
 		double[] latencyMatrix;
 
-		int testCase = 3;
+		int testCase = 5;
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
@@ -41,7 +41,7 @@ public class Experiment {
 		String freqAddr = base + "/freq.csv";
 		String costRangeAddr = base + "/costRange.csv";
 		String timeRangeAddr = base + "/timeRange.csv";
-		String resultBase = "/Users/maximustann/Documents/workspace/HaiProjResult/PSO_modified/testCase" + testCase;
+		String resultBase = "/Users/maximustann/Documents/workspace/HaiProjResult/PSO_original/testCase" + testCase;
 		String fitnessAddr = resultBase + "/fitness.csv";
 		String timeResultAddr = resultBase + "/time.csv";
 		ReadFileHai readFiles = new ReadFileHai(

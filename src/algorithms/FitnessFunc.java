@@ -12,7 +12,11 @@ package algorithms;
 
 
 /**
- *  For writing any Fitness Functions this class should be extend.
+ * FitnessFunc abstract class provides a number of protocol for 
+ * evaluating fitness functions
+ * 
+ * @author Boxiong Tan (Maximus Tann) 
+ * @since PSO framework 1.0
  */
 public abstract class FitnessFunc implements FitnessFunction{
 	

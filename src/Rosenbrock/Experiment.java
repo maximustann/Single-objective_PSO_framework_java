@@ -14,8 +14,8 @@ public class Experiment {
 		double c2 = 2;
 		double lbound = -30; // ranging in [-30, 30]
 		double ubound = 30;
-		double lboundW = 0.2;
-		double uboundW = 0.8;
+		double lboundW = 0.4;
+		double uboundW = 1;
 		double balance = 0.9;
 		double clampFactor = 0.2; // clamp the velocity from [-clampFactor * (ubound - lbound), clampFactor * (ubound - lbound)]
 		int optimization = 0; //minimize
@@ -56,7 +56,7 @@ public class Experiment {
 //		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
 
 
-		myAlg.run(233); // parameter is a random seed
+		myAlg.run(23333); // parameter is a random seed
 		((ResultCollector) collector).printResult();
 //		((ResultCollector) collector).printParticle();
 //		((ArrayResultCollector) collectorArray).printResult();

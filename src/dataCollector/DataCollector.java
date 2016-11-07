@@ -51,6 +51,10 @@ public abstract class DataCollector {
 			timeData.add(new Double(Math.floor((end - start) / 10000000.0)) / 100.0);
 		}
 	}
+	
+	/**
+	 * Print average time elapse of a run
+	 */
 	public void printMeanTime(){
 		int size = timeData.size();
 		double sum = 0;
@@ -60,6 +64,10 @@ public abstract class DataCollector {
 		System.out.println("time is : " + Math.floor(sum / size * 100) / 100.0);
 	}
 
+	/**
+	 * 
+	 * @return timeData a list of Double
+	 */
 	public ArrayList<Double> getTime(){
 		return timeData;
 	}
