@@ -7,10 +7,12 @@
  * Copyright (c) 2016-2019, The Victoria University of Wellington
  * BPSOGlobalUpPop.java - A method to update population variables for a global-based BPSO.
  */
-package BPSO;
+package bpso;
+import algorithms.Particle;
 import algorithms.StdRandom;
 import algorithms.UpPopGlobal;
 import algorithms.VelocityClamping;
+import commonRepresentation.IntParticle;
 
 /**
  * Update of population variables for a global-based BPSO
@@ -52,11 +54,11 @@ public class BPSOUpGlobalPop implements UpPopGlobal{
      */
 	@Override
 	public void update(
-					double[][] popVar, 
+					Particle[] popVar, 
 					double[] pBestFit, 
 					double[][] velocity,
-					double[][] pBestVar, 
-					double[] gBestVar, 
+					Particle[] pBestVar, 
+					Particle gBestVar, 
 					double w, 
 					double c1, 
 					double c2,
@@ -64,7 +66,7 @@ public class BPSOUpGlobalPop implements UpPopGlobal{
 					double ubound
 					) {
 		int popSize = popVar.length;
-		int maxVar = popVar[0].length;
+		int maxVar = popVar[0].size();
 
 		// Go through whole population
 		for(int i = 0; i < popSize; i++){
@@ -72,9 +74,9 @@ public class BPSOUpGlobalPop implements UpPopGlobal{
 			for(int j = 0; j < maxVar; j++){
 				velocity[i][j] = w * velocity[i][j] + 
 								c1 * StdRandom.uniform(0.0, 1.0) *
-								(pBestVar[i][j] - popVar[i][j]) + 
+								(((IntParticle) pBestVar[i]).individual[j] - ((IntParticle) popVar[i]).individual[j]) + 
 								c2 * StdRandom.uniform(0.0, 1.0) *
-								(gBestVar[j] - popVar[i][j]);
+								(((IntParticle) gBestVar).individual[j] - ((IntParticle)popVar[i]).individual[j]);
 			}
 		}
 
@@ -84,8 +86,8 @@ public class BPSOUpGlobalPop implements UpPopGlobal{
 		// Calculate new positions of particles
 		for(int i = 0; i < popSize; i++){
 			for(int j = 0; j < maxVar; j++){
-				if( StdRandom.uniform(0.0, 1.0) >= sigmoid(velocity[i][j])) popVar[i][j] = 0;
-				else popVar[i][j] = 1;
+				if( StdRandom.uniform(0.0, 1.0) >= sigmoid(velocity[i][j])) ((IntParticle)popVar[i]).individual[j] = 0;
+				else ((IntParticle)popVar[i]).individual[j] = 1;
 			}
 		}
 	}

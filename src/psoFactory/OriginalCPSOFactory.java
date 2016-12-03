@@ -10,7 +10,7 @@
 package psoFactory;
 
 import commonOperators.CommonDynamicW;
-import commonOperators.CommonInitPop;
+import commonOperators.InitRealParticle;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
@@ -38,7 +38,7 @@ public class OriginalCPSOFactory implements PSOFactory{
 
 	@Override
 	public InitPop getInitPopMethod() {
-		return new CommonInitPop();
+		return new InitRealParticle();
 	}
 
 	@Override

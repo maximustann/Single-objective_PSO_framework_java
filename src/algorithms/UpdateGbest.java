@@ -33,9 +33,9 @@ public interface UpdateGbest extends UpdateGLbest{
      * @return global best fitness
      */	
 	public double update(
-						double[][] pBestVar, 
+						Particle[] pBestVar, 
 						double[] pBestFit, 
-						double[] gBestVar,
+						Particle gBestVar,
 						double gBestFit, 
 						int optimization, 
 						int generation

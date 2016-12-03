@@ -65,21 +65,21 @@ public abstract class PSO{
 	/** a 2D-array of population variables, the size of first dimension 
 	 * is the population size, the size of second dimension is the number of 
 	 * variable  of a particle */
-	protected double[][] popVar;
+	protected Particle[] popVar;
 	
 	/** a 2D-array of personal best variables, the size of first dimension 
 	 * is the population size, the size of second dimension is the number of 
 	 * variable of a particle */	
-	protected double[][] pBestVar;
+	protected Particle[] pBestVar;
 	
 	/** an array of global best variables, 
 	 * the size of second dimension is the number of variable of a particle */	
-	protected double[] gBestVar;
+	protected Particle gBestVar;
 	
 	/** a 2D-array of local best variables, the size of first dimension 
 	 * is the population size, the size of second dimension is the number of 
 	 * variable of a particle*/		
-	protected double[][] lBestVar;
+	protected Particle[] lBestVar;
 	
 	
 	/** an array of local best fitness values, the size is 

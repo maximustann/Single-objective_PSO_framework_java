@@ -10,6 +10,13 @@
 
 package algorithms;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 
 /**
  * FitnessFunc abstract class provides a number of protocol for 
@@ -18,47 +25,100 @@ package algorithms;
  * @author Boxiong Tan (Maximus Tann) 
  * @since PSO framework 1.0
  */
-public abstract class FitnessFunc implements FitnessFunction{
+public abstract class FitnessFunc{
 	
-	/** A normalization method */
-	public Normalize normalize;
-
-    /**
-     * Creates a new FitnessFunc object.
-     * @param normalize
-     */
-	public FitnessFunc(Normalize normalize){
-		this.normalize = normalize;
+	@SuppressWarnings("rawtypes")
+	private Class childType;
+	@SuppressWarnings("rawtypes")
+	/**
+	 * If your unNormalized fitness function does not implement the UnNormalizedFit interface,
+	 * an exception will be raised. 
+	 * @param unNorFit the class type of your unNormalized function
+	 */
+	public FitnessFunc(Class unNorFit){
+		if(!UnNormalizedFit.class.isAssignableFrom(unNorFit)){
+			throw new IllegalArgumentException("Class: " + unNorFit.getName() + " must "
+					+ "implement UnNormalizedFit interface");
+		}
+		childType = unNorFit;
 	}
 	
-	
-	
     /**
-     * Generate an array of normalized fitness values
+     * execute method is a function that calls you defined unNormalized fitness function and
+     * then return a fitness value list 
      * Steps:
      * <ul>
-     * 		<li> 1. apply fitness function on popVar </li>
-     * 		<li> 2. apply normalization function on fitness values </li>
+     * 	<li>Initialize a thread pool with the number of cpus of this machine </li>
+     * 	<li>Use reflection to create popSize of the unNormalized fitness evaluation tasks.</li>
+     * 	<li>Add these tasks into the execution pool </li>
+     *  <li>execute all tasks and collect fitness values</li>
      * </ul>
      * @param popVar population variables
-     * @return array of normalized fitness values
+     * @return an ArrayList<double[]> type of fitness values, where each list item is a double[2]
+     * 		double[0] is the fitness value,
+     * 		double[1] is the rank of this fitness value in the population, this rank is initialized
+     * 		with the current chromosome's position in the population. Because it will be used in the 
+     * 		sorting process.
      */
-	@Override
-	public double[] normalizedFit(double[][] popVar) {
-		double [] fitness = unNormalizedFit(popVar);
-		normalize.doNorm(fitness);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<double[]> execute(Particle [] popVar) {
+		int popSize = popVar.length;
+		ExecutorService exec = Executors.newFixedThreadPool(
+								Runtime.getRuntime().availableProcessors());
+		ArrayList tasks = new ArrayList();
+		for(int i = 0; i < popSize; i++){
+			try {
+				tasks.add(childType.getConstructor(Particle.class)
+						 .newInstance(popVar[i])
+						 );
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			}
+		}
+		ArrayList<Future> results = null;
+		try {
+			results = (ArrayList<Future>) exec.invokeAll(tasks);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		exec.shutdown();
+		
+		ArrayList<double[]> fitness = new ArrayList<double[]>();
+//		for(int i = 0; i < popSize; i++){
+//			try {
+//				System.out.println(results.get(i).get());
+//				double[] tempResults = (double[]) results.get(i).get();
+//				fitness.add(tempResults);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			} catch (ExecutionException e) {
+//					e.printStackTrace();
+//			}
+//			// initialize the ranking with the position of particle 
+//			fitness.get(i)[1] = i;
+//		}
+		int counter = 0;
+		for(Future f: results){
+			try {
+				fitness.add((double[]) f.get());
+				fitness.get(counter)[1] = counter;
+				counter++;
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+		}
 		return fitness;
 	}
-	
-	
-    /**
-     * Generate an array of unnormalized fitness values
-     * Apply fitness function on popVar
-     *
-     * @param popVar population variables
-     * @return array of unnormalized fitness values, which is often used 
-     * 			by normalizedFit()
-     */
-	public abstract double[] unNormalizedFit(double[][] popVar);
-
 }

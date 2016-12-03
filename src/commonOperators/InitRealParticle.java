@@ -11,6 +11,7 @@ package commonOperators;
 
 import algorithms.InitPop;
 import algorithms.StdRandom;
+import commonRepresentation.RealParticle;
 
 /**
  * Initialization of population for continuous PSO
@@ -18,7 +19,7 @@ import algorithms.StdRandom;
  * @author Boxiong Tan (Maximus Tann) 
  * @since PSO framework 1.0
  */
-public class CommonInitPop implements InitPop{
+public class InitRealParticle implements InitPop{
     /**
      * Generate an 2D-array of population, 
      * first dimension is the size of population, 
@@ -31,20 +32,20 @@ public class CommonInitPop implements InitPop{
      * @return 2D-array of population variables
      */	
 	@Override
-	public double[][] init(
+	public RealParticle[] init(
 						int popSize, 
 						int maxVar, 
 						double lbound, 
 						double ubound
 						) {
-		double[][] realVar = new double[popSize][maxVar];
-
+		RealParticle[] popVar = new RealParticle[popSize];
 		// initialize population
 		for(int i = 0; i < popSize; i++){
+			popVar[i] = new RealParticle(maxVar);
 			for(int j = 0; j < maxVar; j++){
-				realVar[i][j] = StdRandom.uniform(lbound, ubound);
+				popVar[i].individual[j] = StdRandom.uniform(lbound, ubound);
 			}
 		}
-		return realVar;
+		return popVar;
 	}
 }

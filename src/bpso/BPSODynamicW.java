@@ -9,7 +9,7 @@
  * 						a BPSO.
  */
 
-package BPSO;
+package bpso;
 
 import algorithms.DynamicW;
 

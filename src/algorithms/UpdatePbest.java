@@ -29,9 +29,9 @@ public interface UpdatePbest {
      * @param generation which generation it is.
      */	
 	public void update(
-					double[][] pBestVar, 
+					Particle[] pBestVar, 
 					double[] pBestFit, 
-					double[][] popVar, 
+					Particle[] popVar, 
 					double[] popFit, 
 					int optimization, 
 					int generation

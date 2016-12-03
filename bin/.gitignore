@@ -1,11 +1,6 @@
-/BPSOAllocationProblem/
-/BPSO/
 /algorithms/
+/bpso/
+/commonOperators/
+/commonRepresentation/
 /psoFactory/
 /psoProcedure/
-/ProblemDefine/
-/Rosenbrock/
-/spherical/
-/commonOperators/
-/dataCollector/
-/FileHandlers/

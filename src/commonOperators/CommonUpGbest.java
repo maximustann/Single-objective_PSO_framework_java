@@ -9,6 +9,7 @@
  */
 
 package commonOperators;
+import algorithms.Particle;
 import algorithms.UpdateGbest;
 
 /**
@@ -36,9 +37,9 @@ public class CommonUpGbest implements UpdateGbest{
      */
 	@Override
 	public double update(
-					double[][] pBestVar,
+					Particle[] pBestVar,
 					double [] pBestFit,
-					double[] gBestVar,
+					Particle gBestVar,
 					double gBestFit,
 					int optimization,
 					int generation
@@ -71,9 +72,7 @@ public class CommonUpGbest implements UpdateGbest{
 		}
 
 		// Save the global best particle
-		for(int i = 0; i < pBestVar[0].length; i++){
-			gBestVar[i] = pBestVar[bestIndex][i];
-		}
+		pBestVar[bestIndex].copyTo(gBestVar);
 		return gBestFit;
 	}
 }

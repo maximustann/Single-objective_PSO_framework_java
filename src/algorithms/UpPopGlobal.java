@@ -33,11 +33,11 @@ public interface UpPopGlobal extends UpPop{
      * @param ubound the upper bound of a variable in a particle
      */
 	public void update(
-					double[][] popVar, 
+					Particle[] popVar, 
 					double [] pBestFit, 
 					double[][] velocity,
-					double[][] pBestVar, 
-					double[] gBestVar, 
+					Particle[] pBestVar, 
+					Particle gBestVar, 
 					double w, 
 					double c1, 
 					double c2,
