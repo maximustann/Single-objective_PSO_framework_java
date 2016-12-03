@@ -8,9 +8,7 @@
  * GlobalPSO.java - A abstract class of global version PSO procedure, prepare() is need to be implemented
  */
 package psoProcedure;
-import algorithms.PSO;
-import algorithms.UpPopGlobal;
-
+import algorithms.*;
 
 /**
  * Global PSO procedure

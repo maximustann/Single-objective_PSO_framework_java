@@ -16,7 +16,7 @@ import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
 import algorithms.*;
 import bpso.BPSODynamicW;
-import bpso.BPSOUpGlobalPop;
+import bpso.BinaryUpGlobalPop;
 import bpso.InitBinaryParticle;
 /**
  * OriginalBPSOFactory
@@ -53,7 +53,7 @@ public class OriginalBPSOFactory implements PSOFactory{
 
 	@Override
 	public UpPop getUpPopMethod(double clampFactor) {
-		return new BPSOUpGlobalPop(getVelocityClamper(clampFactor));
+		return new BinaryUpGlobalPop(getVelocityClamper(clampFactor));
 	}
 
 	@Override

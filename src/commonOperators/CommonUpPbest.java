@@ -8,6 +8,7 @@
  * CommonUpPbest.java - A common way of updating personal best population.
  */
 package commonOperators;
+import algorithms.Particle;
 import algorithms.UpdatePbest;
 /**
  * Update personal best
@@ -31,22 +32,20 @@ public class CommonUpPbest implements UpdatePbest{
      * @param generation which generation it is.
      */	
 	public void update(
-					double[][] pBestVar, 
+					Particle[] pBestVar, 
 					double[] pBestFit, 
-					double[][] popVar, 
+					Particle[] popVar, 
 					double[] popFit, 
 					int optimization, 
 					int generation
 					) {
 		int popSize = pBestVar.length;
-		int maxVar = pBestVar[0].length;
+		int maxVar = pBestVar[0].size();
 
 		if(generation == 0){
 			for(int i = 0; i < popSize; i++){
 				pBestFit[i] = popFit[i];
-				for(int j = 0; j < maxVar; j++){
-					pBestVar[i][j] = popVar[i][j];
-				}
+				popVar[i].copyTo(pBestVar[i]);
 			}
 		} else{
 			// Go through whole population
@@ -57,9 +56,7 @@ public class CommonUpPbest implements UpdatePbest{
 					pBestFit[i] = popFit[i];
 
 					// update each personal Best
-					for(int j = 0; j < maxVar; j++){
-						pBestVar[i][j] = popVar[i][j];
-					}
+					popVar[i].copyTo(pBestVar[i]);
 				}
 			}
 		}

@@ -10,6 +10,8 @@
 package topology;
 
 import java.util.ArrayList;
+
+import algorithms.Particle;
 import algorithms.UpdateLbest;
 /**
  * A fixed neighbor Ring topology
@@ -36,15 +38,15 @@ public class Ring implements UpdateLbest{
 	 */
 	@Override
 	public void update(
-				double[][] popVar,
+				Particle[] popVar,
 				double[] popFit,
-				double[][] lBestVar,
+				Particle[] lBestVar,
 				double[] lBestFit,
 				int optimization,
 				int generation
 				) {
 		int popSize = popVar.length;
-		int maxVar = popVar[0].length;
+		int maxVar = popVar[0].size();
 
 		for(int i = 0; i < popSize; i++){
 			int index;
@@ -63,9 +65,7 @@ public class Ring implements UpdateLbest{
 					index = (int) lowestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(0) + i;
 				}
 
-				for(int j = 0; j < maxVar; j++){
-					lBestVar[i][j] = popVar[index][j];
-				}
+				popVar[index].copyTo(lBestVar[i]);
 			} else {
 				if(i == 0) {
 					lBestFit[0] = (double) greatestFit(popFit[popSize - 1], popFit[i], popFit[1]).get(1);
@@ -78,9 +78,7 @@ public class Ring implements UpdateLbest{
 					index = (int) greatestFit(popFit[i - 1], popFit[i], popFit[i + 1]).get(0);
 				}
 
-				for(int j = 0; j < maxVar; j++){
-					lBestVar[i][j] = popVar[index][j];
-				}
+				popVar[index].copyTo(lBestVar[i]);
 			}
 		}
 	}

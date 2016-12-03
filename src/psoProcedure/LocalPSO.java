@@ -10,6 +10,7 @@
 package psoProcedure;
 import algorithms.PSO;
 import algorithms.UpPopLocal;
+import algorithms.Particle;
 /**
  * Local PSO procedure
  *

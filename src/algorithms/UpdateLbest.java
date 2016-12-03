@@ -31,9 +31,9 @@ public interface UpdateLbest extends UpdateGLbest{
      * @param generation which generation it is.
      */	
 	public void update(
-						double[][] pBestVar, 
+						Particle[] pBestVar, 
 						double[] pBestFit, 
-						double[][] lBestVar,
+						Particle[] lBestVar,
 						double[] lBestFit, 
 						int optimization, 
 						int generation

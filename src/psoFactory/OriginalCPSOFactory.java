@@ -14,7 +14,7 @@ import commonOperators.InitRealParticle;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
-import commonOperators.CommonUpGlobalPop;
+import commonOperators.RealUpGlobalPop;
 import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
 import algorithms.*;
@@ -53,7 +53,7 @@ public class OriginalCPSOFactory implements PSOFactory{
 
 	@Override
 	public UpPop getUpPopMethod(double clampFactor) {
-		return new CommonUpGlobalPop(getVelocityClamper(clampFactor));
+		return new RealUpGlobalPop(getVelocityClamper(clampFactor));
 	}
 
 	@Override

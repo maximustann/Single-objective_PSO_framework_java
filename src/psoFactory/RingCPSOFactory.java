@@ -12,7 +12,7 @@ package psoFactory;
 import commonOperators.CommonDynamicW;
 import commonOperators.InitRealParticle;
 import commonOperators.CommonInitVel;
-import commonOperators.CommonUpLocalPop;
+import commonOperators.RealUpLocalPop;
 import commonOperators.CommonUpPbest;
 import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
@@ -53,7 +53,7 @@ public class RingCPSOFactory implements PSOFactory{
 
 	@Override
 	public UpPop getUpPopMethod(double clampFactor) {
-		return new CommonUpLocalPop(getVelocityClamper(clampFactor));
+		return new RealUpLocalPop(getVelocityClamper(clampFactor));
 	}
 
 	@Override
