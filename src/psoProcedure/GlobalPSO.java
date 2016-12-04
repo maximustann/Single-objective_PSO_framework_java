@@ -39,6 +39,7 @@ public abstract class GlobalPSO extends PSO{
 	 * @param seed random seed
 	 *
 	 */
+	@Override
 	public void run(int seed){
 		collector.collectTime(0);
 		initializeRand(seed);
@@ -83,6 +84,7 @@ public abstract class GlobalPSO extends PSO{
 	 */
 	@Override
 	protected abstract void prepare();
+	@Override
 	public void runNtimes(int seedStart, int nTimes){
 		for(int i = 0; i < nTimes; i++){
 			run(seedStart + i);

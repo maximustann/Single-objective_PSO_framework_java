@@ -23,6 +23,7 @@ public class ResultCollector extends DataCollector {
 	/**
 	 * add Double fitness value
 	 */
+	@Override
 	public void collect(Object data) {
 		resultData.add((Double) data);
 	}
@@ -48,6 +49,7 @@ public class ResultCollector extends DataCollector {
 	/**
 	 * start recording
 	 */
+	@Override
 	public void collectTime(int gen){
 		if(gen == 0) start = System.nanoTime();
 		else { 

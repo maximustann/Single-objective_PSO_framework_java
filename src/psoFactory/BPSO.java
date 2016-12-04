@@ -69,6 +69,7 @@ public class BPSO extends GlobalPSO{
 	 * <li>collector	data collector</li>
 	 * </ul>
 	 */
+	@Override
 	protected void prepare(){
 		maxGen = pars.getMaxGen();
 		maxVar = pars.getMaxVar();
@@ -85,9 +86,9 @@ public class BPSO extends GlobalPSO{
 		clampFactor = pars.getClampFactor();
 		optimization = pars.getOptimization();
 		popFit = new double[popSize];
-		pBestVar = new double[popSize][maxVar];
+//		pBestVar = new double[popSize][maxVar];
 		pBestFit = new double[popSize];
-		gBestVar = new double[maxVar];
+//		gBestVar = new double[maxVar];
 
 		initPop = BPSOFactory.getInitPopMethod();
 		initVel = BPSOFactory.getInitVelMethod();

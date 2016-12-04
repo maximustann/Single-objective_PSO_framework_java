@@ -17,6 +17,7 @@ public class RealParticle extends Particle{
 	/**
 	 * Print in one line
 	 */
+	@Override
 	public void print() {
 		for(int i = 0; i < size(); i++){
 			System.out.print(individual[i] + " ");
@@ -75,6 +76,7 @@ public class RealParticle extends Particle{
 		return copy;
 	}
 	
+	@Override
 	public void copyTo(Particle target){
 		copyTo((RealParticle) target);
 	}

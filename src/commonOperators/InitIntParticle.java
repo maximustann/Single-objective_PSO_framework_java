@@ -12,7 +12,6 @@ package commonOperators;
 import algorithms.InitPop;
 import algorithms.StdRandom;
 import commonRepresentation.IntParticle;
-import commonRepresentation.RealParticle;
 /**
  * BPSO initialization of population
  * 

@@ -70,9 +70,8 @@ public class CPSOLocal extends LocalPSO{
 	 * <li>collector	data collector</li>
 	 * </ul>
 	 */
+	@Override
 	protected void prepare(){
-
-
 		maxGen = pars.getMaxGen();
 		maxVar = pars.getMaxVar();
 		popSize = pars.getPopSize();
@@ -87,9 +86,9 @@ public class CPSOLocal extends LocalPSO{
 		clampFactor = pars.getClampFactor();
 		optimization = pars.getOptimization();
 		popFit = new double[popSize];
-		pBestVar = new double[popSize][maxVar];
+//		pBestVar = new double[popSize][maxVar];
 		pBestFit = new double[popSize];
-		lBestVar = new double[popSize][maxVar];
+//		lBestVar = new double[popSize][maxVar];
 		lBestFit = new double[popSize];
 
 		initPop = CPSOFactory.getInitPopMethod();

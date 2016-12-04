@@ -25,8 +25,8 @@ public class ArrayResultCollector extends DataCollector {
 
 	public void printResult(){
 		for(int i = 0; i < resultData.size(); i++){
-			for(int j = 0; j < ((double[]) resultData.get(0)).length; j++){
-				System.out.print(((double[]) resultData.get(i))[j] + " ");
+			for(int j = 0; j < resultData.get(0).length; j++){
+				System.out.print(resultData.get(i)[j] + " ");
 			}
 			System.out.println();
 		}

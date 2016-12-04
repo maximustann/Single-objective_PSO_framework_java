@@ -16,6 +16,7 @@ public abstract class Particle implements Cloneable{
 	public abstract boolean equals(Particle particle);
 	
 	/** deep copy */
+	@Override
 	public abstract Particle clone();
 	
 	/** copyTo, copy the inner instance to another particle, the difference with clone() is

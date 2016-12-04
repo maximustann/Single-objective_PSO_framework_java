@@ -66,6 +66,7 @@ public class OriginalCPSOFactory implements PSOFactory{
 		return collector;
 	}
 
+	@Override
 	public VelocityClamping getVelocityClamper(double clampFactor) {
 		return new CommonVelocityClamping(clampFactor);
 	}

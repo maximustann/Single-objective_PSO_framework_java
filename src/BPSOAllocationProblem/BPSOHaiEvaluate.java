@@ -12,7 +12,6 @@ package BPSOAllocationProblem;
 import java.util.ArrayList;
 
 import algorithms.Evaluate;
-import algorithms.FitnessFunction;
 /**
  *
  * @author Boxiong Tan (Maximus Tann)

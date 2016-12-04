@@ -9,11 +9,8 @@
  */
 package bpso;
 
-import algorithms.InitPop;
-import algorithms.StdRandom;
 import commonOperators.InitIntParticle;
 import commonRepresentation.IntParticle;
-import commonRepresentation.RealParticle;
 /**
  * BPSO initialization of population
  * 

@@ -1,6 +1,3 @@
-/algorithms/
-/bpso/
-/commonOperators/
-/commonRepresentation/
+/Rosenbrock/
 /psoFactory/
-/psoProcedure/
+/algorithms/

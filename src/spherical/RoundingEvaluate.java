@@ -2,7 +2,6 @@ package spherical;
 import java.util.ArrayList;
 
 import algorithms.Evaluate;
-import algorithms.FitnessFunction;
 
 
 public class RoundingEvaluate implements Evaluate {

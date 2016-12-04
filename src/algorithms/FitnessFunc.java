@@ -25,7 +25,7 @@ import java.util.concurrent.Future;
  * @author Boxiong Tan (Maximus Tann) 
  * @since PSO framework 1.0
  */
-public abstract class FitnessFunc{
+public class FitnessFunc{
 	
 	@SuppressWarnings("rawtypes")
 	private Class childType;
@@ -94,19 +94,6 @@ public abstract class FitnessFunc{
 		exec.shutdown();
 		
 		ArrayList<double[]> fitness = new ArrayList<double[]>();
-//		for(int i = 0; i < popSize; i++){
-//			try {
-//				System.out.println(results.get(i).get());
-//				double[] tempResults = (double[]) results.get(i).get();
-//				fitness.add(tempResults);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			} catch (ExecutionException e) {
-//					e.printStackTrace();
-//			}
-//			// initialize the ranking with the position of particle 
-//			fitness.get(i)[1] = i;
-//		}
 		int counter = 0;
 		for(Future f: results){
 			try {

@@ -3,7 +3,6 @@ package spherical;
 import java.util.ArrayList;
 
 import algorithms.Evaluate;
-import algorithms.FitnessFunction;
 
 public class TestFunctionEvaluate implements Evaluate{
 	private ArrayList<FitnessFunction> funcList;
