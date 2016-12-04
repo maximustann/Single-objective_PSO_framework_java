@@ -86,4 +86,10 @@ public class RealParticle extends Particle{
 			target.individual[i] = individual[i];
 		}
 	}
+	
+	@Override
+	public Particle getInstance(int size) {
+		individual = new double[size];
+		return this;
+	}
 }

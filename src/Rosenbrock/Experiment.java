@@ -41,7 +41,7 @@ public class Experiment {
 		double balance = 0;
 		
 		/**  */
-		double c1 = 2;
+		double c1 = 1.5;
 		double c2 = 2;
 		
 		/** lower and upper bound of X */
@@ -84,7 +84,7 @@ public class Experiment {
 									optimization, popSize, maxGen, d);
 		
 		/** set up DataCollector */
-		DataCollector collector = new ArrayResultCollector();
+		DataCollector collector = new ResultCollector();
 
 		/** select a type of genetic algorithm, initialize it with a factory */
 		PSO myAlg = new CPSO(pars, proSet, new OriginalCPSOFactory(collector));
@@ -96,8 +96,8 @@ public class Experiment {
 		myAlg.runNtimes(23333, 30);
 		
 		/** print results */
-		((ArrayResultCollector) collector).printResult();
-		((ArrayResultCollector) collector).printMeanTime();;
+		((ResultCollector) collector).printBestInRuns(maxGen);
+		((ResultCollector) collector).printMeanTime();;
 
 //		((ResultCollector) collector).printPop();
 		System.out.println("Done!");

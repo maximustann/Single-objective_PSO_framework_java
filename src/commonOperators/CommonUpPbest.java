@@ -40,8 +40,7 @@ public class CommonUpPbest implements UpdatePbest{
 					int optimization, 
 					int generation
 					) {
-		int popSize = pBestVar.length;
-		int maxVar = pBestVar[0].size();
+		int popSize = popVar.length;
 
 		if(generation == 0){
 			for(int i = 0; i < popSize; i++){

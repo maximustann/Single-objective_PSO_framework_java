@@ -86,4 +86,9 @@ public class IntParticle extends Particle{
 			target.individual[i] = individual[i];
 		}
 	}
+	@Override
+	public Particle getInstance(int size) {
+		individual = new int[size];
+		return this;
+	}
 }

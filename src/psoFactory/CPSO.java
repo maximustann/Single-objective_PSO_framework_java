@@ -13,6 +13,7 @@ package psoFactory;
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
 import algorithms.UpdateGbest;
+import commonRepresentation.RealParticle;
 import psoProcedure.GlobalPSO;
 /**
  * A global CPSO
@@ -88,9 +89,10 @@ public class CPSO extends GlobalPSO{
 		clampFactor = pars.getClampFactor();
 		optimization = pars.getOptimization();
 		popFit = new double[popSize];
-//		pBestVar = new double[popSize][maxVar];
+		pBestVar = new RealParticle[popSize];
+		for(int i = 0; i < popSize; i++) pBestVar[i] = new RealParticle(maxVar);
 		pBestFit = new double[popSize];
-//		gBestVar = new double[maxVar];
+		gBestVar = new RealParticle(maxVar);
 
 		initPop = CPSOFactory.getInitPopMethod();
 		initVel = CPSOFactory.getInitVelMethod();

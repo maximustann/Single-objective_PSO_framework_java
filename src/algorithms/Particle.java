@@ -6,6 +6,7 @@ package algorithms;
  * @since GA framework 1.0
  */
 public abstract class Particle implements Cloneable{
+	
 	/** get the size of particle */
 	public abstract int size();
 	
@@ -24,4 +25,7 @@ public abstract class Particle implements Cloneable{
 	 * the content to the target particle
 	 */
 	public abstract void copyTo(Particle target);
+	
+	/** A different way of instantiation*/
+	public abstract Particle getInstance(int size);
 }
