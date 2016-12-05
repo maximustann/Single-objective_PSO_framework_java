@@ -9,16 +9,16 @@ import psoFactory.*;
 
 public class Experiment {
 	public static void main(String[] arg) throws IOException {
-		ArrayList<FitnessFunction> funcList = new ArrayList<FitnessFunction>();
+		ArrayList<FitnessFunc> funcList = new ArrayList<FitnessFunc>();
 		double[] weights = new double[2];
 		double w = 0.689;
-		double balance = 0;
+		double balance = 0.9;
 //		double w = 1;
 		double c1 = 1.427;
 		double c2 = 1.427;
 		double lbound = 0;
 		double ubound = 2;
-		double lboundW = 0.689;
+		double lboundW = 0.4;
 		double uboundW = 1;
 		double clampFactor = 8;
 		int optimization = 0; //minimize
@@ -30,7 +30,7 @@ public class Experiment {
 		double[] freqMatrix;
 		double[] latencyMatrix;
 
-		int testCase = 5;
+		int testCase = 1;
 		int noService;
 		int noLocation;
 		double Cmax, Cmin, Tmax, Tmin;
@@ -73,12 +73,17 @@ public class Experiment {
 		Constraint timeCon = new Constraint(noService);
 		Normalize costLinear = new LinearScaling(Cmax, Cmin);
 		Normalize timeLinear = new LinearScaling(Tmax, Tmin);
-		FitnessFunction cost = new BPSOHaiCostFitness(costLinear, costCon, costMatrix);
-		FitnessFunction time = new BPSOHaiTimeFitness(timeLinear, timeCon, latencyMatrix, freqMatrix, 
+
+		UnNormalizedFit cost = new BPSOHaiCostFitness(costMatrix);
+		UnNormalizedFit time = new BPSOHaiTimeFitness(latencyMatrix, freqMatrix, 
 													noService, noLocation);
-		funcList.add(cost);
-		funcList.add(time);
-		Evaluate evaluate = new BPSOHaiEvaluate(funcList, weights);
+		FitnessFunc costFit = new FitnessFunc(cost.getClass());
+		FitnessFunc timeFit = new FitnessFunc(time.getClass());
+		Normalize[] normalizer = new Normalize[] {costLinear, timeLinear};
+		Constraint[] constraints = new Constraint[] {costCon, timeCon};
+		funcList.add(costFit);
+		funcList.add(timeFit);
+		Evaluate evaluate = new BPSOHaiEvaluate(funcList, normalizer, constraints, weights);
 		DataCollector collector = new ResultCollector();
 
 

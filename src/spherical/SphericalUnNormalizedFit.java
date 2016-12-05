@@ -43,6 +43,6 @@ public class SphericalUnNormalizedFit extends UnNormalizedFit{
 		// just initialize the ranking with 0, because this call() will be executed in thread, 
 		// therefore it is hard to initialize ranking here.
 		
-		return new double[]{fit, 0};
+		return fit;
 	}
 }

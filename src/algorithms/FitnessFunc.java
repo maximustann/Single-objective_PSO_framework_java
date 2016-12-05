@@ -61,7 +61,7 @@ public class FitnessFunc{
      * 		sorting process.
      */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ArrayList<double[]> execute(Particle [] popVar) {
+	public double[] execute(Particle [] popVar) {
 		int popSize = popVar.length;
 		ExecutorService exec = Executors.newFixedThreadPool(
 								Runtime.getRuntime().availableProcessors());
@@ -93,12 +93,11 @@ public class FitnessFunc{
 		}
 		exec.shutdown();
 		
-		ArrayList<double[]> fitness = new ArrayList<double[]>();
+		double[] fitness = new double[popSize];
 		int counter = 0;
 		for(Future f: results){
 			try {
-				fitness.add((double[]) f.get());
-				fitness.get(counter)[1] = counter;
+				fitness[counter] = (double) f.get();
 				counter++;
 			} catch (InterruptedException e) {
 				e.printStackTrace();

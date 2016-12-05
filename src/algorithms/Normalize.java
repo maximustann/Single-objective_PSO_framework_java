@@ -9,6 +9,9 @@
  */
 
 package algorithms;
+
+import java.util.ArrayList;
+
 /**
  * Normalization function
  * 

@@ -11,6 +11,7 @@ package psoFactory;
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
 import algorithms.UpdateGbest;
+import commonRepresentation.IntParticle;
 import psoProcedure.GlobalPSO;
 /**
  * Binary PSO
@@ -86,9 +87,10 @@ public class BPSO extends GlobalPSO{
 		clampFactor = pars.getClampFactor();
 		optimization = pars.getOptimization();
 		popFit = new double[popSize];
-//		pBestVar = new double[popSize][maxVar];
+		pBestVar = new IntParticle[popSize];
+		for(int i = 0; i < popSize; i++) pBestVar[i] = new IntParticle(maxVar);
 		pBestFit = new double[popSize];
-//		gBestVar = new double[maxVar];
+		gBestVar = new IntParticle(maxVar);
 
 		initPop = BPSOFactory.getInitPopMethod();
 		initVel = BPSOFactory.getInitVelMethod();

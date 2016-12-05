@@ -10,6 +10,7 @@
 
 package algorithms;
 
+
 /**
  * Update Global best, in order to be substitutable with UpdateLbest,
  * we extends both of them from UpdateGLbest. 

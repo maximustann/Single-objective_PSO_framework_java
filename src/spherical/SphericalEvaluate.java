@@ -49,15 +49,15 @@ public class SphericalEvaluate implements Evaluate{
 	public void evaluate(Particle[] popVar, double[] popFit) {
 		// get fitness function list, just in case you have multiple objective functions.
 		FitnessFunc fitnessFunction = funcList.get(0);
-		ArrayList<double[]> tempFit = null;
+		double[] tempFit = null;
 		try {
 			// execute the evaluation
 			tempFit = fitnessFunction.execute(popVar);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		for(int i = 0; i < tempFit.size(); i++) {
-			popFit[i] = tempFit.get(i)[0];
+		for(int i = 0; i < tempFit.length; i++) {
+			popFit[i] = tempFit[i];
 		}
 	}
 }

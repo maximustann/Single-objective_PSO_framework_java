@@ -11,6 +11,7 @@ package BPSOAllocationProblem;
 
 import java.util.ArrayList;
 
+import algorithms.Particle;
 import dataCollector.DataCollector;
 /**
  * 
@@ -69,16 +70,6 @@ public class ResultCollector extends DataCollector {
 		System.out.println();
 	}
 	
-
-	
-	/**
-	 * collect populations, have not finished
-	 */
-	public void collectParticle(double[][] particle) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public void mean(int runs){
 		int size = resultData.size();
 		int gen = size / runs;
@@ -87,6 +78,12 @@ public class ResultCollector extends DataCollector {
 			best += resultData.get(i * gen - 1);
 		}
 		System.out.println(best / runs);
+	}
+
+	@Override
+	public void collectParticle(Particle[] particle) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
