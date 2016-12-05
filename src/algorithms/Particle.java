@@ -1,3 +1,12 @@
+/*
+ * Boxiong Tan (Maximus Tann)
+ * Title:        PSO algorithm framework
+ * Description:  PSO algorithm framework for general optimization purpose
+ * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Copyright (c) 2016-2019, The Victoria University of Wellington
+ * Particle.java - An abstract of particle.
+ */
 package algorithms;
 /**
  * An abstract class of particle 
@@ -20,12 +29,10 @@ public abstract class Particle implements Cloneable{
 	@Override
 	public abstract Particle clone();
 	
-	/** copyTo, copy the inner instance to another particle, the difference with clone() is
-	 * that, clone create a new instance of current particle, but copyTo just copy 
+	/** copyTo, copies the inner instance to another particle, the difference with clone() is
+	 * that, clone creates a new instance of current particle, but copyTo just copies 
 	 * the content to the target particle
 	 */
 	public abstract void copyTo(Particle target);
-	
-	/** A different way of instantiation*/
-	public abstract Particle getInstance(int size);
+
 }

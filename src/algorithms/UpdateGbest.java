@@ -13,7 +13,7 @@ package algorithms;
 
 /**
  * Update Global best, in order to be substitutable with UpdateLbest,
- * we extends both of them from UpdateGLbest. 
+ * we implement both of them from UpdateGLbest interface. 
  * 
  * @author Boxiong Tan (Maximus Tann) 
  * @since PSO framework 1.0
@@ -25,10 +25,10 @@ public interface UpdateGbest extends UpdateGLbest{
      * update the Global best according to all the personal bests
      * 
      * 
-     * @param pBestVar 2D-array of personal best variables.
-     * @param pBestFit an array of personal best fitness values.
-     * @param gBestVar an array of global best variables
-     * @param gBestFit current global best fitness
+     * @param pBestVar personal best variables.
+     * @param pBestFit personal best fitness values.
+     * @param gBestVar global best 
+     * @param gBestFit global best fitness
      * @param optimization 0 denotes minimization, 1 denotes maximization
      * @param generation which generation it is.
      * @return global best fitness

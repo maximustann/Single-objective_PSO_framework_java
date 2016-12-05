@@ -25,10 +25,10 @@ public interface UpdateLbest extends UpdateGLbest{
      * update the Local best according to local particles fitness
      * 
      * 
-     * @param pBestVar 2D-array of personal best variables.
-     * @param pBestFit an array of personal best fitness values.
-     * @param lBestVar 2D-array of local best variables
-     * @param lBestFit an array of local best fitness values
+     * @param pBestVar personal best variables.
+     * @param pBestFit personal best fitness values.
+     * @param lBestVar local best variables
+     * @param lBestFit local best fitness values
      * @param optimization 0 denotes minimization, 1 denotes maximization
      * @param generation which generation it is.
      */	

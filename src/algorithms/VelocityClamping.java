@@ -18,7 +18,7 @@ package algorithms;
 public interface VelocityClamping {
 	
     /**
-     * @param velocity 2D-array of velocity
+     * @param velocity velocity
      * @param lbound the lower boundary of a variable of a particle
      * @param ubound the upper boundary of a variable of a particle
      */		

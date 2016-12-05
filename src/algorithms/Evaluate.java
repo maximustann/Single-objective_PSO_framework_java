@@ -9,8 +9,6 @@
  */
 
 package algorithms;
-
-
 /**
  * Defines the common method of evaluation
  * 
@@ -21,7 +19,7 @@ package algorithms;
 public interface Evaluate {
 	/**
 	 * @param popVar a population of variables
-	 * @param fitness the fitness values of whole population
+	 * @param fitness the fitness values of the population
 	 */
 	public void evaluate(Particle[] popVar, double[] fitness);
 }

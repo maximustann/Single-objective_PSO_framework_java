@@ -21,10 +21,10 @@ public interface UpdatePbest {
     /**
      * update the Local best according to local particles fitness
      * 
-     * @param pBestVar 2D-array of personal best variables.
-     * @param pBestFit an array of personal best fitness values.
-     * @param popVar 2D-array of population variables
-     * @param popFit an array of population fitness values
+     * @param pBestVar personal best variables.
+     * @param pBestFit personal best fitness values.
+     * @param popVar population variables
+     * @param popFit population fitness values
      * @param optimization 0 denotes minimization, 1 denotes maximization
      * @param generation which generation it is.
      */	

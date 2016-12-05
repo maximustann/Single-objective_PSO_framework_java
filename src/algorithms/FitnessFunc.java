@@ -54,11 +54,7 @@ public class FitnessFunc{
      *  <li>execute all tasks and collect fitness values</li>
      * </ul>
      * @param popVar population variables
-     * @return an ArrayList<double[]> type of fitness values, where each list item is a double[2]
-     * 		double[0] is the fitness value,
-     * 		double[1] is the rank of this fitness value in the population, this rank is initialized
-     * 		with the current chromosome's position in the population. Because it will be used in the 
-     * 		sorting process.
+     * @return an double[] type of fitness values
      */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public double[] execute(Particle [] popVar) {

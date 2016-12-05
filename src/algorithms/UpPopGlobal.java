@@ -21,11 +21,11 @@ public interface UpPopGlobal extends UpPop{
     /**
      * update the population based on personal best and global best
      * 
-     * @param popVar 2D-array of population variables.
-     * @param pBestFit an array of personal best fitness values.
-     * @param velocity 2D-array of velocity.
-     * @param pBestVar 2D-array of personal best variables.
-     * @param gBestVar an array of global best variables.
+     * @param popVar population variables.
+     * @param pBestFit personal best fitness values.
+     * @param velocity velocity.
+     * @param pBestVar personal best variables.
+     * @param gBestVar global best.
      * @param w inertia.
      * @param c1 cognitive parameter
      * @param c2 social parameter
