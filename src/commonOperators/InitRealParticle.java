@@ -5,7 +5,7 @@
  * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Copyright (c) 2016-2019, The Victoria University of Wellington
- * CommonInitPop.java - A common initialization of population for continuous PSO
+ * InitRealPop.java - A common initialization of population for continuous PSO
  */
 package commonOperators;
 
@@ -33,10 +33,10 @@ public class InitRealParticle implements InitPop{
      */	
 	@Override
 	public RealParticle[] init(
-						int popSize, 
-						int maxVar, 
-						double lbound, 
-						double ubound
+						int 		popSize, 
+						int 		maxVar, 
+						double 	lbound, 
+						double 	ubound
 						) {
 		RealParticle[] popVar = new RealParticle[popSize];
 		// initialize population

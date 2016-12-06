@@ -38,15 +38,14 @@ public class Ring implements UpdateLbest{
 	 */
 	@Override
 	public void update(
-				Particle[] popVar,
-				double[] popFit,
-				Particle[] lBestVar,
-				double[] lBestFit,
-				int optimization,
-				int generation
+				Particle[] 		popVar,
+				double[] 		popFit,
+				Particle[] 		lBestVar,
+				double[] 		lBestFit,
+				int 				optimization,
+				int 				generation
 				) {
 		int popSize = popVar.length;
-		int maxVar = popVar[0].size();
 
 		for(int i = 0; i < popSize; i++){
 			int index;

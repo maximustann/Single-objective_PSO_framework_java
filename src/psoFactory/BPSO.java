@@ -31,9 +31,9 @@ public class BPSO extends GlobalPSO{
 	 * @param factory factory is used to assemble parts
 	 */
 	public BPSO(ParameterSettings pars, ProblemParameterSettings proSet, PSOFactory factory){
-		BPSOFactory = factory;
-		this.pars = pars;
-		this.proSet = proSet;
+		BPSOFactory 	= factory;
+		this.pars 	= pars;
+		this.proSet 	= proSet;
 		prepare();
 	}
 
@@ -72,34 +72,36 @@ public class BPSO extends GlobalPSO{
 	 */
 	@Override
 	protected void prepare(){
-		maxGen = pars.getMaxGen();
-		maxVar = pars.getMaxVar();
-		popSize = pars.getPopSize();
-		w = pars.getW();
-		c1 = pars.getC1();
-		c2 = pars.getC2();
-		lbound = pars.getLbound();
-		ubound = pars.getUbound();
-		lboundW = pars.getLboundW();
-		uboundW = pars.getUboundW();
-		balance = pars.getBalance();
+		maxGen 						= pars.getMaxGen();
+		maxVar 						= pars.getMaxVar();
+		popSize 						= pars.getPopSize();
+		w 							= pars.getW();
+		c1 							= pars.getC1();
+		c2 							= pars.getC2();
+		lbound 						= pars.getLbound();
+		ubound 						= pars.getUbound();
+		lboundW 						= pars.getLboundW();
+		uboundW 						= pars.getUboundW();
+		balance 						= pars.getBalance();
 		
-		clampFactor = pars.getClampFactor();
-		optimization = pars.getOptimization();
-		popFit = new double[popSize];
-		pBestVar = new IntParticle[popSize];
-		for(int i = 0; i < popSize; i++) pBestVar[i] = new IntParticle(maxVar);
-		pBestFit = new double[popSize];
-		gBestVar = new IntParticle(maxVar);
+		clampFactor 					= pars.getClampFactor();
+		optimization 				= pars.getOptimization();
+		popFit 						= new double[popSize];
+		pBestVar 					= new IntParticle[popSize];
+		for(int i = 0; i < popSize; i++) 
+		{ pBestVar[i] 				= new IntParticle(maxVar); }
+		
+		pBestFit 					= new double[popSize];
+		gBestVar 					= new IntParticle(maxVar);
 
-		initPop = BPSOFactory.getInitPopMethod();
-		initVel = BPSOFactory.getInitVelMethod();
-		upGbest = (UpdateGbest) BPSOFactory.getUpGIbestMethod();
-		upPbest = BPSOFactory.getUpPbestMethod();
-		upPop = BPSOFactory.getUpPopMethod(clampFactor);
-		dynW = BPSOFactory.getDynamicW(balance, maxGen, lboundW, uboundW);
-		evaluate = proSet.getEvaluate();
-		collector = BPSOFactory.getDataCollector();
+		initPop 						= BPSOFactory.getInitPopMethod();
+		initVel 						= BPSOFactory.getInitVelMethod();
+		upGbest 						= (UpdateGbest) BPSOFactory.getUpGIbestMethod();
+		upPbest 						= BPSOFactory.getUpPbestMethod();
+		upPop 						= BPSOFactory.getUpPopMethod(clampFactor);
+		dynW 						= BPSOFactory.getDynamicW(balance, maxGen, lboundW, uboundW);
+		evaluate 					= proSet.getEvaluate();
+		collector			 		= BPSOFactory.getDataCollector();
 	}
 
 }

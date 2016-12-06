@@ -1,7 +1,7 @@
 /*
  * Boxiong Tan (Maximus Tann)
- * Title:        Single-objective Genetic algorithm framework
- * Description:  Single-objective Genetic algorithm framework for general optimization purpose
+ * Title:        PSO framework
+ * Description:  PSO framework for general optimization purpose
  * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Copyright (c) 2016-2019, The Victoria University of Wellington
@@ -14,7 +14,12 @@ import java.util.ArrayList;
 import algorithms.Particle;
 import algorithms.Evaluate;
 import algorithms.FitnessFunc;
-
+/**
+ * Rosenbrock evaluation function
+ * 
+ * @author Boxiong Tan (Maximus Tann) 
+ * @since PSO framework 1.0
+ */
 public class RosenbrockEvaluate implements Evaluate{
 	private ArrayList<FitnessFunc> funcList;
 
@@ -32,7 +37,7 @@ public class RosenbrockEvaluate implements Evaluate{
 	/**
 	 * 
 	 * an implementation of the evaluate interface.
-	 * Basically, the process should evaluate all chromosomes in the popVar array and store
+	 * Basically, the process should evaluate all particles in the popVar array and store
 	 * fitness values in popFit.
 	 * 
 	 * I did not write this as a template because you might want to use weighted sum with multiple
@@ -40,10 +45,8 @@ public class RosenbrockEvaluate implements Evaluate{
 	 * 
 	 * There are a few steps need to be done.
 	 * <ul>
-	 * 	<li>clean the popFit first</li>
-	 * 	<li>execute fitness function, it will return an ArrayList<double[]> </li>
-	 * 	<li>initialize the ranking, in the double[1] </li>
-	 *  <li>add fitness value with its initialized ranking to the popFit</li>
+	 * 	<li>execute fitness function, it will return a double[] </li>
+	 *  <li>copy tempFit to fitness value</li>
 	 * </ul>
 	 */
 	public void evaluate(Particle[] popVar, double[] popFit) {

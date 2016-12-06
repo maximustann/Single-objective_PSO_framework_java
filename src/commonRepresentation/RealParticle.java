@@ -1,15 +1,29 @@
+/*
+ * Boxiong Tan (Maximus Tann)
+ * Title:        PSO algorithm framework
+ * Description:  PSO algorithm framework for general optimization purpose
+ * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Copyright (c) 2016-2019, The Victoria University of Wellington
+ * RealParticle.java - a continuous representation of particle.
+ */
 package commonRepresentation;
 
 import algorithms.Particle;
 
 public class RealParticle extends Particle{
-	/** We just want to inherent the type. Don't even need to encapsulate. 
-	 */
-	public double[] individual;
-	public double [][] matrixIndividual;
+
+	public double[] 		individual;
+	public double [][] 	matrixIndividual;
+	
 	public RealParticle(int size) {
 		individual = new double[size];
 	}
+	
+	/**
+	 * 
+	 * @param size the size of the particle
+	 */
 	@Override
 	public int size() {
 		return individual.length;
@@ -67,6 +81,9 @@ public class RealParticle extends Particle{
 		return equals((RealParticle) particle);
 	}
 
+	/**
+	 * clone an exact copy of particle
+	 */
 	@Override
 	public Particle clone() {
 		RealParticle copy = new RealParticle(size());
@@ -81,15 +98,14 @@ public class RealParticle extends Particle{
 		copyTo((RealParticle) target);
 	}
 	
+	/**
+	 * copy the current particle to the target
+	 * @param target the destination
+	 */
 	public void copyTo(RealParticle target) {
 		for(int i = 0; i < size(); i++){
 			target.individual[i] = individual[i];
 		}
 	}
-	
-	@Override
-	public Particle getInstance(int size) {
-		individual = new double[size];
-		return this;
-	}
+// End
 }

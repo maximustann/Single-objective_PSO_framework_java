@@ -1,3 +1,12 @@
+/*
+ * Boxiong Tan (Maximus Tann)
+ * Title:        PSO algorithm framework
+ * Description:  PSO algorithm framework for general optimization purpose
+ * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Copyright (c) 2016-2019, The Victoria University of Wellington
+ * Experiment.java - Experiment for Hai's paper
+ */
 package BPSOAllocationProblem;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +22,6 @@ public class Experiment {
 		double[] weights = new double[2];
 		double w = 0.689;
 		double balance = 0.9;
-//		double w = 1;
 		double c1 = 1.427;
 		double c2 = 1.427;
 		double lbound = 0;
@@ -24,7 +32,7 @@ public class Experiment {
 		int optimization = 0; //minimize
 		int popSize = 100;
 		int maxGen = 250;
-		weights[0] = weights[1] = 0.5;
+		weights[0] = weights[1] = 0.5; // equally important
 
 		double[] costMatrix;
 		double[] freqMatrix;
@@ -95,7 +103,7 @@ public class Experiment {
 										maxGen, noService * noLocation);
 		PSO myAlg = new BPSO(pars, proSet, new OriginalBPSOFactory(collector));
 //		myAlg.run(11111)
-		myAlg.runNtimes(2333, 30);
+		myAlg.runNtimes(23333, 30);
 		((ResultCollector) collector).printResult();
 		((ResultCollector) collector).mean(30);
 		((ResultCollector) collector).printMeanTime();

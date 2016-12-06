@@ -32,21 +32,32 @@ public class CommonVelocityClamping implements VelocityClamping{
      * @param ubound the upper boundary of a variable of a particle
      */	
 	@Override
-	public void clamping(double[][] velocity, double lbound, double ubound) {
+	public void clamping(
+						double[][] 	velocity, 
+						double 		lbound, 
+						double 		ubound
+						) {
 		double vMax = clampFactor * (ubound - lbound) / 2;
 		double vMin = clampFactor * (lbound - ubound) / 2;
 		int popSize = velocity.length;
 		int maxVar = velocity[0].length;
 		for(int i = 0; i < popSize; i++){
 			for(int j = 0; j < maxVar; j++){
+				
+				// if velocity is bigger than the maximum velocity
 				if(velocity[i][j] > vMax){
-					velocity[i][j] = vMax;
+				   velocity[i][j] = vMax;
 				}
+				
+				// if velocity is smaller than the minimum velocity
 				if(velocity[i][j] < vMin){
-					velocity[i][j] = vMin;
+				   velocity[i][j] = vMin;
 				}
+				
 			}
 		}
+	// end clamping
 	}
-
+	
+// end
 }

@@ -1,11 +1,11 @@
 /*
  * Boxiong Tan (Maximus Tann)
- * Title:        Single-objective Genetic algorithm framework
- * Description:  Single-objective Genetic algorithm framework for general optimization purpose
+ * Title:        PSO framework
+ * Description:  PSO framework for general optimization purpose
  * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Copyright (c) 2016-2019, The Victoria University of Wellington
- * RosenbrockUnNormalizedFit.java an implementation of unNormalizedFit
+ * SphericalUnNormalizedFit.java an implementation of unNormalizedFit
  */
 package spherical;
 
@@ -20,7 +20,7 @@ import commonRepresentation.RealParticle;
  */
 public class SphericalUnNormalizedFit extends UnNormalizedFit{
 	/**
-	 * @param individual the chromosome that you want to evaluate.
+	 * @param individual the paritcle that you want to evaluate.
 	 */
 	public SphericalUnNormalizedFit(Particle individual){
 		super(individual);

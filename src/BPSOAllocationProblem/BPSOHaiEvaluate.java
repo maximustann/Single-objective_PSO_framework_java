@@ -30,6 +30,7 @@ public class BPSOHaiEvaluate implements Evaluate{
 	/** normalize function*/
 	private Normalize[] normalizer;
 	
+	/** constraint functions */
 	private Constraint[] constraints;
 
 	/**

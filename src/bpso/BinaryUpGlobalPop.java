@@ -31,21 +31,20 @@ public class BinaryUpGlobalPop implements UpPopGlobal{
 		this.clamper = clamper;
 	}
 
-	
-	
     /**
      * update the population based on personal best and global best
      * 
      * Steps:
-     * 1. update velocity
-     * 2. Do velocity clamping
-     * 3. Update particle positions
-     * 
-     * @param popVar 2D-array of population variables.
-     * @param pBestFit an array of personal best fitness values.
+     * <ul>
+     * <li> update velocity </li>
+     * <li> Do velocity clamping </li>
+     * <li> Update particle positions </li>
+     * </ul>
+     * @param popVar population variables.
+     * @param pBestFit personal best fitness values.
      * @param velocity 2D-array of velocity.
-     * @param pBestVar 2D-array of personal best variables.
-     * @param gBestVar an array of global best variables.
+     * @param pBestVar personal best variables.
+     * @param gBestVar global best variables.
      * @param w inertia.
      * @param c1 cognitive parameter
      * @param c2 social parameter

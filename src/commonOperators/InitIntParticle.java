@@ -5,7 +5,7 @@
  * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Copyright (c) 2016-2019, The Victoria University of Wellington
- * BPSOInitPop.java - A common initialization population method for BPSO.
+ * InitIntPop.java - A common initialization population method for discrete PSO.
  */
 package commonOperators;
 
@@ -32,10 +32,10 @@ public class InitIntParticle implements InitPop{
      */	
 	@Override
 	public IntParticle[] init(
-						int popSize, 
-						int maxVar, 
-						double lbound, 
-						double ubound
+						int 		popSize, 
+						int 		maxVar, 
+						double 	lbound, 
+						double 	ubound
 						) {
 		
 		IntParticle[] popVar = new IntParticle[popSize];

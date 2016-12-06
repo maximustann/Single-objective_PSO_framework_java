@@ -27,7 +27,7 @@ public class InitBinaryParticle extends InitIntParticle{
      * @param maxVar the number of variable of a particle
      * @param lbound the lower boundary of a variable of a particle
      * @param ubound the upper boundary of a variable of a particle
-     * @return 2D-array of population variables
+     * @return population
      */	
 	@Override
 	public IntParticle[] init(

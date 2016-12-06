@@ -27,8 +27,6 @@ public class BPSOHaiTimeFitness extends UnNormalizedFit {
 
 	/**
 	 * 
-	 * @param normalize 		a user defined normalization method
-	 * @param con 			a user defined constraint method
 	 * @param latency		latency matrix
 	 * @param frequency 		frequency matrix
 	 * @param noService		number of services
@@ -64,11 +62,11 @@ public class BPSOHaiTimeFitness extends UnNormalizedFit {
 
 	/**
 	 * To calculate the theoretically optimal response time 
-	 * based on current deployment plan (this particle)
+	 * based on the current deployment plan (this particle)
 	 * Steps:
 	 * <ul>
 	 * 	<li>Turn both particle vector and latency vector into matrix form</li>
-	 *  		<ul>Calculate response matrix
+	 *  		<ul>Calculate the response matrix
 	 *  			<li> If there is only one copy of service deployed in a location, 
 	 *  				response time is the latency value</li>
 	 *  			<li> If there are multiple copies, the smallest will be chosen. </li>
@@ -146,5 +144,5 @@ public class BPSOHaiTimeFitness extends UnNormalizedFit {
 	}
 
 
-
+// end
 }

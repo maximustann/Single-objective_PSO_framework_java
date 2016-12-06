@@ -5,7 +5,7 @@
  * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
  *
  * Copyright (c) 2016-2019, The Victoria University of Wellington
- * CommonUpLocalPop.java - A common way of updating local-based population.
+ * RealUpLocalPop.java - A real value of updating local-based population.
  */
 
 package commonOperators;
@@ -29,16 +29,17 @@ public class RealUpLocalPop implements UpPopLocal {
     /**
      * update the population based on personal best and local best
      *
-     * 1. update velocity
-     * 2. Do velocity clamping
-     * 3. Update particle positions
-     *
+     * <ul>
+     * <li> 1. update velocity 			</li>
+     * <li> 2. Do velocity clamping		</li>
+     * <li> 3. Update particle positions </li>
+     * </ul>
      * 
-     * @param popVar 2D-array of population variables.
+     * @param popVar population variables.
      * @param pBestFit an array of personal best fitness values.
      * @param velocity 2D-array of velocity.
-     * @param pBestVar 2D-array of personal best variables.
-     * @param lBestVar 2D-array of local best variables.
+     * @param pBestVar personal best variables.
+     * @param lBestVar local best variables.
      * @param w inertia.
      * @param c1 cognitive parameter
      * @param c2 social parameter
@@ -47,28 +48,30 @@ public class RealUpLocalPop implements UpPopLocal {
      */
 	@Override
 	public void update(
-					Particle[] popVar, 
-					double[] pBestFit, 
-					double[][] velocity,
-					Particle[] pBestVar, 
-					Particle[] lBestVar, 
-					double w, 
-					double c1, 
-					double c2,
-					double lbound,
-					double ubound
+					Particle[] 		popVar, 
+					double[] 		pBestFit, 
+					double[][] 		velocity,
+					Particle[] 		pBestVar, 
+					Particle[] 		lBestVar, 
+					double 			w, 
+					double 			c1, 
+					double 			c2,
+					double 			lbound,
+					double 			ubound
 					) {
 		int popSize = popVar.length;
-		int maxVar = popVar[0].size();
+		int maxVar  = popVar[0].size();
 
 		// Go through whole population
 		for(int i = 0; i < popSize; i++){
 			// update each dimension
 			for(int j = 0; j < maxVar; j++){
-				velocity[i][j] = w * velocity[i][j] + c1 * StdRandom.uniform(0.0, 1.0) *
-						(((RealParticle) pBestVar[i]).individual[j] - ((RealParticle) popVar[i]).individual[j]) 
-						+ c2 * StdRandom.uniform(0.0, 1.0) *
-						(((RealParticle) lBestVar[i]).individual[j] - ((RealParticle) popVar[i]).individual[j]);
+				velocity[i][j] = 
+						w * velocity[i][j] 
+						+ c1 * StdRandom.uniform(0.0, 1.0) * (((RealParticle) pBestVar[i]).individual[j] 
+						- ((RealParticle) popVar[i]).individual[j]) 
+						+ c2 * StdRandom.uniform(0.0, 1.0) * (((RealParticle) lBestVar[i]).individual[j] 
+						- ((RealParticle) popVar[i]).individual[j]);
 			}
 		}
 		
