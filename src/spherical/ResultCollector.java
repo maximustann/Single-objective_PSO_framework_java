@@ -1,18 +1,42 @@
+/*
+ * Boxiong Tan (Maximus Tann)
+ * Title:        PSO framework
+ * Description:  PSO framework for general optimization purpose
+ * Licence:      GPL - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Copyright (c) 2016-2019, The Victoria University of Wellington
+ * ResultCollector.java 
+ */
 package spherical;
 
 import java.util.ArrayList;
 
+import algorithms.Particle;
 import dataCollector.DataCollector;
-
+/**
+ * A implementation of dataCollector 
+ * @author Boxiong Tan (Maximus Tann) 
+ * @since PSO framework 1.0
+ */
 public class ResultCollector extends DataCollector {
+	/**
+	 * resultData contains fitness values,
+	 * data contains Particle
+	 */
 	private ArrayList<Double> resultData;
-	private ArrayList<double[][]> particleData;
+	private ArrayList<Particle[]> data;
 
+	/**
+	 * constructor, initialize fields
+	 */
 	public ResultCollector(){
 		resultData = new ArrayList<Double>();
-		particleData = new ArrayList<double[][]>();
+		data = new ArrayList<Particle[]>();
 	}
 	@Override
+	/**
+	 * collect() will collect the fitness values in default
+	 */
 	public void collect(Object data) {
 		resultData.add((Double) data);
 	}
@@ -21,32 +45,32 @@ public class ResultCollector extends DataCollector {
 		return resultData;
 	}
 	
-	public ArrayList<double[][]> getParticle(){
-		return particleData;
-	}
 
 	public void printResult(){
 		for(int i = 0; i < resultData.size(); i++){
-			System.out.println(resultData.get(i));
+			System.out.println("fitness: " + resultData.get(i));
 		}
 		System.out.println();
 	}
 	
-	public void printParticle(){
-		for(int i = 0; i < particleData.size(); i++){
-			for(int j = 0; j < particleData.get(0).length; j++){
-				for(int k = 0; k < particleData.get(0)[0].length; k++){
-					System.out.print(particleData.get(i)[j][k] + " ");
-				}
+	public void printBestInRuns(int gen){
+		for(int i = gen - 1; i < resultData.size(); i += gen){
+			System.out.println("fitness: " + resultData.get(i));
+		}
+	}
+	
+	public void printPop(){
+		for(int i = 0; i < data.size(); i++) {
+			for(int j = 0; j < data.get(0).length; j++) {
+				data.get(i)[j].print();
 				System.out.println();
 			}
+			System.out.println();
 		}
-		System.out.println();
-	}
-	@Override
-	public void collectParticle(double[][] particle) {
-		particleData.add(particle);
 	}
 	
+	public void collectParticle(Particle[] popVar) {
+		data.add(popVar);
+	}
 	
 }

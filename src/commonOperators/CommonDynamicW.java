@@ -28,11 +28,17 @@ public class CommonDynamicW implements DynamicW {
 	 * @param lboundW 	lower boundary of inertia
 	 * @param uboundW	upper boundary of inertia
 	 */
-	public CommonDynamicW(double balance, int maxGen, double lboundW, double uboundW){
-		this.balance = balance;
-		this.maxGen = maxGen;
-		this.lboundW = lboundW;
-		this.uboundW = uboundW;
+	public CommonDynamicW(
+						double 	balance, 
+						int 		maxGen, 
+						double 	lboundW, 
+						double 	uboundW
+						){
+		
+		this.balance 	= balance;
+		this.maxGen 		= maxGen;
+		this.lboundW 	= lboundW;
+		this.uboundW 	= uboundW;
 	}
 	@Override
 	public double update(int currentGen) {

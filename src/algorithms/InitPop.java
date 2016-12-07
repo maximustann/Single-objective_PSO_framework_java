@@ -28,7 +28,7 @@ public interface InitPop {
      * @param ubound the upper boundary of a variable of a particle
      * @return 2D-array of population variables
      */	
-	public double[][] init(
+	public Particle[] init(
 							int popSize, 
 							int maxVar, 
 							double lbound, 

@@ -15,11 +15,11 @@ public interface UpPopLocal extends UpPop{
     /**
      * update the population based on personal best and local best
      * 
-     * @param popVar 2D-array of population variables.
-     * @param pBestFit an array of personal best fitness values.
-     * @param velocity 2D-array of velocity.
-     * @param pBestVar 2D-array of personal best variables.
-     * @param lBestVar 2D-array of local best variables.
+     * @param popVar population variables.
+     * @param pBestFit personal best fitness values.
+     * @param velocity velocity.
+     * @param pBestVar personal best variables.
+     * @param lBestVar local best variables.
      * @param w inertia.
      * @param c1 cognitive parameter
      * @param c2 social parameter
@@ -27,11 +27,11 @@ public interface UpPopLocal extends UpPop{
      * @param ubound the upper bound of a variable in a particle
      */
 	public void update(
-					double[][] popVar, 
+					Particle[] popVar, 
 					double [] pBestFit, 
 					double[][] velocity,
-					double[][] pBestVar, 
-					double[][] lBestVar, 
+					Particle[] pBestVar, 
+					Particle[] lBestVar, 
 					double w, 
 					double c1, 
 					double c2,

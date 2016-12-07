@@ -11,8 +11,10 @@ package BPSOAllocationProblem;
 
 import java.util.ArrayList;
 
+import algorithms.Particle;
 import algorithms.Evaluate;
-import algorithms.FitnessFunction;
+import algorithms.FitnessFunc;
+import algorithms.Normalize;
 /**
  *
  * @author Boxiong Tan (Maximus Tann)
@@ -20,22 +22,34 @@ import algorithms.FitnessFunction;
  */
 public class BPSOHaiEvaluate implements Evaluate{
 	/** Evaluation function list */
-	private ArrayList<FitnessFunction> funcList;
+	private ArrayList<FitnessFunc> funcList;
 	
 	/** two values in the array */
 	private double[] weights;
+	
+	/** normalize function*/
+	private Normalize[] normalizer;
+	
+	/** constraint functions */
+	private Constraint[] constraints;
 
 	/**
 	 * 
 	 * @param funcList Evaluation function list
 	 * @param weights weight is used to balance two objectives, cost and response time
 	 */
-	public BPSOHaiEvaluate(ArrayList<FitnessFunction> funcList, double[] weights){
+	public BPSOHaiEvaluate(
+						ArrayList<FitnessFunc> funcList, 
+						Normalize[] normalizer,
+						Constraint[] constraints,
+						double[] weights){
 		this.funcList = funcList;
 		this.weights = weights;
+		this.normalizer = normalizer;
+		this.constraints = constraints;
 	}
 
-	public void setFuncList(ArrayList<FitnessFunction> funcList){
+	public void setFuncList(ArrayList<FitnessFunc> funcList){
 		this.funcList = funcList;
 	}
 
@@ -45,17 +59,24 @@ public class BPSOHaiEvaluate implements Evaluate{
 	 *  <li> 2. add up n (two, in this case) fitness values multiply by their weights</li>
 	 * </ul>
 	 */
-	public void evaluate(double[][] popVar, double[] fitness){
-		ArrayList<double []> fitList = new ArrayList<double []>();
+	@Override
+	public void evaluate(Particle[] popVar, double[] fitness){
+		ArrayList<double[]> fitList = new ArrayList<double[]>();
+		
 		for(int i = 0; i < funcList.size(); i++){
-			fitList.add(funcList.get(i).normalizedFit(popVar));
+			double[] tempFit = funcList.get(i).execute(popVar);
+			tempFit = normalizer[i].doNorm(tempFit);
+			tempFit = constraints[i].punish(popVar, tempFit);
+			fitList.add(tempFit);
 		}
 
-		for(int i = 0; i < fitness.length; i++){
-			fitness[i] = 0.0;
+		for(int i = 0; i < popVar.length; i++){
+			double fit = 0;
 			for(int j = 0; j < funcList.size(); j++){
-				fitness[i] += weights[j] * fitList.get(j)[i];
+				fit += weights[j] * fitList.get(j)[i];
 			}
+			fitness[i] = fit;
 		}
 	}
+
 }

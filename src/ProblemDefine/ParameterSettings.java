@@ -30,7 +30,6 @@ public class ParameterSettings {
      * @param uboundW the upper boundary of inertia
      * @param clampFactor clamp factor
      * @param maxVar the number of variable of a particle
-     * @return 2D-array of population variables
      */	
 	public ParameterSettings(
 						double w,

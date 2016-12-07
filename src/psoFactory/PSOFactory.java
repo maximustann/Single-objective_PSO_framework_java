@@ -11,7 +11,7 @@ package psoFactory;
 import algorithms.*;
 import dataCollector.DataCollector;
 
-// PSO Factory provide an interface which allow the implementors to specifically define their methods.
+// PSO Factory provides an interface which allows the user to specifically define their methods.
 /**
  * PSOFactory
  *

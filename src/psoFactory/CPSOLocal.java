@@ -12,6 +12,7 @@ package psoFactory;
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
 import algorithms.UpdateLbest;
+import commonRepresentation.RealParticle;
 import psoProcedure.LocalPSO;
 
 public class CPSOLocal extends LocalPSO{
@@ -26,13 +27,13 @@ public class CPSOLocal extends LocalPSO{
 	 * @param factory factory is used to assemble parts
 	 */
 	public CPSOLocal(
-				ParameterSettings pars,
-				ProblemParameterSettings proSet,
-				PSOFactory factory
+				ParameterSettings 			pars,
+				ProblemParameterSettings 	proSet,
+				PSOFactory 					factory
 				){
-		CPSOFactory = factory;
-		this.pars = pars;
-		this.proSet = proSet;
+		CPSOFactory 	= factory;
+		this.pars 	= pars;
+		this.proSet 	= proSet;
 		prepare();
 	}
 
@@ -70,36 +71,40 @@ public class CPSOLocal extends LocalPSO{
 	 * <li>collector	data collector</li>
 	 * </ul>
 	 */
+	@Override
 	protected void prepare(){
+		maxGen 				= pars.getMaxGen();
+		maxVar 				= pars.getMaxVar();
+		popSize 				= pars.getPopSize();
+		w 					= pars.getW();
+		balance 				= pars.getBalance();
+		c1 					= pars.getC1();
+		c2 					= pars.getC2();
+		lbound 				= pars.getLbound();
+		ubound 				= pars.getUbound();
+		lboundW 				= pars.getLboundW();
+		uboundW 				= pars.getUboundW();
+		clampFactor 			= pars.getClampFactor();
+		optimization 		= pars.getOptimization();
+		popFit 				= new double[popSize];
+		pBestVar 			= new RealParticle[popSize];
+		for(int i = 0; i < popSize; i++) {
+		pBestVar[i] 					= new RealParticle(maxVar); }
+		
+		pBestFit 			= new double[popSize];
+		lBestVar 			= new RealParticle[popSize];
+		for(int i = 0; i < popSize; i++) {
+		lBestVar[i] 					= new RealParticle(maxVar); }
+		lBestFit 			= new double[popSize];
 
-
-		maxGen = pars.getMaxGen();
-		maxVar = pars.getMaxVar();
-		popSize = pars.getPopSize();
-		w = pars.getW();
-		balance = pars.getBalance();
-		c1 = pars.getC1();
-		c2 = pars.getC2();
-		lbound = pars.getLbound();
-		ubound = pars.getUbound();
-		lboundW = pars.getLboundW();
-		uboundW = pars.getUboundW();
-		clampFactor = pars.getClampFactor();
-		optimization = pars.getOptimization();
-		popFit = new double[popSize];
-		pBestVar = new double[popSize][maxVar];
-		pBestFit = new double[popSize];
-		lBestVar = new double[popSize][maxVar];
-		lBestFit = new double[popSize];
-
-		initPop = CPSOFactory.getInitPopMethod();
-		initVel = CPSOFactory.getInitVelMethod();
-		upLbest = (UpdateLbest) CPSOFactory.getUpGIbestMethod();
-		upPbest = CPSOFactory.getUpPbestMethod();
-		upPop = CPSOFactory.getUpPopMethod(clampFactor);
-		evaluate = proSet.getEvaluate();
-		collector = CPSOFactory.getDataCollector();
-		dynW = CPSOFactory.getDynamicW(balance, maxGen, lboundW, uboundW);
+		initPop 				= CPSOFactory.getInitPopMethod();
+		initVel 				= CPSOFactory.getInitVelMethod();
+		upLbest 				= (UpdateLbest) CPSOFactory.getUpGIbestMethod();
+		upPbest 				= CPSOFactory.getUpPbestMethod();
+		upPop 				= CPSOFactory.getUpPopMethod(clampFactor);
+		evaluate 			= proSet.getEvaluate();
+		collector 			= CPSOFactory.getDataCollector();
+		dynW 				= CPSOFactory.getDynamicW(balance, maxGen, lboundW, uboundW);
 	}
 
 

@@ -32,8 +32,8 @@ public class LinearScaling implements Normalize{
 	 * normalize all fitness values
 	 * @param fitness unnormalized fitness values
 	 */
+	@Override
 	public double[] doNorm(double[] fitness){
-
 		for(int i = 0; i < fitness.length; i++){
 			fitness[i] = (fitness[i] - min) / (max - min);
 		}

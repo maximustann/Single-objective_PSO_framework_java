@@ -9,15 +9,15 @@
  */
 package psoFactory;
 
-import BPSO.BPSODynamicW;
-import BPSO.BPSOInitPop;
-import BPSO.BPSOUpGlobalPop;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
 import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
 import algorithms.*;
+import bpso.BPSODynamicW;
+import bpso.BinaryUpGlobalPop;
+import bpso.InitBinaryParticle;
 /**
  * OriginalBPSOFactory
  * In this case, only the initialization of population and update population are different from common version of PSO.
@@ -38,7 +38,7 @@ public class OriginalBPSOFactory implements PSOFactory{
 
 	@Override
 	public InitPop getInitPopMethod() {
-		return new BPSOInitPop();
+		return new InitBinaryParticle();
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class OriginalBPSOFactory implements PSOFactory{
 
 	@Override
 	public UpPop getUpPopMethod(double clampFactor) {
-		return new BPSOUpGlobalPop(getVelocityClamper(clampFactor));
+		return new BinaryUpGlobalPop(getVelocityClamper(clampFactor));
 	}
 
 	@Override

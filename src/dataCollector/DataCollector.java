@@ -11,6 +11,8 @@ package dataCollector;
 
 import java.util.ArrayList;
 
+import algorithms.Particle;
+
 /**
  * data collector
  * 
@@ -36,7 +38,7 @@ public abstract class DataCollector {
      * collect particle
      * @param particle is a 2D array
      */	
-	public abstract void collectParticle(double[][] particle);
+	public abstract void collectParticle(Particle[] particle);
 	
 	/**
 	 * if flag is 0, start timer

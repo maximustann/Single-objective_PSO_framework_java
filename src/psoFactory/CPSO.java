@@ -13,6 +13,7 @@ package psoFactory;
 import ProblemDefine.ParameterSettings;
 import ProblemDefine.ProblemParameterSettings;
 import algorithms.UpdateGbest;
+import commonRepresentation.RealParticle;
 import psoProcedure.GlobalPSO;
 /**
  * A global CPSO
@@ -72,33 +73,37 @@ public class CPSO extends GlobalPSO{
 	 * <li>collector	data collector</li>
 	 * </ul>
 	 */
+	@Override
 	protected void prepare(){
-		maxGen = pars.getMaxGen();
-		maxVar = pars.getMaxVar();
-		popSize = pars.getPopSize();
-		w = pars.getW();
-		balance = pars.getBalance();
-		c1 = pars.getC1();
-		c2 = pars.getC2();
-		lbound = pars.getLbound();
-		ubound = pars.getUbound();
-		lboundW = pars.getLboundW();
-		uboundW = pars.getUboundW();
-		clampFactor = pars.getClampFactor();
-		optimization = pars.getOptimization();
-		popFit = new double[popSize];
-		pBestVar = new double[popSize][maxVar];
-		pBestFit = new double[popSize];
-		gBestVar = new double[maxVar];
+		maxGen 						= pars.getMaxGen();
+		maxVar 						= pars.getMaxVar();
+		popSize 						= pars.getPopSize();
+		w 							= pars.getW();
+		balance 						= pars.getBalance();
+		c1 							= pars.getC1();
+		c2 							= pars.getC2();
+		lbound 						= pars.getLbound();
+		ubound 						= pars.getUbound();
+		lboundW 						= pars.getLboundW();
+		uboundW 						= pars.getUboundW();
+		clampFactor 					= pars.getClampFactor();
+		optimization 				= pars.getOptimization();
+		popFit 						= new double[popSize];
+		pBestVar 					= new RealParticle[popSize];
+		for(int i = 0; i < popSize; i++) {
+		pBestVar[i] 					= new RealParticle(maxVar); }
+		
+		pBestFit 					= new double[popSize];
+		gBestVar 					= new RealParticle(maxVar);
 
-		initPop = CPSOFactory.getInitPopMethod();
-		initVel = CPSOFactory.getInitVelMethod();
-		upGbest = (UpdateGbest) CPSOFactory.getUpGIbestMethod();
-		upPbest = CPSOFactory.getUpPbestMethod();
-		upPop = CPSOFactory.getUpPopMethod(clampFactor);
-		dynW = CPSOFactory.getDynamicW(balance, maxGen, lboundW, uboundW);
-		evaluate = proSet.getEvaluate();
-		collector = CPSOFactory.getDataCollector();
+		initPop 						= CPSOFactory.getInitPopMethod();
+		initVel 						= CPSOFactory.getInitVelMethod();
+		upGbest 						= (UpdateGbest) CPSOFactory.getUpGIbestMethod();
+		upPbest 						= CPSOFactory.getUpPbestMethod();
+		upPop 						= CPSOFactory.getUpPopMethod(clampFactor);
+		dynW 						= CPSOFactory.getDynamicW(balance, maxGen, lboundW, uboundW);
+		evaluate 					= proSet.getEvaluate();
+		collector 					= CPSOFactory.getDataCollector();
 	}
 
 }

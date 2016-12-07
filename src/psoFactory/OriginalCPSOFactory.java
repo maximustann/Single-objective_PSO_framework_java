@@ -10,11 +10,11 @@
 package psoFactory;
 
 import commonOperators.CommonDynamicW;
-import commonOperators.CommonInitPop;
+import commonOperators.InitRealParticle;
 import commonOperators.CommonInitVel;
 import commonOperators.CommonUpGbest;
 import commonOperators.CommonUpPbest;
-import commonOperators.CommonUpGlobalPop;
+import commonOperators.RealUpGlobalPop;
 import commonOperators.CommonVelocityClamping;
 import dataCollector.DataCollector;
 import algorithms.*;
@@ -38,7 +38,7 @@ public class OriginalCPSOFactory implements PSOFactory{
 
 	@Override
 	public InitPop getInitPopMethod() {
-		return new CommonInitPop();
+		return new InitRealParticle();
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class OriginalCPSOFactory implements PSOFactory{
 
 	@Override
 	public UpPop getUpPopMethod(double clampFactor) {
-		return new CommonUpGlobalPop(getVelocityClamper(clampFactor));
+		return new RealUpGlobalPop(getVelocityClamper(clampFactor));
 	}
 
 	@Override
@@ -66,6 +66,7 @@ public class OriginalCPSOFactory implements PSOFactory{
 		return collector;
 	}
 
+	@Override
 	public VelocityClamping getVelocityClamper(double clampFactor) {
 		return new CommonVelocityClamping(clampFactor);
 	}

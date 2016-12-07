@@ -9,6 +9,7 @@
  */
 
 package algorithms;
+
 /**
  * Normalization function
  * 
